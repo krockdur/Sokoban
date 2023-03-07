@@ -4,7 +4,11 @@
 
 
 class Case{
+
 public:
+	Case(int x, int y, int value);
+
+private:
 	int x;
 	int y;
 	int value;

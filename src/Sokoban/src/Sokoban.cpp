@@ -1,7 +1,7 @@
 
 
 #include <iostream>
-
+#include "Map.h"
 
 int main()
 {
@@ -11,7 +11,8 @@ int main()
     map.print_map();
     */
 
-
+	Map map;
+/*
     char key_value = 'a';
 
     while (key_value != 'w')
@@ -37,6 +38,6 @@ int main()
         }
 
     }
-
+*/
 }
 
