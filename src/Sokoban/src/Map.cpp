@@ -1,36 +1,53 @@
-
 #include "Map.h"
-#include "csv/csv.hpp"
-using namespace csv;
 
-Map::Map(){
+Map::Map() {
 	this->populate_map();
 }
 
-Map::~Map(){
+Map::~Map() {
 
 }
 
 void Map::populate_map() {
 
 	// lecture csv
-	CSVReader reader("D:/A1_DEV/Sokoban/src/Sokoban/Debug/lvl1.csv");
-	CSVRow row;
+	std::ifstream sFile("D:\\A1_DEV\\Sokoban\\src\\Sokoban\\Debug\\lvl1.txt", std::ifstream::in);
 
-	while (reader.read_row(row)) {
-	    // Do stuff with row here
-		std::cout << "test" << std::endl;
-	}
+	if (sFile) {
 
-	for (int y = 0; y <= 15; y++){
+		std::string ligne;
 
-		for (int x = 0; x <= 15; x++){
+		int y = 0;
+		while (getline(sFile, ligne)) {
 
-			Case c(x, y, 0);
+			for(int x = 0; x < NB_TILE_X; x++){
+				Case c(x, y, ligne[x]);
+				this->map.push_back(c);
+				std::cout << c.get_x() << "   " << c.get_y() << "   " << c.get_value() << std::endl;
 
+			}
+
+			std::cout << ligne[0] << std::endl;
+
+			y++;
 		}
 
 	}
+	else {
+		std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture."
+				<< std::endl;
+	}
+
+	this->print_map();
+
 
 }
 
+void Map::print_map() {
+
+	std::cout << "-------------------------------" << std::endl;
+	for(Case c : this->map){
+		std::cout << c.get_x() << "   " << c.get_y() << "   " << c.get_value() << std::endl;
+	}
+
+}
