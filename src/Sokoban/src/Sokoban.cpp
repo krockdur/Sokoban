@@ -1,7 +1,7 @@
 
 
 #include <iostream>
-#include "Map.h"
+#include "Game.h"
 
 int main()
 {
@@ -11,7 +11,11 @@ int main()
     map.print_map();
     */
 
-	Map map;
+
+	Game game;
+	game.init();
+	game.loop();
+
 /*
     char key_value = 'a';
 

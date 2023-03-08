@@ -8,6 +8,7 @@
 #include "Case.h"
 
 #include <string>
+#include <filesystem>
 
 #define NB_TILE_X 16
 #define NB_TILE_Y 16
@@ -16,14 +17,14 @@ class Map {
 private:
 	std::vector<Case> map;
 	void populate_map();
-
+	void set_player_position(Case player_position);
 
 public:
-	Map();
+	Map() = default;
+	Map(Case case_player);
 	~Map();
 
 	Case get_case(int x, int y);
-	void change_case_value(Case c, int value);
 
 	void print_map();
 

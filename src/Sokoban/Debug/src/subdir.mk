@@ -4,19 +4,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/Case.cpp \
+../src/Game.cpp \
 ../src/Map.cpp \
 ../src/Player.cpp \
 ../src/Sokoban.cpp 
 
 CPP_DEPS += \
-./src/Case.d \
+./src/Game.d \
 ./src/Map.d \
 ./src/Player.d \
 ./src/Sokoban.d 
 
 OBJS += \
-./src/Case.o \
+./src/Game.o \
 ./src/Map.o \
 ./src/Player.o \
 ./src/Sokoban.o 
@@ -34,7 +34,7 @@ src/%.o: ../src/%.cpp src/subdir.mk
 clean: clean-src
 
 clean-src:
-	-$(RM) ./src/Case.d ./src/Case.o ./src/Map.d ./src/Map.o ./src/Player.d ./src/Player.o ./src/Sokoban.d ./src/Sokoban.o
+	-$(RM) ./src/Game.d ./src/Game.o ./src/Map.d ./src/Map.o ./src/Player.d ./src/Player.o ./src/Sokoban.d ./src/Sokoban.o
 
 .PHONY: clean-src
 
