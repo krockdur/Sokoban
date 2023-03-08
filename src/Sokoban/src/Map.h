@@ -10,6 +10,8 @@
 #include <string>
 #include <filesystem>
 
+#include <typeinfo>
+
 #define NB_TILE_X 16
 #define NB_TILE_Y 16
 
@@ -25,6 +27,7 @@ public:
 	~Map();
 
 	Case get_case(int x, int y);
+	void change_case_value(Case new_case);
 
 	void print_map();
 

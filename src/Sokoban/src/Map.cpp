@@ -61,11 +61,10 @@ void Map::print_map() {
 
 void Map::set_player_position(Case player_position) {
 
-	for(Case c : map){
+	for(Case& c : map){
 		if(player_position.get_x() == c.get_x() && player_position.get_y() == c.get_y()){
 
 			//update map
-
 			c.set_value(player_position.get_value());
 
 		}
@@ -74,4 +73,6 @@ void Map::set_player_position(Case player_position) {
 
 }
 
+void Map::change_case_value(Case new_case) {
 
+}
