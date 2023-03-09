@@ -1,3 +1,6 @@
+#ifndef HEADER_1072DC0C3939B51
+#define HEADER_1072DC0C3939B51
+
 /*
  * Game.h
  *
@@ -25,3 +28,5 @@ private:
 };
 
 #endif /* GAME_H_ */
+#endif // header guard 
+
