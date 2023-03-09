@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1678391066 source:/home/krocck/Dev/Sokoban_cb/src/Map.cpp
+	"Map.h"
+
+1678391073 /home/krocck/Dev/Sokoban_cb/include/Map.h
+	<vector>
+	<iostream>
+	<fstream>
+	"Case.h"
+	<string>
+	<filesystem>
+	<typeinfo>
+
+1678391009 /home/krocck/Dev/Sokoban_cb/include/Case.h
+
+1678391081 source:/home/krocck/Dev/Sokoban_cb/src/Player.cpp
+	"Player.h"
+
+1678391092 /home/krocck/Dev/Sokoban_cb/include/Player.h
+	<string>
+	"Case.h"
+

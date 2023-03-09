@@ -1,12 +1,3 @@
-#ifndef HEADER_1072DC0C3939B51
-#define HEADER_1072DC0C3939B51
-
-/*
- * Game.h
- *
- *  Created on: 8 mars 2023
- *      Author: krocck
- */
 
 #ifndef GAME_H_
 #define GAME_H_
@@ -28,5 +19,4 @@ private:
 };
 
 #endif /* GAME_H_ */
-#endif // header guard 
 

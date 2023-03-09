@@ -1,10 +1,3 @@
-/*
- * Game.cpp
- *
- *  Created on: 8 mars 2023
- *      Author: krocck
- */
-
 #include "Game.h"
 
 Game::Game() {
