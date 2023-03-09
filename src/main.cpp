@@ -3,20 +3,22 @@
 
 int main()
 {
-    /*
-    Map map;
-    map.load_lvl(1);
-    map.print_map();
-    */
+
+    char * toto = malloc;
+
+    *toto = "abaa";
+
+    std::cout << toto[1] << std::endl;
 
 
+/*
 
 	Game game;
 	game.init();
 	game.loop();
 
-	std::cout << "test" << std::endl;
 
+*/
 /*
     char key_value = 'a';
     while (key_value != 'w')
@@ -37,4 +39,6 @@ int main()
         }
     }
 */
+
+    return 0;
 }
