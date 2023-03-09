@@ -17,7 +17,7 @@ void Map::populate_map() {
 	std::cout << "Current working directory: " << std::filesystem::current_path() << std::endl;
 
 	//std::ifstream sFile("D:\\A1_DEV\\Sokoban\\src\\Sokoban\\Debug\\lvl1.txt", std::ifstream::in);
-	std::ifstream sFile("./lvl1.txt", std::ifstream::in);
+	std::ifstream sFile("./lvls/lvl1.txt", std::ifstream::in);
 
 
 	if (sFile) {
