@@ -52,3 +52,36 @@
 1678391081 source:/home/krocck/Dev/Sokoban/src/src/Player.cpp
 	"Player.h"
 
+1678423883 source:d:\dev\sokoban\src\main.cpp
+	<iostream>
+	<stdlib.h>
+	"Game.h"
+
+1678422674 d:\dev\sokoban\src\include\game.h
+	"Map.h"
+	"Player.h"
+
+1678422674 d:\dev\sokoban\src\include\map.h
+	<vector>
+	<iostream>
+	<fstream>
+	"Case.h"
+	<string>
+	<filesystem>
+	<typeinfo>
+
+1678422674 d:\dev\sokoban\src\include\case.h
+
+1678422674 d:\dev\sokoban\src\include\player.h
+	<string>
+	"Case.h"
+
+1678422674 source:d:\dev\sokoban\src\src\game.cpp
+	"Game.h"
+
+1678422674 source:d:\dev\sokoban\src\src\map.cpp
+	"Map.h"
+
+1678422674 source:d:\dev\sokoban\src\src\player.cpp
+	"Player.h"
+

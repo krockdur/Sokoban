@@ -1,16 +1,23 @@
 #include <iostream>
+#include <stdlib.h>
 #include "Game.h"
 
 int main()
 {
 
-    char * toto = malloc;
+    char * toto;
 
-    *toto = "abaa";
+    toto = (char *)malloc(5);
 
-    std::cout << toto[1] << std::endl;
+    toto = "abaa";
 
-
+    //toto[1] = 'c';
+/*
+    if (toto == "acaa"){
+        std::cout << "test";
+    }
+*/
+    free(toto);
 /*
 
 	Game game;
