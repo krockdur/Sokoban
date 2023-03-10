@@ -3,7 +3,7 @@
 Game::Game() {
 
 	player = Player("Krock", 2, 2);
-	map = Map(player.get_position());
+	map = Map(player);
 
 }
 
@@ -61,17 +61,28 @@ void Game::update()
             break;
 
         case right:
+
+            player.set_position(Case(player.get_position().get_x() + 1, player.get_position().get_y(), player.get_position().get_value()));
+
             break;
-/*
+
         case up:
+
+            player.set_position(Case(player.get_position().get_x(), player.get_position().get_y() - 1, player.get_position().get_value()));
+
             break;
 
         case down:
+
+            player.set_position(Case(player.get_position().get_x(), player.get_position().get_y() + 1, player.get_position().get_value()));
+
             break;
 
         default:
-            break;*/
+            break;
     }
+
+    map.update_player_pos_in_map(player);
 }
 
 void Game::draw()

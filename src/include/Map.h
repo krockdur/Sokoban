@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include "Case.h"
+#include "Player.h"
 
 #include <string>
 #include <filesystem>
@@ -21,12 +22,12 @@ private:
 
 public:
 	Map() = default;
-	Map(Case case_player);
+	Map(Player player);
 	~Map();
 
 	Case get_case(int x, int y);
 	void change_case_value(Case new_case);
-	void set_player_position(Case player_position);
+	void update_player_pos_in_map(Player player);
 
 	void print_map();
 

@@ -1,8 +1,8 @@
 #include "Map.h"
 
-Map::Map(Case case_player) {
+Map::Map(Player player) {
 	populate_map();
-	set_player_position(case_player);
+	update_player_pos_in_map(player);
 
 	this->print_map();
 }
@@ -60,23 +60,21 @@ void Map::print_map() {
 		std::cout << std::endl;
 	}
 }
-/*
-void Map::set_player_position(Case player_position) {
 
-	for(Case& c : map){
-		if(player_position.get_x() == c.get_x() && player_position.get_y() == c.get_y()){
+void Map::update_player_pos_in_map(Player player){
 
-			//update map
-			c.set_value(player_position.get_value());
+    for (Case& c : map){
 
-		}
-	}
+        // delete old player position
+        if(c.get_value() == player.get_value()){
+            c.set_value('0');
+        }
 
-}
-*/
-
-void Map::set_player_position(Player player){
-
+        // new position of the player in map
+        if(c.get_x() == player.get_position().get_x() && c.get_y() == player.get_position().get_y()){
+            c.set_value(player.get_value());
+        }
+    }
 }
 
 

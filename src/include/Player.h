@@ -8,6 +8,7 @@ class Player {
 private:
 	int x;
 	int y;
+	char value;
 	std::string name;
 
 public:
@@ -16,7 +17,8 @@ public:
 	~Player();
 
 	Case get_position();
-	void set_position(Case new_position)
+	void set_position(Case new_position);
+	char get_value(){return this->value;};
 };
 
 #endif /* PLAYER_H_ */
