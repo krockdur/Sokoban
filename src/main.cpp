@@ -2,30 +2,16 @@
 #include <stdlib.h>
 #include "Game.h"
 
+
 int main()
 {
-
-    char * toto;
-
-    toto = (char *)malloc(5);
-
-    toto = "abaa";
-
-    //toto[1] = 'c';
-/*
-    if (toto == "acaa"){
-        std::cout << "test";
-    }
-*/
-    free(toto);
-/*
 
 	Game game;
 	game.init();
 	game.loop();
 
 
-*/
+
 /*
     char key_value = 'a';
     while (key_value != 'w')
