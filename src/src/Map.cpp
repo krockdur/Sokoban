@@ -60,7 +60,7 @@ void Map::print_map() {
 		std::cout << std::endl;
 	}
 }
-
+/*
 void Map::set_player_position(Case player_position) {
 
 	for(Case& c : map){
@@ -72,8 +72,13 @@ void Map::set_player_position(Case player_position) {
 		}
 	}
 
+}
+*/
+
+void Map::set_player_position(Player player){
 
 }
+
 
 void Map::change_case_value(Case new_case) {
 

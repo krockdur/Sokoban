@@ -2,8 +2,12 @@
 #ifndef GAME_H_
 #define GAME_H_
 
+#include <string>
+
 #include "Map.h"
 #include "Player.h"
+
+#define WINDOWS 1
 
 class Game {
 public:
@@ -15,6 +19,10 @@ private:
 
 	Map map; 		// current map
 	Player player; 	// current player
+    bool run{true};
+
+	void update();
+	void draw();
 
 };
 

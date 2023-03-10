@@ -16,6 +16,7 @@ public:
 	~Player();
 
 	Case get_position();
+	void set_position(Case new_position)
 };
 
 #endif /* PLAYER_H_ */

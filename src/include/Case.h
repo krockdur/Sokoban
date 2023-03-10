@@ -5,6 +5,7 @@
 class Case{
 
 public:
+    Case() = default;
 	Case(int x, int y, char value){ this->x = x; this->y = y; this->value = value; };
 
 	// Getters

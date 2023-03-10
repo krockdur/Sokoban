@@ -18,7 +18,6 @@ class Map {
 private:
 	std::vector<Case> map;
 	void populate_map();
-	void set_player_position(Case player_position);
 
 public:
 	Map() = default;
@@ -27,6 +26,7 @@ public:
 
 	Case get_case(int x, int y);
 	void change_case_value(Case new_case);
+	void set_player_position(Case player_position);
 
 	void print_map();
 

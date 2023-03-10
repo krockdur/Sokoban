@@ -85,14 +85,15 @@
 1678422674 source:d:\dev\sokoban\src\src\player.cpp
 	"Player.h"
 
-1678430199 source:d:\a1_dev\00_perso\sokoban\src\src\game.cpp
+1678453239 source:d:\a1_dev\00_perso\sokoban\src\src\game.cpp
 	"Game.h"
 
-1678430199 d:\a1_dev\00_perso\sokoban\src\include\game.h
+1678451886 d:\a1_dev\00_perso\sokoban\src\include\game.h
+	<string>
 	"Map.h"
 	"Player.h"
 
-1678430199 d:\a1_dev\00_perso\sokoban\src\include\map.h
+1678452655 d:\a1_dev\00_perso\sokoban\src\include\map.h
 	<vector>
 	<iostream>
 	<fstream>
@@ -101,7 +102,7 @@
 	<filesystem>
 	<typeinfo>
 
-1678430199 d:\a1_dev\00_perso\sokoban\src\include\case.h
+1678453391 d:\a1_dev\00_perso\sokoban\src\include\case.h
 
 1678430199 d:\a1_dev\00_perso\sokoban\src\include\player.h
 	<string>
@@ -113,9 +114,8 @@
 1678430199 source:d:\a1_dev\00_perso\sokoban\src\src\player.cpp
 	"Player.h"
 
-1678432489 source:d:\a1_dev\00_perso\sokoban\src\main.cpp
+1678435015 source:d:\a1_dev\00_perso\sokoban\src\main.cpp
 	<iostream>
 	<stdlib.h>
 	"Game.h"
-	<string.h>
 
