@@ -2,8 +2,6 @@
 
 Game::Game() {
 
-
-
 }
 
 void Game::init() {
@@ -16,9 +14,16 @@ void Game::loop() {
 
     while (Game::run){
 
-        this->update();
+        sf::Time elapsed_time = Clock.getElapsedTime();
 
-        this->draw();
+
+        if (elapsed_time.asMilliseconds() >= TIME_BETWEEN_FRAME){
+            this->update();
+
+            this->draw();
+            Clock.restart();
+            std::cout << elapsed_time.asMicroseconds() << std::endl;
+        }
 
     }
 
@@ -26,34 +31,39 @@ void Game::loop() {
 
 void Game::update()
 {
-    char key_value = 'a';
 
-    enum Direction{up, down, left, right};
+
+    enum Direction{up, down, left, right, none};
 
     Direction direction;
+    direction = none;
 
-    std::cout << "Move : ZQSD - Leave : W :";
-    std::cin >> key_value;
-
-    if (key_value == 'z')
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
         direction = up;
+    }
 
-    if (key_value == 'q')
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)){
         direction = left;
+    }
 
-    if (key_value == 's')
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
         direction = down;
+    }
 
-    if (key_value == 'd')
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
         direction = right;
+    }
 
-    if (key_value == 'w')
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
         this->run = false;
-
-    // Maj
-
+        direction = none;
+    }
 
     Context context = map.get_case_context(player.get_position());
+
+
 
     switch(direction){
         case left:
@@ -85,18 +95,27 @@ void Game::update()
     }
 
     map.update_player_pos_in_map(player);
+
 }
 
 void Game::draw()
 {
-      #ifdef WINDOWS
-        system("cls");
-        std::cout << "clear on windows" << std::endl;
-      #endif
-      #ifdef LINUX
-        system("clear");
-        std::cout << "clear on linux" << std::endl;
-      #endif
+    #ifdef WINDOWS
+    system("cls");
+    #endif
+    #ifdef LINUX
+    system("clear");
+    #endif
 
     map.print_map();
+
+    debug(map.get_case_context(player.get_position()));
+}
+
+void Game::debug(Context c){
+    std::cout << "[    ]" << "[    ]" <<   c.t2   << "[    ]" << "[    ]" << std::endl;
+    std::cout << "[    ]" << "[    ]" <<   c.t1   << "[    ]" << "[    ]" << std::endl;
+    std::cout <<   c.l2   <<   c.l1   << "[    ]" <<   c.r1   <<   c.r2   << std::endl;
+    std::cout << "[    ]" << "[    ]" <<   c.b1   << "[    ]" << "[    ]" << std::endl;
+    std::cout << "[    ]" << "[    ]" <<   c.b2   << "[    ]" << "[    ]" << std::endl;
 }

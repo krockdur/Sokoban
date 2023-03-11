@@ -19,10 +19,7 @@ class Context
         }
         virtual ~Context() {}
 
-    protected:
-
-    private:
-        char l1;
+                char l1;
         char l2;
         char r1;
         char r2;
@@ -30,6 +27,11 @@ class Context
         char t2;
         char b1;
         char b2;
+
+    protected:
+
+    private:
+
 };
 
 #endif // CONTEXT_H

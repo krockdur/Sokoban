@@ -8,8 +8,12 @@
 #include "Player.h"
 
 #include <SFML/Graphics.hpp>
+//#include <SFML/Window.hpp>
 
-#define WINDOWS 1
+#define WINDOWS 0
+#define LINUX 1
+
+#define TIME_BETWEEN_FRAME 300
 
 class Game {
 public:
@@ -23,8 +27,12 @@ private:
 	Player player; 	// current player
     bool run{true};
 
+    sf::Clock Clock;
+
 	void update();
 	void draw();
+
+	void debug(Context contexte);
 
 };
 
