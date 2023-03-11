@@ -53,6 +53,8 @@ void Game::update()
     // Maj
 
 
+    Context context = map.get_case_context(player.get_position());
+
     switch(direction){
         case left:
 

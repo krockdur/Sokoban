@@ -34,6 +34,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Linker>
+			<Add option="-lsfml-graphics" />
+			<Add option="-lsfml-window" />
+			<Add option="-lsfml-audio" />
+			<Add option="-lsfml-system" />
+		</Linker>
 		<Unit filename="include/Case.h" />
 		<Unit filename="include/Context.h" />
 		<Unit filename="include/Game.h" />

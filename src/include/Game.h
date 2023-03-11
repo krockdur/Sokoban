@@ -7,6 +7,8 @@
 #include "Map.h"
 #include "Player.h"
 
+#include <SFML/Graphics.hpp>
+
 #define WINDOWS 1
 
 class Game {
