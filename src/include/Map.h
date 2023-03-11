@@ -6,6 +6,7 @@
 #include <fstream>
 #include "Case.h"
 #include "Player.h"
+#include "Context.h"
 
 #include <string>
 #include <filesystem>
@@ -28,6 +29,8 @@ public:
 	Case get_case(int x, int y);
 	void change_case_value(Case new_case);
 	void update_player_pos_in_map(Player player);
+    Context get_case_context(Case c);
+
 
 	void print_map();
 

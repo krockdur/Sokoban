@@ -2,13 +2,13 @@
 
 Game::Game() {
 
-	player = Player("Krock", 2, 2);
-	map = Map(player);
+
 
 }
 
 void Game::init() {
-
+	player = Player("Krock", 2, 2);
+	map = Map(player);
 }
 
 

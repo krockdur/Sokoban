@@ -122,3 +122,41 @@
 	<stdlib.h>
 	"Game.h"
 
+1678510971 source:/home/krock/Dev/Sokoban/src/main.cpp
+	<iostream>
+	<stdlib.h>
+	"Game.h"
+
+1678510971 /home/krock/Dev/Sokoban/src/include/Game.h
+	<string>
+	"Map.h"
+	"Player.h"
+
+1678522365 /home/krock/Dev/Sokoban/src/include/Map.h
+	<vector>
+	<iostream>
+	<fstream>
+	"Case.h"
+	"Player.h"
+	"Context.h"
+	<string>
+	<filesystem>
+	<typeinfo>
+
+1678510971 /home/krock/Dev/Sokoban/src/include/Case.h
+
+1678510971 /home/krock/Dev/Sokoban/src/include/Player.h
+	<string>
+	"Case.h"
+
+1678518122 source:/home/krock/Dev/Sokoban/src/src/Game.cpp
+	"Game.h"
+
+1678510971 source:/home/krock/Dev/Sokoban/src/src/Map.cpp
+	"Map.h"
+
+1678510971 source:/home/krock/Dev/Sokoban/src/src/Player.cpp
+	"Player.h"
+
+1678523349 /home/krock/Dev/Sokoban/src/include/Context.h
+
