@@ -67,27 +67,33 @@ void Game::update()
 
     switch(direction){
         case left:
-
-            player.set_position(Case(player.get_position().get_x() - 1, player.get_position().get_y(), player.get_position().get_value()));
+            if(context.l1 == '0'){
+                player.set_position(Case(player.get_position().get_x() - 1, player.get_position().get_y(), player.get_position().get_value()));
+            }
+            else if (context.l1 == '1'){
+            }
 
             break;
 
         case right:
+            if(context.r1 == '0'){
+                player.set_position(Case(player.get_position().get_x() + 1, player.get_position().get_y(), player.get_position().get_value()));
+            }
+            else if (context.r1 == '1'){
 
-            player.set_position(Case(player.get_position().get_x() + 1, player.get_position().get_y(), player.get_position().get_value()));
-
+            }
             break;
 
         case up:
-
-            player.set_position(Case(player.get_position().get_x(), player.get_position().get_y() - 1, player.get_position().get_value()));
-
+            if(context.t1 == '0'){
+                player.set_position(Case(player.get_position().get_x(), player.get_position().get_y() - 1, player.get_position().get_value()));
+            }
             break;
 
         case down:
-
-            player.set_position(Case(player.get_position().get_x(), player.get_position().get_y() + 1, player.get_position().get_value()));
-
+            if(context.b1 == '0'){
+                player.set_position(Case(player.get_position().get_x(), player.get_position().get_y() + 1, player.get_position().get_value()));
+            }
             break;
 
         default:
@@ -113,9 +119,9 @@ void Game::draw()
 }
 
 void Game::debug(Context c){
-    std::cout << "[    ]" << "[    ]" <<   c.t2   << "[    ]" << "[    ]" << std::endl;
-    std::cout << "[    ]" << "[    ]" <<   c.t1   << "[    ]" << "[    ]" << std::endl;
-    std::cout <<   c.l2   <<   c.l1   << "[    ]" <<   c.r1   <<   c.r2   << std::endl;
-    std::cout << "[    ]" << "[    ]" <<   c.b1   << "[    ]" << "[    ]" << std::endl;
-    std::cout << "[    ]" << "[    ]" <<   c.b2   << "[    ]" << "[    ]" << std::endl;
+    std::cout << "    " << c.t2 << std::endl;
+    std::cout << "    " << c.t1 << std::endl;
+    std::cout <<   c.l2   <<   c.l1   << "[   ]" <<   c.r1   <<   c.r2   << std::endl;
+    std::cout << "    " <<  c.b1   << std::endl;
+    std::cout << "    " <<  c.b2   << std::endl;
 }
