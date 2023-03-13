@@ -29,15 +29,19 @@ void Game::loop() {
 
 }
 
+bool moved = false;
 void Game::update()
 {
-
 
     enum Direction{up, down, left, right, none};
 
     Direction direction;
     direction = none;
-
+    
+    // Autoriser le déplacement
+    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D) ){
+        moved = false;
+    }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
         direction = up;
@@ -65,45 +69,52 @@ void Game::update()
     Context context = map.get_case_context(player.get_position());
 
 
+    if (!moved){
+        switch(direction){
+            case left:
+                if(context.l1 == Config::c_empty_tile){
+                    player.set_position(Case(player.get_position().get_x() - 1, player.get_position().get_y(), player.get_position().get_value()));
+                    moved = true;
+                }
+                else if (context.l1 == Config::c_wall_tile){
+                }
 
-    switch(direction){
-        case left:
-            if(context.l1 == Config::c_empty_tile){
-                player.set_position(Case(player.get_position().get_x() - 1, player.get_position().get_y(), player.get_position().get_value()));
-            }
-            else if (context.l1 == Config::c_wall_tile){
-            }
+                break;
 
-            break;
+            case right:
+                if(context.r1 == Config::c_empty_tile){
+                    player.set_position(Case(player.get_position().get_x() + 1, player.get_position().get_y(), player.get_position().get_value()));
+                    moved = true;
+                }
+                else if (context.r1 == Config::c_wall_tile){
 
-        case right:
-            if(context.r1 == Config::c_empty_tile){
-                player.set_position(Case(player.get_position().get_x() + 1, player.get_position().get_y(), player.get_position().get_value()));
-            }
-            else if (context.r1 == Config::c_wall_tile){
+                }
+                break;
 
-            }
-            break;
+            case up:
+                if(context.t1 == Config::c_empty_tile){
+                    player.set_position(Case(player.get_position().get_x(), player.get_position().get_y() - 1, player.get_position().get_value()));
+                    moved = true;
+                }
+                break;
 
-        case up:
-            if(context.t1 == Config::c_empty_tile){
-                player.set_position(Case(player.get_position().get_x(), player.get_position().get_y() - 1, player.get_position().get_value()));
-            }
-            break;
+            case down:
+                if(context.b1 == Config::c_empty_tile){
+                    player.set_position(Case(player.get_position().get_x(), player.get_position().get_y() + 1, player.get_position().get_value()));
+                    moved = true;
+                }
+                break;
 
-        case down:
-            if(context.b1 == Config::c_empty_tile){
-                player.set_position(Case(player.get_position().get_x(), player.get_position().get_y() + 1, player.get_position().get_value()));
-            }
-            break;
-
-        default:
-            break;
+            default:
+                break;
+        }
     }
+
+
 
     map.update_player_pos_in_map(player);
 
-}
+}   
 
 void Game::draw()
 {

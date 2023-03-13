@@ -13,7 +13,7 @@
 #define WINDOWS 0
 #define LINUX 1
 
-#define TIME_BETWEEN_FRAME 300
+#define TIME_BETWEEN_FRAME 30
 
 class Game {
 public:
