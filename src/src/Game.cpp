@@ -38,6 +38,7 @@ void Game::update()
     Direction direction;
     direction = none;
 
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
         direction = up;
     }
@@ -67,31 +68,31 @@ void Game::update()
 
     switch(direction){
         case left:
-            if(context.l1 == '0'){
+            if(context.l1 == Config::c_empty_tile){
                 player.set_position(Case(player.get_position().get_x() - 1, player.get_position().get_y(), player.get_position().get_value()));
             }
-            else if (context.l1 == '1'){
+            else if (context.l1 == Config::c_wall_tile){
             }
 
             break;
 
         case right:
-            if(context.r1 == '0'){
+            if(context.r1 == Config::c_empty_tile){
                 player.set_position(Case(player.get_position().get_x() + 1, player.get_position().get_y(), player.get_position().get_value()));
             }
-            else if (context.r1 == '1'){
+            else if (context.r1 == Config::c_wall_tile){
 
             }
             break;
 
         case up:
-            if(context.t1 == '0'){
+            if(context.t1 == Config::c_empty_tile){
                 player.set_position(Case(player.get_position().get_x(), player.get_position().get_y() - 1, player.get_position().get_value()));
             }
             break;
 
         case down:
-            if(context.b1 == '0'){
+            if(context.b1 == Config::c_empty_tile){
                 player.set_position(Case(player.get_position().get_x(), player.get_position().get_y() + 1, player.get_position().get_value()));
             }
             break;

@@ -4,6 +4,7 @@
 
 #include <string>
 
+#include "Config.h"
 #include "Map.h"
 #include "Player.h"
 

@@ -16,6 +16,7 @@
 #define NB_TILE_X 16
 #define NB_TILE_Y 16
 
+
 class Map {
 private:
 	std::vector<Case> map;
@@ -33,6 +34,7 @@ public:
 
 
 	void print_map();
+
 
 };
 

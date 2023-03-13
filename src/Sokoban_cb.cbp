@@ -41,11 +41,13 @@
 			<Add option="-lsfml-system" />
 		</Linker>
 		<Unit filename="include/Case.h" />
+		<Unit filename="include/Config.h" />
 		<Unit filename="include/Context.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/Map.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Config.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/Map.cpp" />
 		<Unit filename="src/Player.cpp" />
