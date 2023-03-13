@@ -1,0 +1,64 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "Build_linux",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g", "${workspaceFolder}/*.cpp",
+                "-o", "${fileDirname}/output/sokoban",
+                "-lsfml-graphics", "-lsfml-window", "-lsfml-system"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Tâche générée par le débogueur."
+        },
+        {
+            "type": "cppbuild",
+            "label": "build_windows",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g", "${workspaceFolder}/*.cpp",
+                "-o", "${fileDirname}/output/sokoban",
+                "-lsfml-graphics", "-lsfml-window", "-lsfml-system"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Tâche générée par le débogueur."
+        },
+        {
+            "label": "Compile on LINUX",
+            "type": "shell",
+            "command": "g++ -std=c++17 -Wall -Wextra -Werror *.cpp -o output/sokoban -lsfml-graphics -lsfml-window -lsfml-system"
+        },
+        {
+            "label": "Execute on LINUX",
+            "type": "shell",
+            "command": "${workspaceFolder}/output/sokoban"
+        },
+        {
+          "label": "Build & Run on LINUX",
+          "dependsOrder": "sequence",
+          "dependsOn": ["Compile on LINUX", "Execute on LINUX"]
+        }
+    ],
+    "version": "2.0.0"
+}

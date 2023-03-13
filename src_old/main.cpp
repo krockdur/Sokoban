@@ -35,6 +35,3 @@ int main()
 
     return 0;
 }
-
-// g++ -std=c++17 -Wall -Wextra -Werror *.cpp -o output/sokoban -lsfml-graphics -lsfml-window -lsfml-system
-
