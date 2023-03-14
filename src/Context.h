@@ -19,7 +19,7 @@ class Context
         }
         virtual ~Context() {}
 
-                char l1;
+        char l1;
         char l2;
         char r1;
         char r2;
