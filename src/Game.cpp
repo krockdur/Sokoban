@@ -18,10 +18,13 @@ void Game::loop() {
 
 
         if (elapsed_time.asMilliseconds() >= TIME_BETWEEN_FRAME){
+
             this->update();
 
             this->draw();
+
             Clock.restart();
+            
             std::cout << elapsed_time.asMicroseconds() << std::endl;
         }
 

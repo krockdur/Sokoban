@@ -8,7 +8,8 @@
 #include "Player.h"
 
 #include <SFML/Graphics.hpp>
-//#include <SFML/Window.hpp>
+
+
 
 #define WINDOWS 0
 #define LINUX 1
