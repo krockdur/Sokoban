@@ -67,7 +67,7 @@ void Map::update_player_pos_in_map(Player player){
 
         // delete old player position
         if(c.get_value() == player.get_value()){
-            c.set_value('0');
+            c.set_value(Config::c_empty_tile);
         }
 
         // new position of the player in map

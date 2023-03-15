@@ -4,7 +4,7 @@ CFLAGS=-DSFML_STATIC -O3 -g -Wall -m64
 LDFLAGS=-lsfml-graphics -lsfml-window -lsfml-system
 
 OD=output/
-EXEC=sokoban
+EXEC=sokoban.exe
 
 all: $(OD)$(EXEC)
 
@@ -27,9 +27,9 @@ player.o: player.cpp Case.h
 	$(CC) -c player.cpp -o player.o -IC:/libs/SFML/include $(CFLAGS)
 
 clean:
-	rm *.o
+	del *.o
 
 mp: clean
-	rm -rf output/$(EXEC)
+	del /Q .\output\*.*
 
 

@@ -54,11 +54,9 @@ void Game::update()
         direction = left;
     }
 
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
         direction = down;
     }
-
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
         direction = right;
@@ -70,7 +68,6 @@ void Game::update()
     }
 
     Context context = map.get_case_context(player.get_position());
-
 
     if (!moved){
         switch(direction){
@@ -122,9 +119,9 @@ void Game::update()
 void Game::draw()
 {
     #ifdef WINDOWS
-    system("cls");
+    //system("cls");
     #endif
-    #ifdef LINUX
+    #ifdef LINUX 
     system("clear");
     #endif
 
@@ -134,9 +131,32 @@ void Game::draw()
 }
 
 void Game::debug(Context c){
+    /*
     std::cout << "    " << c.t2 << std::endl;
     std::cout << "    " << c.t1 << std::endl;
     std::cout <<   c.l2   <<   c.l1   << "[   ]" <<   c.r1   <<   c.r2   << std::endl;
     std::cout << "    " <<  c.b1   << std::endl;
     std::cout << "    " <<  c.b2   << std::endl;
+    */
+
+   char A = c.t2;
+   char B = c.t1;
+   char C = c.l2;
+   char D = c.l1;
+   char E = c.r1;
+   char F = c.r2;
+   char G = c.b1;
+   char H = c.b2;
+
+
+    std::cout << "XXXXXXXXXXX|  "<<A<<"  |XXXXXXXXXXXX" << std::endl;
+    std::cout << "-----------|-----|------------" << std::endl;
+    std::cout << "XXXXXXXXXXX|  "<<B<<"  |XXXXXXXXXXXX" << std::endl;
+    std::cout << "-----------|-----|------------" << std::endl;
+    std::cout << "  "<<C<<"  |  "<<D<<"  |  @  |  "<<E<<"  |  "<<F<<"  |" << std::endl;
+    std::cout << "-----------|-----|------------" << std::endl;
+    std::cout << "XXXXXXXXXXX|  "<<G<<"  |XXXXXXXXXXXX" << std::endl;
+    std::cout << "-----------|-----|------------" << std::endl;
+    std::cout << "XXXXXXXXXXX|  "<<H<<"  |XXXXXXXXXXXX" << std::endl;
 }
+

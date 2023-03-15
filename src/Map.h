@@ -8,6 +8,7 @@
 #include "Case.h"
 #include "Player.h"
 #include "Context.h"
+#include "Config.h"
 
 
 #include <string>
