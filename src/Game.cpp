@@ -119,7 +119,7 @@ void Game::update()
 void Game::draw()
 {
     #ifdef WINDOWS
-    //system("cls");
+    system("cls");
     #endif
     #ifdef LINUX 
     system("clear");
@@ -131,13 +131,6 @@ void Game::draw()
 }
 
 void Game::debug(Context c){
-    /*
-    std::cout << "    " << c.t2 << std::endl;
-    std::cout << "    " << c.t1 << std::endl;
-    std::cout <<   c.l2   <<   c.l1   << "[   ]" <<   c.r1   <<   c.r2   << std::endl;
-    std::cout << "    " <<  c.b1   << std::endl;
-    std::cout << "    " <<  c.b2   << std::endl;
-    */
 
    char A = c.t2;
    char B = c.t1;

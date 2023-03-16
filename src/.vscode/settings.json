@@ -53,5 +53,17 @@
         "stdexcept": "cpp",
         "streambuf": "cpp",
         "typeinfo": "cpp"
-    }
+    },
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "d:\\A1_DEV\\00_PERSO\\Sokoban\\src",
+            "binaryPath": "d:\\A1_DEV\\00_PERSO\\Sokoban\\src\\sokoban",
+            "binaryArgs": []
+        },
+        {
+            "cwd": "d:\\A1_DEV\\00_PERSO\\Sokoban\\src",
+            "binaryPath": "d:\\A1_DEV\\00_PERSO\\Sokoban\\src\\sokoban.exe",
+            "binaryArgs": []
+        }
+    ]
 }

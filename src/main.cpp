@@ -48,3 +48,31 @@ int main()
 // rm output\win\run.exe && g++ -c *.cpp -IC:/libs/SFML/include -DSFML_STATIC -O3 -g -Wall -m64 && g++ *.o -o output/win/run.exe -LC:/libs/SFML/lib -lsfml-graphics -lsfml-window -lsfml-system && rm *.o
 
 // g++ *.o -o output/win/run.exe -LC:/libs/SFML/lib -lsfml-graphics -lsfml-window -lsfml-system
+
+/*
+
+        {
+            "name": "GDB_UBUNTU",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/output/sokoban",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Activer l'impression en mode Pretty pour gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Définir la version désassemblage sur Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+        */
