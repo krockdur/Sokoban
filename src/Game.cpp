@@ -72,11 +72,28 @@ void Game::update()
     if (!moved){
         switch(direction){
             case left:
-                if(context.l1 == Config::c_empty_tile){
-                    player.set_position(Case(player.get_position().get_x() - 1, player.get_position().get_y(), player.get_position().get_value()));
-                    moved = true;
-                }
-                else if (context.l1 == Config::c_wall_tile){
+
+
+                switch (context.l1){
+
+                    case Config::c_empty_tile:
+                        player.set_position(Case(player.get_position().get_x() - 1, player.get_position().get_y(), player.get_position().get_value()));
+                        break;
+                    case Config::c_wall_tile:
+                        break;
+                    case Config::c_box_tile:
+
+                        switch (context.l2){
+                            
+                            case Config::c_empty_tile:
+                                // bouger la box
+                                
+                                break;
+
+
+                        }
+
+                        break;
                 }
 
                 break;

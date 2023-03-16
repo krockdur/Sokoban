@@ -6,11 +6,11 @@ class Config
 {
     public:
 
-    static char c_wall_tile;
-    static char c_objective_tile;
-    static char c_empty_tile;
-    static char c_pillar_tile;
-    static char c_box_tile;
+    static const char c_wall_tile = '#';
+    static const char c_objective_tile = 'C';
+    static const char c_empty_tile = ' ';
+    static const char c_pillar_tile = '$';
+    static const char c_box_tile = 'B';
 };
 
 #endif // CONFIG_H

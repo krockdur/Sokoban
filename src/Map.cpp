@@ -126,7 +126,20 @@ Context Map::get_case_context(Case c)
 }
 
 
-/*
+
 void Map::change_case_value(Case new_case) {
 
-}*/
+bool element_removed = false;
+
+    for (Case c: map){
+        if(c.get_x() == new_case.get_x() && c.get_y() == new_case.get_y())
+        {
+            std::remove(map.begin(), map.end(), c);
+            element_removed = true;
+        }
+    }
+
+    if (element_removed)
+        map.push_back(new_case);
+
+}
