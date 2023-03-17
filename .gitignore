@@ -1,2 +1,6 @@
 src/.vscode/*
 ./vscode/*
+*.o
+*.exe
+src/sokoban
+
