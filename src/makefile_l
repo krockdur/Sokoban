@@ -7,6 +7,9 @@ EXEC=sokoban
 
 all: $(EXEC)
 
+
+
+
 $(EXEC): main.o game.o config.o map.o player.o
 	$(CC) -o $(EXEC) main.o game.o config.o map.o player.o $(LDFLAGS)
 
