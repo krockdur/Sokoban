@@ -38,14 +38,6 @@ void Map::populate_map() {
     else {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
     }
-
-    // debug
-    Case tc(3, 3, 'Z');
-    this->change_case_value(tc);
-
-    int i = 21;
-    i = 32 + i;
-
 }
 
 Case Map::get_case(int x, int y) {

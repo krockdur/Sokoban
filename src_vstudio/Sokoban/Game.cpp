@@ -121,6 +121,14 @@ void Game::update()
 					player.set_position(Case(case_l1.get_x(), case_l1.get_y(), Config::c_player_tile));
 					moved = true;
 					break;
+
+				case Config::c_objective_tile:
+
+					new_case_l1 = Case(case_l1.get_x(), case_l1.get_y(), Config::c_empty_tile);
+					map.change_case_value(new_case_l1);
+					player.set_position(Case(case_l1.get_x(), case_l1.get_y(), Config::c_player_tile));
+					moved = true;
+					break;
 				}
 
 				break;
@@ -169,6 +177,14 @@ void Game::update()
 					player.set_position(Case(case_r1.get_x(), case_r1.get_y(), Config::c_player_tile));
 					moved = true;
 					break;
+
+				case Config::c_objective_tile:
+
+					new_case_r1 = Case(case_r1.get_x(), case_r1.get_y(), Config::c_empty_tile);
+					map.change_case_value(new_case_r1);
+					player.set_position(Case(case_r1.get_x(), case_r1.get_y(), Config::c_player_tile));
+					moved = true;
+					break;
 				}
 
 				break;
@@ -213,6 +229,14 @@ void Game::update()
 					player.set_position(Case(case_t1.get_x(), case_t1.get_y(), Config::c_player_tile));
 					moved = true;
 					break;
+
+				case Config::c_objective_tile:
+
+					new_case_t1 = Case(case_t1.get_x(), case_t1.get_y(), Config::c_empty_tile);
+					map.change_case_value(new_case_t1);
+					player.set_position(Case(case_t1.get_x(), case_t1.get_y(), Config::c_player_tile));
+					moved = true;
+					break;
 				}
 
 				break;
@@ -254,6 +278,14 @@ void Game::update()
 					map.change_case_value(new_case_b1);
 					map.change_case_value(new_case_b2);
 
+					player.set_position(Case(case_b1.get_x(), case_b1.get_y(), Config::c_player_tile));
+					moved = true;
+					break;
+
+				case Config::c_objective_tile:
+
+					new_case_b1 = Case(case_b1.get_x(), case_b1.get_y(), Config::c_empty_tile);
+					map.change_case_value(new_case_b1);
 					player.set_position(Case(case_b1.get_x(), case_b1.get_y(), Config::c_player_tile));
 					moved = true;
 					break;
