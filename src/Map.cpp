@@ -14,6 +14,7 @@ Map::~Map() {
 
 
 void Map::populate_map() {
+    
 	std::cout << "Current working directory: " << std::filesystem::current_path() << std::endl;
 
 	//std::ifstream sFile("D:\\A1_DEV\\Sokoban\\src\\Sokoban\\Debug\\lvl1.txt", std::ifstream::in);
@@ -37,6 +38,10 @@ void Map::populate_map() {
 	else {
 		std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
 	}
+
+    // debug
+    Case tc(2, 2, 'Z');
+    this->change_case_value(tc);
 
 }
 
@@ -129,17 +134,38 @@ Context Map::get_case_context(Case c)
 
 void Map::change_case_value(Case new_case) {
 
-bool element_removed = false;
+    bool element_removed = false;
+
+    int i = 0;
+
+    int deleted_index = 0;
+
+    int new_case_x = new_case.get_x();
+    int new_case_y = new_case.get_y();
+
 
     for (Case c: map){
-        if(c.get_x() == new_case.get_x() && c.get_y() == new_case.get_y())
+
+    	int tmp_c_x = c.get_x();
+    	int tmp_c_y = c.get_y();
+
+
+
+        if(tmp_c_x == new_case_x && tmp_c_y == new_case_y)
         {
-            std::remove(map.begin(), map.end(), c);
+
+            map.erase(map.begin() + i);
             element_removed = true;
+            deleted_index = i;
+            break;
         }
+        i++;
     }
 
-    if (element_removed)
-        map.push_back(new_case);
+    if (element_removed){
+        //map.push_back(new_case);
+    	map.insert(map.begin() + deleted_index, new_case);
+    }
+
 
 }
