@@ -12,11 +12,6 @@ void Game::init() {
 	map = Map(player);
 
 	// load textures
-	sf::Texture texture_box;
-	sf::Texture texture_background;
-	sf::Texture texture_obj;
-	sf::Texture texture_player;
-	sf::Texture texture_wall;
 
 	if (!texture_box.loadFromFile("sprites/sprite_caisse.png"))
 		load_sprite_error = true;
@@ -44,12 +39,22 @@ void Game::init() {
 
 void Game::loop() {
 
-	while (Game::run)
+	while (game_window.isOpen())
 	{
 
 		sf::Time elapsed_time = Clock.getElapsedTime();
+	
+		while (game_window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				game_window.close();
 
+			this->update();
+		}
+		
+		this->draw();
 
+		/*
 		if (elapsed_time.asMilliseconds() >= TIME_BETWEEN_FRAME)
 		{
 
@@ -59,8 +64,11 @@ void Game::loop() {
 
 			Clock.restart();
 
-			std::cout << elapsed_time.asMicroseconds() << std::endl;
+			//std::cout << elapsed_time.asMicroseconds() << std::endl;
 		}
+		*/
+		
+
 
 	}
 
@@ -103,7 +111,8 @@ void Game::update()
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		this->run = false;
+		//this->run = false;
+		game_window.close();
 		direction = none;
 	}
 
@@ -341,28 +350,58 @@ void Game::update()
 
 void Game::draw()
 {
+
+	game_window.clear();
+
+/*
 #ifdef WINDOWS
 	system("cls");
 #endif
 #ifdef LINUX 
 	//system("clear");
 #endif
-
+*/
 	for (int y = 0; y < NB_TILE_Y; y++)
 	{
-		std::cout << "|  ";
 		for (int x = 0; x < NB_TILE_X; x++)
 		{
-			
 			if (map.get_case(x, y).get_value() == Config::c_box_tile)
-				game_window.draw(sprite_box)
+			{
+				sprite_box.setPosition(x * TILE_W, y * TILE_W);
+				game_window.draw(sprite_box);
+			}
+
+			if (map.get_case(x, y).get_value() == Config::c_empty_tile)
+			{
+				sprite_box.setPosition(x * TILE_W, y * TILE_W);
+				game_window.draw(sprite_bg);
+			}
+
+			if (map.get_case(x, y).get_value() == Config::c_objective_tile)
+			{
+				sprite_box.setPosition(x * TILE_W, y * TILE_W);
+				game_window.draw(sprite_obj);
+			}
+
+			if (map.get_case(x, y).get_value() == Config::c_player_tile)
+			{
+				sprite_box.setPosition(x * TILE_W, y * TILE_W);
+				game_window.draw(sprite_player);
+			}
+
+			if (map.get_case(x, y).get_value() == Config::c_wall_tile)
+			{
+				sprite_box.setPosition(x * TILE_W, y * TILE_W);
+				game_window.draw(sprite_wall);
+			}
 		}
-		std::cout << std::endl;
 	}
 
-	map.print_map();
+	//map.print_map();
 
-	debug(map.get_case_context(player.get_position()));
+	//debug(map.get_case_context(player.get_position()));
+
+	game_window.display();
 }
 
 void Game::debug(Context c)

@@ -18,6 +18,7 @@
 
 #define NB_TILE_X 16
 #define NB_TILE_Y 16
+#define TILE_W 32.0f
 
 
 class Map {
