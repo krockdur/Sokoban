@@ -27,6 +27,10 @@ private:
 
 	Map map; 		// current map
 	Player player; 	// current player
+
+	sf::Sprite sprite_bg, sprite_box, sprite_obj, sprite_player, sprite_wall;
+	sf::RenderWindow game_window;
+
 	bool run{ true };
 
 	sf::Clock Clock;

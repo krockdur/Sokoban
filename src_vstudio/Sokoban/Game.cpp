@@ -5,9 +5,41 @@ Game::Game() {
 }
 
 void Game::init() {
+	
+	bool load_sprite_error = false;
+
 	player = Player("Krock", 1, 1);
 	map = Map(player);
+
+	// load textures
+	sf::Texture texture_box;
+	sf::Texture texture_background;
+	sf::Texture texture_obj;
+	sf::Texture texture_player;
+	sf::Texture texture_wall;
+
+	if (!texture_box.loadFromFile("sprites/sprite_caisse.png"))
+		load_sprite_error = true;
+	if (!texture_background.loadFromFile("sprites/sprite_bg.png"))
+		load_sprite_error = true;
+	if (!texture_obj.loadFromFile("sprites/sprite_obj.png"))
+		load_sprite_error = true;
+	if (!texture_player.loadFromFile("sprites/sprite_player.png"))
+		load_sprite_error = true;
+	if (!texture_wall.loadFromFile("sprites/sprite_wall.png"))
+		load_sprite_error = true;
+
+	// init sprites
+	sprite_box.setTexture(texture_box);
+	sprite_bg.setTexture(texture_background);
+	sprite_obj.setTexture(texture_obj);
+	sprite_player.setTexture(texture_player);
+	sprite_wall.setTexture(texture_wall);
+
+	// create window
+	game_window.create(sf::VideoMode(800, 600), "Sokoban");
 }
+
 
 
 void Game::loop() {
@@ -315,6 +347,18 @@ void Game::draw()
 #ifdef LINUX 
 	//system("clear");
 #endif
+
+	for (int y = 0; y < NB_TILE_Y; y++)
+	{
+		std::cout << "|  ";
+		for (int x = 0; x < NB_TILE_X; x++)
+		{
+			
+			if (map.get_case(x, y).get_value() == Config::c_box_tile)
+				game_window.draw(sprite_box)
+		}
+		std::cout << std::endl;
+	}
 
 	map.print_map();
 
