@@ -12,6 +12,7 @@ class Config
         static const char c_empty_tile = ' ';
         static const char c_player_tile = '@';
         static const char c_player_on_objective_tile = '+';
+        static const char c_box_on_objective = '*';
 
 };
 
