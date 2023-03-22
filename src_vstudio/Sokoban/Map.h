@@ -16,8 +16,8 @@
 
 #include <typeinfo>
 
-#define NB_TILE_X 16
-#define NB_TILE_Y 16
+#define NB_TILE_X 20
+#define NB_TILE_Y 20
 #define TILE_W 32.0f
 
 
@@ -26,16 +26,20 @@ private:
 	std::vector<Case> map;
 	void populate_map();
 
+	Case case_player;
+
+
+
 public:
-	Map() = default;
-	Map(Player player);
+	Map();
 	~Map();
 
 	Case get_case(int x, int y);
 	void change_case_value(Case new_case);
-	void update_player_pos_in_map(Player player);
 	Context get_case_context(Case c);
 
+	Case get_case_player(){ return case_player; };
+	void set_case_player( Case cp );
 
 	void print_map();
 

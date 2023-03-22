@@ -13,7 +13,8 @@ private:
 
 public:
 	Player() = default;
-	Player(std::string name, int x, int y);
+	// Player(std::string name, int x, int y);
+	Player( std::string name );
 	~Player();
 
 	Case get_position();
