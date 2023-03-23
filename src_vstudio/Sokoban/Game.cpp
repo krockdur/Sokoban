@@ -174,6 +174,26 @@ void Game::update()
 
 			case Config::c_box_on_objective:
 
+				switch (context.l2) 
+				{
+				case Config::c_empty_tile:
+
+					Case new_case_l1 = Case( case_l1.get_x(), case_l1.get_y(), Config::c_box_on_objective );
+					Case new_case_l2 = Case( case_l2.get_x(), case_l2.get_y(), Config::c_box_tile );;
+
+					map.change_case_value( new_case_l1 );
+					map.change_case_value( new_case_l2 );
+
+					map.set_case_player( Case( case_l1.get_x(), case_l1.get_y(), Config::c_player_tile ) );
+					moved = true;
+					break;
+					break;
+
+				case Config::c_objective_tile:
+
+					break;
+				}
+
 				break;
 			}
 
