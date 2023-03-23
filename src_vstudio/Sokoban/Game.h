@@ -42,6 +42,7 @@ private:
 
 	void update();
 	void draw();
+	void transfert_object(Case start_case, Case next_case, char new_value_start_case, char new_value_next_case);
 
 	void debug(Context contexte);
 

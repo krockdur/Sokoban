@@ -9,35 +9,35 @@ void Game::init() {
 
 	bool load_sprite_error = false;
 
-	player = Player( "Krock" );
+	player = Player("Krock");
 	map = Map();
 
 	// load textures
 
-	if (!texture_box.loadFromFile( "sprites/sprite_caisse.png" ))
+	if (!texture_box.loadFromFile("sprites/sprite_caisse.png"))
 		load_sprite_error = true;
-	if (!texture_box_on_obj.loadFromFile( "sprites/sprite_caisse_on_obj.png" ))
+	if (!texture_box_on_obj.loadFromFile("sprites/sprite_caisse_on_obj.png"))
 		load_sprite_error = true;
-	if (!texture_background.loadFromFile( "sprites/sprite_bg.png" ))
+	if (!texture_background.loadFromFile("sprites/sprite_bg.png"))
 		load_sprite_error = true;
-	if (!texture_obj.loadFromFile( "sprites/sprite_obj.png" ))
+	if (!texture_obj.loadFromFile("sprites/sprite_obj.png"))
 		load_sprite_error = true;
-	if (!texture_player.loadFromFile( "sprites/sprite_player.png" ))
+	if (!texture_player.loadFromFile("sprites/sprite_player.png"))
 		load_sprite_error = true;
-	if (!texture_player_on_obj.loadFromFile( "sprites/sprite_player_on_obj.png" ))
+	if (!texture_player_on_obj.loadFromFile("sprites/sprite_player_on_obj.png"))
 		load_sprite_error = true;
-	if (!texture_wall.loadFromFile( "sprites/sprite_wall.png" ))
+	if (!texture_wall.loadFromFile("sprites/sprite_wall.png"))
 		load_sprite_error = true;
 
 	// init sprites
-	sprite_box.setTexture( texture_box );
-	sprite_bg.setTexture( texture_background );
-	sprite_obj.setTexture( texture_obj );
-	sprite_player.setTexture( texture_player );
-	sprite_wall.setTexture( texture_wall );
+	sprite_box.setTexture(texture_box);
+	sprite_bg.setTexture(texture_background);
+	sprite_obj.setTexture(texture_obj);
+	sprite_player.setTexture(texture_player);
+	sprite_wall.setTexture(texture_wall);
 
 	// create window
-	game_window.create( sf::VideoMode( 800, 600 ), "Sokoban" );
+	game_window.create(sf::VideoMode(800, 600), "Sokoban");
 }
 
 
@@ -49,7 +49,7 @@ void Game::loop() {
 
 		sf::Time elapsed_time = Clock.getElapsedTime();
 
-		while (game_window.pollEvent( event ))
+		while (game_window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				game_window.close();
@@ -72,322 +72,268 @@ void Game::update()
 	direction = none;
 
 	// Autoriser le déplacement
-	if (!sf::Keyboard::isKeyPressed( sf::Keyboard::Z ) && !sf::Keyboard::isKeyPressed( sf::Keyboard::Q ) && !sf::Keyboard::isKeyPressed( sf::Keyboard::S ) && !sf::Keyboard::isKeyPressed( sf::Keyboard::D ))
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		moved = false;
 	}
 
-	if (sf::Keyboard::isKeyPressed( sf::Keyboard::Z ))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 	{
 		direction = up;
 	}
 
-	if (sf::Keyboard::isKeyPressed( sf::Keyboard::Q ))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	{
 		direction = left;
 	}
 
-	if (sf::Keyboard::isKeyPressed( sf::Keyboard::S ))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
 		direction = down;
 	}
 
-	if (sf::Keyboard::isKeyPressed( sf::Keyboard::D ))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		direction = right;
 	}
 
-	if (sf::Keyboard::isKeyPressed( sf::Keyboard::W ))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		//this->run = false;
 		game_window.close();
 		direction = none;
 	}
 
-	Context context = map.get_case_context( map.get_case_player() );
+	Context context = map.get_case_context(map.get_case_player());
 
 	if (!moved)
 	{
 		switch (direction)
 		{
 
+			case left:
 
-			// -- GAUCHE
-		case left:
+				Case case_l1 = map.get_case(map.get_case_player().get_x() - 1, map.get_case_player().get_y());
+				Case case_l2 = map.get_case(map.get_case_player().get_x() - 2, map.get_case_player().get_y());
 
-			// -- OBTENIR CASE L1 & L2
-			Case case_l1 = map.get_case( map.get_case_player().get_x() - 1, map.get_case_player().get_y() );
-			Case case_l2 = map.get_case( map.get_case_player().get_x() - 2, map.get_case_player().get_y() );
-
-			// -- STATUS CASE L1
-			switch (context.l1)
-			{
-
-			case Config::c_empty_tile:
-				map.set_case_player( Case( case_l1.get_x(), case_l1.get_y(), Config::c_player_tile ) );
-				moved = true;
-				break;
-
-			case Config::c_wall_tile:
-				break;
-
-			case Config::c_box_tile:
-
-				// -- STATUS L2
-				switch (context.l2)
+				switch (context.l1)
 				{
 
-					// -- CASE L2: VIDE
-				case Config::c_empty_tile:
-					// bouger la box
-					// On vide L1 et on remplie L2
-					Case new_case_l1 = Case( case_l1.get_x(), case_l1.get_y(), Config::c_empty_tile );
-					Case new_case_l2 = Case( case_l2.get_x(), case_l2.get_y(), Config::c_box_tile );;
+					case Config::c_empty_tile:
+						map.set_case_player(Case(case_l1.get_x(), case_l1.get_y(), Config::c_player_tile));
+						moved = true;
+						break;
 
-					map.change_case_value( new_case_l1 );
-					map.change_case_value( new_case_l2 );
+					case Config::c_box_tile:
 
-					map.set_case_player( Case( case_l1.get_x(), case_l1.get_y(), Config::c_player_tile ) );
-					moved = true;
-					break;
+						switch (context.l2)
+						{
+							case Config::c_empty_tile:
+								transfert_object(case_l1, case_l2, Config::c_empty_tile, Config::c_box_tile);
+								break;
 
-				case Config::c_objective_tile:
+							case Config::c_objective_tile:
+								transfert_object(case_l1, case_l2, Config::c_empty_tile, Config::c_box_on_objective);
+								break;
+						}
 
-					new_case_l1 = Case( case_l1.get_x(), case_l1.get_y(), Config::c_empty_tile );
-					new_case_l2 = Case( case_l2.get_x(), case_l2.get_y(), Config::c_box_on_objective );
+						break;
 
-					map.change_case_value( new_case_l1 );
-					map.change_case_value( new_case_l2 );
-					map.set_case_player( Case( case_l1.get_x(), case_l1.get_y(), Config::c_player_tile ) );
+					case Config::c_objective_tile:
+						map.set_case_player(Case(case_l1.get_x(), case_l1.get_y(), Config::c_player_tile));
+						moved = true;
+						break;
 
-					moved = true;
-					break;
+					case Config::c_box_on_objective:
+
+						switch (context.l2)
+						{
+
+							case Config::c_empty_tile:
+								transfert_object(case_l1, case_l2, Config::c_objective_tile, Config::c_box_tile);
+								break;
+
+							case Config::c_objective_tile:
+								break;
+						}
+
+						break;
+
 				}
 
 				break;
 
-			case Config::c_objective_tile:
-				// Player on objective case
-				map.set_case_player( Case( case_l1.get_x(), case_l1.get_y(), Config::c_player_tile ) );
-				moved = true;
-				break;
+			case right:
 
-			case Config::c_box_on_objective:
+				Case case_r1 = map.get_case(map.get_case_player().get_x() + 1, map.get_case_player().get_y());
+				Case case_r2 = map.get_case(map.get_case_player().get_x() + 2, map.get_case_player().get_y());
 
-				switch (context.l2) 
-				{
-				case Config::c_empty_tile:
-
-					Case new_case_l1 = Case( case_l1.get_x(), case_l1.get_y(), Config::c_box_on_objective );
-					Case new_case_l2 = Case( case_l2.get_x(), case_l2.get_y(), Config::c_box_tile );;
-
-					map.change_case_value( new_case_l1 );
-					map.change_case_value( new_case_l2 );
-
-					map.set_case_player( Case( case_l1.get_x(), case_l1.get_y(), Config::c_player_tile ) );
-					moved = true;
-					break;
-					break;
-
-				case Config::c_objective_tile:
-
-					break;
-				}
-
-				break;
-			}
-
-			break;
-
-		case right:
-
-			// -- OBTENIR CASE L1 & L2
-			Case case_r1 = map.get_case( map.get_case_player().get_x() + 1, map.get_case_player().get_y() );
-			Case case_r2 = map.get_case( map.get_case_player().get_x() + 2, map.get_case_player().get_y() );
-
-			// -- STATUS CASE L1
-			switch (context.r1)
-			{
-
-			case Config::c_empty_tile:
-				map.set_case_player( Case( case_r1.get_x(), case_r1.get_y(), Config::c_player_tile ) );
-				moved = true;
-				break;
-
-			case Config::c_wall_tile:
-				break;
-
-			case Config::c_box_tile:
-
-				// -- STATUS L2
-				switch (context.r2)
+				switch (context.r1)
 				{
 
-					// -- CASE L2: VIDE
-				case Config::c_empty_tile:
-					// bouger la box
-					// On vide L1 et on remplie L2
-					Case new_case_r1 = Case( case_r1.get_x(), case_r1.get_y(), Config::c_empty_tile );
-					Case new_case_r2 = Case( case_r2.get_x(), case_r2.get_y(), Config::c_box_tile );;
+					case Config::c_empty_tile:
+						map.set_case_player(Case(case_r1.get_x(), case_r1.get_y(), Config::c_player_tile));
+						moved = true;
+						break;
 
-					map.change_case_value( new_case_r1 );
-					map.change_case_value( new_case_r2 );
+					case Config::c_wall_tile:
+						break;
 
-					map.set_case_player( Case( case_r1.get_x(), case_r1.get_y(), Config::c_player_tile ) );
-					moved = true;
-					break;
+					case Config::c_box_tile:
 
-				case Config::c_objective_tile:
+						switch (context.r2)
+						{
+							case Config::c_empty_tile:
+								transfert_object(case_r1, case_r2, Config::c_empty_tile, Config::c_box_tile);
+								break;
 
-					new_case_r1 = Case( case_r1.get_x(), case_r1.get_y(), Config::c_empty_tile );
-					new_case_r2 = Case( case_r2.get_x(), case_r2.get_y(), Config::c_box_on_objective );
+							case Config::c_objective_tile:
+								transfert_object(case_r1, case_r2, Config::c_empty_tile, Config::c_box_on_objective);
+								break;
+						}
 
-					map.change_case_value( new_case_r1 );
-					map.change_case_value( new_case_r2 );
-					map.set_case_player( Case( case_r1.get_x(), case_r1.get_y(), Config::c_player_tile ) );
+						break;
 
-					moved = true;
-					break;
+					case Config::c_objective_tile:
+						map.set_case_player(Case(case_r1.get_x(), case_r1.get_y(), Config::c_player_tile));
+						moved = true;
+						break;
+
+					case Config::c_box_on_objective:
+
+						switch (context.r2)
+						{
+							case Config::c_empty_tile:
+								transfert_object(case_r1, case_r2, Config::c_objective_tile, Config::c_box_tile);
+								break;
+
+							case Config::c_objective_tile:
+								break;
+						}
+
+						break;
 				}
 
 				break;
 
-			case Config::c_objective_tile:
-				// Player on objective case
-				map.set_case_player( Case( case_r1.get_x(), case_r1.get_y(), Config::c_player_tile ) );
-				moved = true;
-				break;
-			}
+			case up:
 
-			break;
+				// -- OBTENIR CASE T1 & T2
+				Case case_t1 = map.get_case(map.get_case_player().get_x(), map.get_case_player().get_y() - 1);
+				Case case_t2 = map.get_case(map.get_case_player().get_x(), map.get_case_player().get_y() - 2);
 
-		case up:
-
-			// -- OBTENIR CASE T1 & T2
-			Case case_t1 = map.get_case( map.get_case_player().get_x(), map.get_case_player().get_y() - 1 );
-			Case case_t2 = map.get_case( map.get_case_player().get_x(), map.get_case_player().get_y() - 2 );
-
-			// -- STATUS CASE T1
-			switch (context.t1)
-			{
-
-			case Config::c_empty_tile:
-				map.set_case_player( Case( case_t1.get_x(), case_t1.get_y(), Config::c_player_tile ) );
-				moved = true;
-				break;
-
-			case Config::c_wall_tile:
-				break;
-
-			case Config::c_box_tile:
-
-				// -- STATUS T2
-				switch (context.t2)
+				// -- STATUS CASE T1
+				switch (context.t1)
 				{
 
-					// -- CASE T2: VIDE
-				case Config::c_empty_tile:
-					// bouger la box
-					// On vide L1 et on remplie L2
-					Case new_case_t1 = Case( case_t1.get_x(), case_t1.get_y(), Config::c_empty_tile );
-					Case new_case_t2 = Case( case_t2.get_x(), case_t2.get_y(), Config::c_box_tile );;
+					case Config::c_empty_tile:
+						map.set_case_player(Case(case_t1.get_x(), case_t1.get_y(), Config::c_player_tile));
+						moved = true;
+						break;
 
-					map.change_case_value( new_case_t1 );
-					map.change_case_value( new_case_t2 );
+					case Config::c_wall_tile:
+						break;
 
-					map.set_case_player( Case( case_t1.get_x(), case_t1.get_y(), Config::c_player_tile ) );
-					moved = true;
-					break;
+					case Config::c_box_tile:
 
-				case Config::c_objective_tile:
+						switch (context.t2)
+						{
+							case Config::c_empty_tile:
+								transfert_object(case_t1, case_t2, Config::c_empty_tile, Config::c_box_tile);
+								break;
 
-					new_case_t1 = Case( case_t1.get_x(), case_t1.get_y(), Config::c_empty_tile );
-					new_case_t2 = Case( case_t2.get_x(), case_t2.get_y(), Config::c_box_on_objective );
+							case Config::c_objective_tile:
+								transfert_object(case_t1, case_t2, Config::c_empty_tile, Config::c_box_on_objective);
+								break;
+						}
 
-					map.change_case_value( new_case_t1 );
-					map.change_case_value( new_case_t2 );
-					map.set_case_player( Case( case_t1.get_x(), case_t1.get_y(), Config::c_player_tile ) );
+						break;
 
-					moved = true;
-					break;
+					case Config::c_objective_tile:
+						// Player on objective case
+						map.set_case_player(Case(case_t1.get_x(), case_t1.get_y(), Config::c_player_tile));
+						moved = true;
+						break;
+
+					case Config::c_box_on_objective:
+
+						switch (context.t2)
+						{
+							case Config::c_empty_tile:
+								transfert_object(case_t1, case_t2, Config::c_objective_tile, Config::c_box_tile);
+								break;
+
+							case Config::c_objective_tile:
+
+								break;
+						}
+
+						break;
+
 				}
 
 				break;
 
-			case Config::c_objective_tile:
-				// Player on objective case
-				map.set_case_player( Case( case_t1.get_x(), case_t1.get_y(), Config::c_player_tile ) );
-				moved = true;
-				break;
+			case down:
 
-			}
+				// -- OBTENIR CASE B1 & B2
+				Case case_b1 = map.get_case(map.get_case_player().get_x(), map.get_case_player().get_y() + 1);
+				Case case_b2 = map.get_case(map.get_case_player().get_x(), map.get_case_player().get_y() + 2);
 
-			break;
-
-		case down:
-
-			// -- OBTENIR CASE B1 & B2
-			Case case_b1 = map.get_case( map.get_case_player().get_x(), map.get_case_player().get_y() + 1 );
-			Case case_b2 = map.get_case( map.get_case_player().get_x(), map.get_case_player().get_y() + 2 );
-
-			// -- STATUS CASE B1
-			switch (context.b1)
-			{
-
-			case Config::c_empty_tile:
-				map.set_case_player( Case( case_b1.get_x(), case_b1.get_y(), Config::c_player_tile ) );
-				moved = true;
-				break;
-
-			case Config::c_wall_tile:
-				break;
-
-			case Config::c_box_tile:
-
-				// -- STATUS B2
-				switch (context.b2)
+				// -- STATUS CASE B1
+				switch (context.b1)
 				{
 
-					// -- CASE B2: VIDE
-				case Config::c_empty_tile:
-					// bouger la box
-					// On vide B1 et on remplie B2
-					Case new_case_b1 = Case( case_b1.get_x(), case_b1.get_y(), Config::c_empty_tile );
-					Case new_case_b2 = Case( case_b2.get_x(), case_b2.get_y(), Config::c_box_tile );;
+					case Config::c_empty_tile:
+						map.set_case_player(Case(case_b1.get_x(), case_b1.get_y(), Config::c_player_tile));
+						moved = true;
+						break;
 
-					map.change_case_value( new_case_b1 );
-					map.change_case_value( new_case_b2 );
+					case Config::c_wall_tile:
+						break;
 
-					map.set_case_player( Case( case_b1.get_x(), case_b1.get_y(), Config::c_player_tile ) );
-					moved = true;
-					break;
+					case Config::c_box_tile:
 
-				case Config::c_objective_tile:
+						switch (context.b2)
+						{
+							case Config::c_empty_tile:
+								transfert_object(case_b1, case_b2, Config::c_empty_tile, Config::c_box_tile);
+								break;
 
-					new_case_b1 = Case( case_b1.get_x(), case_b1.get_y(), Config::c_empty_tile );
-					new_case_b2 = Case( case_b2.get_x(), case_b2.get_y(), Config::c_box_on_objective );
+							case Config::c_objective_tile:
+								transfert_object(case_b1, case_b2, Config::c_empty_tile, Config::c_box_on_objective);
+								break;
+						}
 
-					map.change_case_value( new_case_b1 );
-					map.change_case_value( new_case_b2 );
-					map.set_case_player( Case( case_b1.get_x(), case_b1.get_y(), Config::c_player_tile ) );
+						break;
 
-					moved = true;
-					break;
+					case Config::c_objective_tile:
+						// Player on objective case
+						map.set_case_player(Case(case_b1.get_x(), case_b1.get_y(), Config::c_player_tile));
+						moved = true;
+						break;
+
+					case Config::c_box_on_objective:
+
+						switch (context.b2)
+						{
+							case Config::c_empty_tile:
+								transfert_object(case_b1, case_b2, Config::c_objective_tile, Config::c_box_tile);
+								break;
+
+							case Config::c_objective_tile:
+
+								break;
+						}
+
+						break;
+
 				}
 
 				break;
 
-			case Config::c_objective_tile:
-				// Player on objective case
-				map.set_case_player( Case( case_b1.get_x(), case_b1.get_y(), Config::c_player_tile ) );
-				moved = true;
+			default:
 				break;
-			}
-
-			break;
-
-		default:
-			break;
 		}
 	}
 
@@ -413,53 +359,53 @@ void Game::draw()
 			float coord_x = x * TILE_W;
 			float coord_y = y * TILE_W;
 
-			if (map.get_case( x, y ).get_value() == Config::c_box_tile)
+			if (map.get_case(x, y).get_value() == Config::c_box_tile)
 			{
-				sf::Sprite tmp_sprite_box( texture_box );
-				tmp_sprite_box.setPosition( coord_x, coord_y );
-				game_window.draw( tmp_sprite_box );
+				sf::Sprite tmp_sprite_box(texture_box);
+				tmp_sprite_box.setPosition(coord_x, coord_y);
+				game_window.draw(tmp_sprite_box);
 			}
 
-			if (map.get_case( x, y ).get_value() == Config::c_empty_tile)
+			if (map.get_case(x, y).get_value() == Config::c_empty_tile)
 			{
-				sf::Sprite tmp_sprite_bg( texture_background );
-				tmp_sprite_bg.setPosition( coord_x, coord_y );
-				game_window.draw( tmp_sprite_bg );
+				sf::Sprite tmp_sprite_bg(texture_background);
+				tmp_sprite_bg.setPosition(coord_x, coord_y);
+				game_window.draw(tmp_sprite_bg);
 			}
 
-			if (map.get_case( x, y ).get_value() == Config::c_objective_tile)
+			if (map.get_case(x, y).get_value() == Config::c_objective_tile)
 			{
-				sf::Sprite tmp_sprite_obj( texture_obj );
-				tmp_sprite_obj.setPosition( coord_x, coord_y );
-				game_window.draw( tmp_sprite_obj );
+				sf::Sprite tmp_sprite_obj(texture_obj);
+				tmp_sprite_obj.setPosition(coord_x, coord_y);
+				game_window.draw(tmp_sprite_obj);
 			}
 
-			if (map.get_case( x, y ).get_value() == Config::c_player_tile)
+			if (map.get_case(x, y).get_value() == Config::c_player_tile)
 			{
-				sf::Sprite tmp_sprite_player( texture_player );
-				tmp_sprite_player.setPosition( coord_x, coord_y );
-				game_window.draw( tmp_sprite_player );
+				sf::Sprite tmp_sprite_player(texture_player);
+				tmp_sprite_player.setPosition(coord_x, coord_y);
+				game_window.draw(tmp_sprite_player);
 			}
 
-			if (map.get_case( x, y ).get_value() == Config::c_player_on_objective_tile)
+			if (map.get_case(x, y).get_value() == Config::c_player_on_objective_tile)
 			{
-				sf::Sprite tmp_sprite_player_on_obj( texture_player_on_obj );
-				tmp_sprite_player_on_obj.setPosition( coord_x, coord_y );
-				game_window.draw( tmp_sprite_player_on_obj );
+				sf::Sprite tmp_sprite_player_on_obj(texture_player_on_obj);
+				tmp_sprite_player_on_obj.setPosition(coord_x, coord_y);
+				game_window.draw(tmp_sprite_player_on_obj);
 			}
 
-			if (map.get_case( x, y ).get_value() == Config::c_wall_tile)
+			if (map.get_case(x, y).get_value() == Config::c_wall_tile)
 			{
-				sf::Sprite tmp_sprite_wall( texture_wall );
-				tmp_sprite_wall.setPosition( coord_x, coord_y );
-				game_window.draw( tmp_sprite_wall );
+				sf::Sprite tmp_sprite_wall(texture_wall);
+				tmp_sprite_wall.setPosition(coord_x, coord_y);
+				game_window.draw(tmp_sprite_wall);
 			}
 
-			if (map.get_case( x, y ).get_value() == Config::c_box_on_objective)
+			if (map.get_case(x, y).get_value() == Config::c_box_on_objective)
 			{
-				sf::Sprite tmp_sprite_box_on_obj( texture_box_on_obj );
-				tmp_sprite_box_on_obj.setPosition( coord_x, coord_y );
-				game_window.draw( tmp_sprite_box_on_obj );
+				sf::Sprite tmp_sprite_box_on_obj(texture_box_on_obj);
+				tmp_sprite_box_on_obj.setPosition(coord_x, coord_y);
+				game_window.draw(tmp_sprite_box_on_obj);
 			}
 
 		}
@@ -469,7 +415,39 @@ void Game::draw()
 	game_window.display();
 }
 
-void Game::debug( Context c )
+
+/*
+Description du contexte
+---------------------------------------------
+|	  	|	  	|	  T2	|	  	|	  	|
+---------------------------------------------
+|	  	|	  	|	  T1	|	  	|	  	|
+---------------------------------------------
+|	L2	|	L1	|	PLAYER	|	R1	|	R2	|
+---------------------------------------------
+|	  	|	  	|	  B1	|	  	|	  	|
+---------------------------------------------
+|	  	|	  	|	  B2	|	  	|	  	|
+---------------------------------------------
+
+start_case	= B1 ou T1 ou L1 ou R1
+next_case	= B2 ou T2 ou L2 ou R2
+
+*/
+void Game::transfert_object(Case start_case, Case next_case, char new_value_start_case, char new_value_next_case)
+{
+	Case new_case_1 = Case(start_case.get_x(), start_case.get_y(), new_value_start_case);
+	Case new_case_2 = Case(next_case.get_x(), next_case.get_y(), new_value_next_case);;
+
+	map.change_case_value(new_case_1);
+	map.change_case_value(new_case_2);
+
+	// Déplacement du player sur start_case
+	map.set_case_player(Case(start_case.get_x(), start_case.get_y(), Config::c_player_tile));
+	moved = true;
+}
+
+void Game::debug(Context c)
 {
 
 	char A = c.t2;
