@@ -6,38 +6,14 @@ Game::Game() {
 
 void Game::init() {
 
-
-	bool load_sprite_error = false;
-
 	player = Player("Krock");
 	map = Map();
 
-	// load textures
+	load_textures();
 
-	if (!texture_box.loadFromFile("sprites/sprite_caisse.png"))
-		load_sprite_error = true;
-	if (!texture_box_on_obj.loadFromFile("sprites/sprite_caisse_on_obj.png"))
-		load_sprite_error = true;
-	if (!texture_background.loadFromFile("sprites/sprite_bg.png"))
-		load_sprite_error = true;
-	if (!texture_obj.loadFromFile("sprites/sprite_obj.png"))
-		load_sprite_error = true;
-	if (!texture_player.loadFromFile("sprites/sprite_player.png"))
-		load_sprite_error = true;
-	if (!texture_player_on_obj.loadFromFile("sprites/sprite_player_on_obj.png"))
-		load_sprite_error = true;
-	if (!texture_wall.loadFromFile("sprites/sprite_wall.png"))
-		load_sprite_error = true;
+	create_sprites();
 
-	// init sprites
-	sprite_box.setTexture(texture_box);
-	sprite_bg.setTexture(texture_background);
-	sprite_obj.setTexture(texture_obj);
-	sprite_player.setTexture(texture_player);
-	sprite_wall.setTexture(texture_wall);
-
-	// create window
-	game_window.create(sf::VideoMode(800, 600), "Sokoban");
+	game_window.create(sf::VideoMode(1920, 1080), "Sokoban");
 }
 
 
@@ -154,6 +130,7 @@ void Game::update()
 								break;
 
 							case Config::c_objective_tile:
+								transfert_object( case_l1, case_l2, Config::c_objective_tile, Config::c_box_on_objective );
 								break;
 						}
 
@@ -208,6 +185,7 @@ void Game::update()
 								break;
 
 							case Config::c_objective_tile:
+								transfert_object( case_r1, case_r2, Config::c_objective_tile, Config::c_box_on_objective );
 								break;
 						}
 
@@ -264,7 +242,7 @@ void Game::update()
 								break;
 
 							case Config::c_objective_tile:
-
+								transfert_object( case_t1, case_t2, Config::c_objective_tile, Config::c_box_on_objective );
 								break;
 						}
 
@@ -322,7 +300,7 @@ void Game::update()
 								break;
 
 							case Config::c_objective_tile:
-
+								transfert_object( case_b1, case_b2, Config::c_objective_tile, Config::c_box_on_objective );
 								break;
 						}
 
@@ -344,25 +322,18 @@ void Game::draw()
 
 	game_window.clear();
 
-	/*
-	#ifdef WINDOWS
-		system("cls");
-	#endif
-	#ifdef LINUX
-		//system("clear");
-	#endif
-	*/
-	for (int y = 0; y < NB_TILE_Y; y++)
+	for (int y = 0; y < Config::NB_TILE_Y; y++)
 	{
-		for (int x = 0; x < NB_TILE_X; x++)
+		for (int x = 0; x < Config::NB_TILE_X; x++)
 		{
-			float coord_x = x * TILE_W;
-			float coord_y = y * TILE_W;
+			float coord_x = x * Config::TILE_W * 2;
+			float coord_y = y * Config::TILE_W * 2;
 
 			if (map.get_case(x, y).get_value() == Config::c_box_tile)
 			{
 				sf::Sprite tmp_sprite_box(texture_box);
 				tmp_sprite_box.setPosition(coord_x, coord_y);
+				tmp_sprite_box.setScale( 2.0f, 2.0f );
 				game_window.draw(tmp_sprite_box);
 			}
 
@@ -370,6 +341,7 @@ void Game::draw()
 			{
 				sf::Sprite tmp_sprite_bg(texture_background);
 				tmp_sprite_bg.setPosition(coord_x, coord_y);
+				tmp_sprite_bg.setScale( 2.0f, 2.0f );
 				game_window.draw(tmp_sprite_bg);
 			}
 
@@ -377,6 +349,7 @@ void Game::draw()
 			{
 				sf::Sprite tmp_sprite_obj(texture_obj);
 				tmp_sprite_obj.setPosition(coord_x, coord_y);
+				tmp_sprite_obj.setScale( 2.0f, 2.0f );
 				game_window.draw(tmp_sprite_obj);
 			}
 
@@ -384,6 +357,7 @@ void Game::draw()
 			{
 				sf::Sprite tmp_sprite_player(texture_player);
 				tmp_sprite_player.setPosition(coord_x, coord_y);
+				tmp_sprite_player.setScale( 2.0f, 2.0f );
 				game_window.draw(tmp_sprite_player);
 			}
 
@@ -391,6 +365,7 @@ void Game::draw()
 			{
 				sf::Sprite tmp_sprite_player_on_obj(texture_player_on_obj);
 				tmp_sprite_player_on_obj.setPosition(coord_x, coord_y);
+				tmp_sprite_player_on_obj.setScale( 2.0f, 2.0f );
 				game_window.draw(tmp_sprite_player_on_obj);
 			}
 
@@ -398,6 +373,7 @@ void Game::draw()
 			{
 				sf::Sprite tmp_sprite_wall(texture_wall);
 				tmp_sprite_wall.setPosition(coord_x, coord_y);
+				tmp_sprite_wall.setScale( 2.0f, 2.0f );
 				game_window.draw(tmp_sprite_wall);
 			}
 
@@ -405,6 +381,7 @@ void Game::draw()
 			{
 				sf::Sprite tmp_sprite_box_on_obj(texture_box_on_obj);
 				tmp_sprite_box_on_obj.setPosition(coord_x, coord_y);
+				tmp_sprite_box_on_obj.setScale( 2.0f, 2.0f );
 				game_window.draw(tmp_sprite_box_on_obj);
 			}
 
@@ -445,6 +422,33 @@ void Game::transfert_object(Case start_case, Case next_case, char new_value_star
 	// Déplacement du player sur start_case
 	map.set_case_player(Case(start_case.get_x(), start_case.get_y(), Config::c_player_tile));
 	moved = true;
+}
+
+void Game::load_textures()
+{
+	if (!texture_box.loadFromFile( "sprites/sprite_caisse.png" ))
+		load_sprite_error = true;
+	if (!texture_box_on_obj.loadFromFile( "sprites/sprite_caisse_on_obj.png" ))
+		load_sprite_error = true;
+	if (!texture_background.loadFromFile( "sprites/sprite_bg.png" ))
+		load_sprite_error = true;
+	if (!texture_obj.loadFromFile( "sprites/sprite_obj.png" ))
+		load_sprite_error = true;
+	if (!texture_player.loadFromFile( "sprites/sprite_player.png" ))
+		load_sprite_error = true;
+	if (!texture_player_on_obj.loadFromFile( "sprites/sprite_player_on_obj.png" ))
+		load_sprite_error = true;
+	if (!texture_wall.loadFromFile( "sprites/sprite_wall.png" ))
+		load_sprite_error = true;
+}
+
+void Game::create_sprites()
+{
+	sprite_box.setTexture( texture_box );
+	sprite_bg.setTexture( texture_background );
+	sprite_obj.setTexture( texture_obj );
+	sprite_player.setTexture( texture_player );
+	sprite_wall.setTexture( texture_wall );
 }
 
 void Game::debug(Context c)

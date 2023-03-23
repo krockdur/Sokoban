@@ -67,10 +67,10 @@ Case Map::get_case( int x, int y )
 void Map::print_map()
 {
 
-	for (int y = 0; y < NB_TILE_Y; y++)
+	for (int y = 0; y < Config::NB_TILE_Y; y++)
 	{
 		std::cout << "|  ";
-		for (int x = 0; x < NB_TILE_X; x++)
+		for (int x = 0; x < Config::NB_TILE_X; x++)
 		{
 			std::cout << this->get_case( x, y ).get_value() << "  |  ";
 		}

@@ -16,10 +16,6 @@
 
 #include <typeinfo>
 
-#define NB_TILE_X 20
-#define NB_TILE_Y 20
-#define TILE_W 32.0f
-
 
 class Map {
 private:

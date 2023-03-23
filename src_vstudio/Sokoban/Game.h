@@ -15,7 +15,7 @@
 #define WINDOWS 0
 #define LINUX 1
 
-#define TIME_BETWEEN_FRAME 30
+#define TIME_BETWEEN_FRAME 60
 
 class Game {
 public:
@@ -37,13 +37,15 @@ private:
 
 
 	bool moved{ false };
+	bool load_sprite_error{ false };
 
 	sf::Clock Clock;
 
 	void update();
 	void draw();
 	void transfert_object(Case start_case, Case next_case, char new_value_start_case, char new_value_next_case);
-
+	void load_textures();
+	void create_sprites();
 	void debug(Context contexte);
 
 };
