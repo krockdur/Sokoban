@@ -30,7 +30,8 @@ void Game::loop() {
 			if (event.type == sf::Event::Closed)
 				game_window.close();
 
-			this->update();
+				this->update( elapsed_time );
+
 		}
 
 		this->draw();
@@ -39,7 +40,7 @@ void Game::loop() {
 
 }
 
-void Game::update()
+void Game::update( sf::Time elapsed_time )
 {
 
 	enum Direction { up, down, left, right, none };

@@ -41,7 +41,7 @@ private:
 
 	sf::Clock Clock;
 
-	void update();
+	void update( sf::Time elapsed_time );
 	void draw();
 	void transfert_object(Case start_case, Case next_case, char new_value_start_case, char new_value_next_case);
 	void load_textures();
