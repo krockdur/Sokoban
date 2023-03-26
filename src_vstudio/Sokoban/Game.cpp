@@ -9,6 +9,11 @@ void Game::init() {
 	player = Player("Krock");
 	map = Map();
 
+	pos_player_x = (float)map.get_case_player().get_x() * Config::TILE_W;
+	pos_player_y = (float)map.get_case_player().get_y() * Config::TILE_W;
+
+	case_player_destination = map.get_case_player();
+
 	load_textures();
 
 	create_sprites();
@@ -40,52 +45,58 @@ void Game::loop() {
 
 }
 
+
 void Game::update( sf::Time elapsed_time )
 {
 
-	enum Direction { up, down, left, right, none };
+	Direction player_direction;
+	player_direction = none;
 
-	Direction direction;
-	direction = none;
+
 
 	// Autoriser le déplacement
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		moved = false;
+		//player_direction = none;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 	{
-		direction = up;
+		player_direction = up;
+		last_player_direction = up;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
 	{
-		direction = left;
+		player_direction = left;
+		last_player_direction = left;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		direction = down;
+		player_direction = down;
+		last_player_direction = down;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		direction = right;
+		player_direction = right;
+		last_player_direction = right;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		//this->run = false;
 		game_window.close();
-		direction = none;
+		player_direction = none;
 	}
 
 	Context context = map.get_case_context(map.get_case_player());
 
 	if (!moved)
 	{
-		switch (direction)
+		switch (player_direction)
 		{
 
 			case left:
@@ -97,7 +108,8 @@ void Game::update( sf::Time elapsed_time )
 				{
 
 					case Config::c_empty_tile:
-						map.set_case_player(Case(case_l1.get_x(), case_l1.get_y(), Config::c_player_tile));
+						case_player_destination.set_values( case_l1.get_x(), case_l1.get_y() , Config::c_player_tile );
+						have_to_move = true;
 						moved = true;
 						break;
 
@@ -117,7 +129,8 @@ void Game::update( sf::Time elapsed_time )
 						break;
 
 					case Config::c_objective_tile:
-						map.set_case_player(Case(case_l1.get_x(), case_l1.get_y(), Config::c_player_tile));
+						case_player_destination.set_values( case_l1.get_x(), case_l1.get_y(), Config::c_player_tile );
+						have_to_move = true;
 						moved = true;
 						break;
 
@@ -150,7 +163,8 @@ void Game::update( sf::Time elapsed_time )
 				{
 
 					case Config::c_empty_tile:
-						map.set_case_player(Case(case_r1.get_x(), case_r1.get_y(), Config::c_player_tile));
+						case_player_destination.set_values( case_r1.get_x(), case_r1.get_y(), Config::c_player_tile );
+						have_to_move = true;
 						moved = true;
 						break;
 
@@ -173,7 +187,8 @@ void Game::update( sf::Time elapsed_time )
 						break;
 
 					case Config::c_objective_tile:
-						map.set_case_player(Case(case_r1.get_x(), case_r1.get_y(), Config::c_player_tile));
+						case_player_destination.set_values( case_r1.get_x(), case_r1.get_y(), Config::c_player_tile );
+						have_to_move = true;
 						moved = true;
 						break;
 
@@ -206,7 +221,8 @@ void Game::update( sf::Time elapsed_time )
 				{
 
 					case Config::c_empty_tile:
-						map.set_case_player(Case(case_t1.get_x(), case_t1.get_y(), Config::c_player_tile));
+						case_player_destination.set_values( case_t1.get_x(), case_t1.get_y(), Config::c_player_tile );
+						have_to_move = true;
 						moved = true;
 						break;
 
@@ -230,7 +246,8 @@ void Game::update( sf::Time elapsed_time )
 
 					case Config::c_objective_tile:
 						// Player on objective case
-						map.set_case_player(Case(case_t1.get_x(), case_t1.get_y(), Config::c_player_tile));
+						case_player_destination.set_values( case_t1.get_x(), case_t1.get_y(), Config::c_player_tile );
+						have_to_move = true;
 						moved = true;
 						break;
 
@@ -264,7 +281,8 @@ void Game::update( sf::Time elapsed_time )
 				{
 
 					case Config::c_empty_tile:
-						map.set_case_player(Case(case_b1.get_x(), case_b1.get_y(), Config::c_player_tile));
+						case_player_destination.set_values( case_b1.get_x(), case_b1.get_y(), Config::c_player_tile );
+						have_to_move = true;
 						moved = true;
 						break;
 
@@ -287,8 +305,8 @@ void Game::update( sf::Time elapsed_time )
 						break;
 
 					case Config::c_objective_tile:
-						// Player on objective case
-						map.set_case_player(Case(case_b1.get_x(), case_b1.get_y(), Config::c_player_tile));
+						case_player_destination.set_values( case_b1.get_x(), case_b1.get_y(), Config::c_player_tile );
+						have_to_move = true;
 						moved = true;
 						break;
 
@@ -314,7 +332,11 @@ void Game::update( sf::Time elapsed_time )
 			default:
 				break;
 		}
+
+		map.set_case_player( case_player_destination );
+
 	}
+
 
 }
 
@@ -323,12 +345,18 @@ void Game::draw()
 
 	game_window.clear();
 
+	float offset_x = 50.f;
+	float offset_y = 40.f;
+
 	for (int y = 0; y < Config::NB_TILE_Y; y++)
 	{
 		for (int x = 0; x < Config::NB_TILE_X; x++)
 		{
 			float coord_x = x * Config::TILE_W * 2;
 			float coord_y = y * Config::TILE_W * 2;
+
+			coord_x += offset_x;
+			coord_y += offset_y;
 
 			if (map.get_case(x, y).get_value() == Config::c_box_tile)
 			{
@@ -353,20 +381,51 @@ void Game::draw()
 				tmp_sprite_obj.setScale( 2.0f, 2.0f );
 				game_window.draw(tmp_sprite_obj);
 			}
-
+			
 			if (map.get_case(x, y).get_value() == Config::c_player_tile)
 			{
 				sf::Sprite tmp_sprite_player(texture_player);
-				tmp_sprite_player.setPosition(coord_x, coord_y);
+				
 				tmp_sprite_player.setScale( 2.0f, 2.0f );
+				tmp_sprite_player.setOrigin( Config::TILE_W / 2, Config::TILE_W / 2 );
+
+				float tmp_x = coord_x + Config::TILE_W;
+				float tmp_y = coord_y + Config::TILE_W;
+				tmp_sprite_player.setPosition(tmp_x, tmp_y );
+				
+
+				if (last_player_direction == right)
+					tmp_sprite_player.setRotation( 180.0f );
+				if (last_player_direction == left)
+					tmp_sprite_player.setRotation( 0.0f );
+				if (last_player_direction == up)
+					tmp_sprite_player.setRotation( 90.0f );
+				if (last_player_direction == down)
+					tmp_sprite_player.setRotation( 270.0f );
+
+
 				game_window.draw(tmp_sprite_player);
 			}
-
+			
 			if (map.get_case(x, y).get_value() == Config::c_player_on_objective_tile)
 			{
 				sf::Sprite tmp_sprite_player_on_obj(texture_player_on_obj);
-				tmp_sprite_player_on_obj.setPosition(coord_x, coord_y);
+
 				tmp_sprite_player_on_obj.setScale( 2.0f, 2.0f );
+				tmp_sprite_player_on_obj.setOrigin( Config::TILE_W / 2, Config::TILE_W / 2 );
+
+				float tmp_x = coord_x + Config::TILE_W;
+				float tmp_y = coord_y + Config::TILE_W;
+				tmp_sprite_player_on_obj.setPosition( tmp_x, tmp_y );
+
+				if (last_player_direction == right)
+					tmp_sprite_player_on_obj.setRotation( 180.0f );
+				if (last_player_direction == left)
+					tmp_sprite_player_on_obj.setRotation( 0.0f );
+				if (last_player_direction == up)
+					tmp_sprite_player_on_obj.setRotation( 90.0f );
+				if (last_player_direction == down)
+					tmp_sprite_player_on_obj.setRotation( 270.0f );
 				game_window.draw(tmp_sprite_player_on_obj);
 			}
 
@@ -388,8 +447,7 @@ void Game::draw()
 
 		}
 	}
-
-
+	
 	game_window.display();
 }
 
@@ -421,9 +479,11 @@ void Game::transfert_object(Case start_case, Case next_case, char new_value_star
 	map.change_case_value(new_case_2);
 
 	// Déplacement du player sur start_case
-	map.set_case_player(Case(start_case.get_x(), start_case.get_y(), Config::c_player_tile));
+	//map.set_case_player(Case(start_case.get_x(), start_case.get_y(), Config::c_player_tile));
+	case_player_destination = Case( start_case.get_x(), start_case.get_y(), Config::c_player_tile );
 	moved = true;
 }
+
 
 void Game::load_textures()
 {

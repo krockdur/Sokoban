@@ -28,15 +28,23 @@ private:
 	Map map; 		// current map
 	Player player; 	// current player
 
+
+	
 	sf::Texture texture_box, texture_background, texture_obj, texture_player, texture_wall, texture_player_on_obj, texture_box_on_obj;
 	sf::Sprite sprite_bg, sprite_box, sprite_obj, sprite_player, sprite_wall;
 	sf::RenderWindow game_window;
 	sf::Event event;
 
-	bool run{ true };
+	enum Direction { up, down, left, right, none };
+	Direction last_player_direction;
 
+
+	float pos_player_x{ 0.0f };
+	float pos_player_y{ 0.0f };
+	Case case_player_destination{ 0, 0, ' ' };
 
 	bool moved{ false };
+	bool have_to_move{ false };
 	bool load_sprite_error{ false };
 
 	sf::Clock Clock;

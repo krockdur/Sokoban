@@ -16,7 +16,7 @@ public:
 
 	// Setters
 	void set_value(char val) { this->value = val; };
-
+	void set_values( int x, int y, char val ) { this->x = x; this->y = y; this->value = val; };
 
 private:
 	int x;
