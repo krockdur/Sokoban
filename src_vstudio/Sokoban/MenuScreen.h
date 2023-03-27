@@ -15,6 +15,9 @@ public:
 	void draw( sf::RenderWindow *game_window );
 private:
 	const float TILE_LVL_W = 32.f;
+	
+	int mouse_case_over = 0;
+	bool mouse_over_lvl_sel = false;
 
 	sf::Texture texture_tileset_menu;
 

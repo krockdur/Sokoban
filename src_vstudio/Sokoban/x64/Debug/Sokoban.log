@@ -21,12 +21,12 @@ D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(13,57): warning C4
           [
               T=int
           ]
-D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(32,80): warning C4244: 'argument' : conversion de 'const float' en 'T', perte possible de données
+D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(32,99): warning C4244: 'argument' : conversion de 'const float' en 'T', perte possible de données
           with
           [
               T=int
           ]
-D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(32,68): warning C4244: 'argument' : conversion de 'const float' en 'T', perte possible de données
+D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(32,87): warning C4244: 'argument' : conversion de 'const float' en 'T', perte possible de données
           with
           [
               T=int
@@ -36,10 +36,9 @@ D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(32,65): warning C4
           [
               T=int
           ]
-D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(32,62): warning C4244: 'argument' : conversion de 'float' en 'T', perte possible de données
+D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(32,60): warning C4244: 'argument' : conversion de 'float' en 'T', perte possible de données
           with
           [
               T=int
           ]
-D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(54,7): warning C4101: 'tab_over_menu' : variable locale non référencée
   Sokoban.vcxproj -> D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\x64\Debug\Sokoban.exe
