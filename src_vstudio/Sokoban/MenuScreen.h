@@ -14,15 +14,20 @@ public:
 	void update(sf::RenderWindow* game_window);
 	void draw( sf::RenderWindow *game_window );
 private:
-	const float TILE_LVL_W = 32.f;
+	const int TILE_LVL_W = 32;
+
+	float offset_x = 10.f;
+	float offset_y = 20.f;
 	
 	int mouse_case_over = 0;
 	bool mouse_over_lvl_sel = false;
 
 	sf::Texture texture_tileset_menu;
+	sf::Texture texture_btn;
 
 	sf::Sprite tab_sprite_lvl_sel[50];
 	sf::Sprite tab_sprite_lvl_sel_over[50];
+	sf::Sprite sprite_btn_play;
 
 	bool load_sprite_error{ false };
 };

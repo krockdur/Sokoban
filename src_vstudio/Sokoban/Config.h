@@ -21,8 +21,8 @@ class Config
 
         static inline const float GLOBAL_SCALE = 2.f;
 
-        static const int WINDOW_WIDTH = 1024.f;
-        static const int WINDOW_HEIGHT = 768.f;
+        static const int WINDOW_WIDTH = 1024;
+        static const int WINDOW_HEIGHT = 768;
 };
 
 #endif // CONFIG_H

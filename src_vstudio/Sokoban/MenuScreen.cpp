@@ -4,9 +4,11 @@ void MenuScreen::init()
 {
 	if (!texture_tileset_menu.loadFromFile( "sprites/tileset_menu.png" ))
 		load_sprite_error = true;
+	if (!texture_btn.loadFromFile( "sprites/btn.png" ))
+		load_sprite_error = true;
 
 
-	float x = 0, y = 0;
+	int x = 0, y = 0;
 	for (int rect = 0; rect < 50; rect++)
 	{
 		tab_sprite_lvl_sel[rect].setTexture( texture_tileset_menu );
@@ -25,7 +27,7 @@ void MenuScreen::init()
 	}
 
 	x = 0, y = 0;
-	float offset_tilset_over = 5 * 32;
+	int offset_tilset_over = 5 * 32;
 	for (int rect = 0; rect < 50; rect++)
 	{
 		tab_sprite_lvl_sel_over[rect].setTexture(texture_tileset_menu);
@@ -42,6 +44,9 @@ void MenuScreen::init()
 		}
 
 	}
+
+	sprite_btn_play.setTexture( texture_btn );
+
 
 }
 
@@ -77,9 +82,17 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 	// calcul de la case sur laquelle se trouve la souris
 	mouse_case_over = mouse_num_line * 10 + mouse_num_col;
 
-	std::cout << "------------------------------" << std::endl;
-	std::cout << "mouse over : " << mouse_case_over << std::endl;
-	std::cout << "mouse on col :  " << mouse_num_col << std::endl;
+	// boutton play
+	if (sf::Mouse::isButtonPressed( sf::Mouse::Left ))
+	{
+		if (mouse_position.x > offset_x + 5 * TILE_LVL_W * Config::GLOBAL_SCALE && mouse_position.x < offset_x + 5 * TILE_LVL_W * Config::GLOBAL_SCALE + TILE_LVL_W)
+		{
+			if (mouse_position.y > offset_y + 6 * TILE_LVL_W * Config::GLOBAL_SCALE && mouse_position.y < offset_y + 6 * TILE_LVL_W * Config::GLOBAL_SCALE + TILE_LVL_W)
+			{
+				std::cout << "click play" << std::endl;
+			}
+		}
+	}
 
 }
 
@@ -92,9 +105,9 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 	for (int spr = 0; spr < 50; spr++)
 	{
 
-		tab_sprite_lvl_sel[spr].setPosition( x, y );
+		tab_sprite_lvl_sel[spr].setPosition( offset_x + x, offset_y + y );
 		tab_sprite_lvl_sel[spr].setScale( Config::GLOBAL_SCALE, Config::GLOBAL_SCALE );
-		tab_sprite_lvl_sel_over[spr].setPosition(x, y);
+		tab_sprite_lvl_sel_over[spr].setPosition(offset_x + x, offset_y + y);
 		tab_sprite_lvl_sel_over[spr].setScale(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE);
 
 		if (spr == mouse_case_over && mouse_over_lvl_sel)
@@ -110,6 +123,11 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 			y += TILE_LVL_W * Config::GLOBAL_SCALE;
 		}
 	}
+
+
+	sprite_btn_play.setPosition( offset_x + 5 * TILE_LVL_W * Config::GLOBAL_SCALE, offset_y + 6 * TILE_LVL_W * Config::GLOBAL_SCALE );
+	sprite_btn_play.setScale( Config::GLOBAL_SCALE, Config::GLOBAL_SCALE );
+	game_window->draw( sprite_btn_play );
 
 	game_window->display();
 }
