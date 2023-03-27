@@ -15,7 +15,7 @@ void ScreenManager::init()
 
 void ScreenManager::update( )
 {
-	menuScreen.update();
+	menuScreen.update(&game_window);
 }
 
 void ScreenManager::draw()

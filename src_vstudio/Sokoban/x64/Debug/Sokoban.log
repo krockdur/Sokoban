@@ -1,44 +1,45 @@
 ﻿  MenuScreen.cpp
-D:\dev\Sokoban\src_vstudio\Sokoban\Config.h(24,41): warning C4244: 'initialisation' : conversion de 'float' en 'const int', perte possible de données
-D:\dev\Sokoban\src_vstudio\Sokoban\Config.h(25,42): warning C4244: 'initialisation' : conversion de 'float' en 'const int', perte possible de données
-D:\dev\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(20,75): warning C4244: 'argument' : conversion de 'const float' en 'T', perte possible de données
+D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\Config.h(24,41): warning C4244: 'initialisation' : conversion de 'float' en 'const int', perte possible de données
+D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\Config.h(25,42): warning C4244: 'initialisation' : conversion de 'float' en 'const int', perte possible de données
+D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(13,75): warning C4244: 'argument' : conversion de 'const float' en 'T', perte possible de données
           with
           [
               T=int
           ]
-D:\dev\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(20,63): warning C4244: 'argument' : conversion de 'const float' en 'T', perte possible de données
+D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(13,63): warning C4244: 'argument' : conversion de 'const float' en 'T', perte possible de données
           with
           [
               T=int
           ]
-D:\dev\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(20,60): warning C4244: 'argument' : conversion de 'float' en 'T', perte possible de données
+D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(13,60): warning C4244: 'argument' : conversion de 'float' en 'T', perte possible de données
           with
           [
               T=int
           ]
-D:\dev\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(20,57): warning C4244: 'argument' : conversion de 'float' en 'T', perte possible de données
+D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(13,57): warning C4244: 'argument' : conversion de 'float' en 'T', perte possible de données
           with
           [
               T=int
           ]
-D:\dev\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(35,80): warning C4244: 'argument' : conversion de 'const float' en 'T', perte possible de données
+D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(32,80): warning C4244: 'argument' : conversion de 'const float' en 'T', perte possible de données
           with
           [
               T=int
           ]
-D:\dev\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(35,68): warning C4244: 'argument' : conversion de 'const float' en 'T', perte possible de données
+D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(32,68): warning C4244: 'argument' : conversion de 'const float' en 'T', perte possible de données
           with
           [
               T=int
           ]
-D:\dev\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(35,65): warning C4244: 'argument' : conversion de 'float' en 'T', perte possible de données
+D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(32,65): warning C4244: 'argument' : conversion de 'float' en 'T', perte possible de données
           with
           [
               T=int
           ]
-D:\dev\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(35,62): warning C4244: 'argument' : conversion de 'float' en 'T', perte possible de données
+D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(32,62): warning C4244: 'argument' : conversion de 'float' en 'T', perte possible de données
           with
           [
               T=int
           ]
-  Sokoban.vcxproj -> D:\dev\Sokoban\src_vstudio\Sokoban\x64\Debug\Sokoban.exe
+D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(54,7): warning C4101: 'tab_over_menu' : variable locale non référencée
+  Sokoban.vcxproj -> D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\x64\Debug\Sokoban.exe
