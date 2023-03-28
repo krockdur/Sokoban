@@ -30,6 +30,8 @@ private:
 	sf::Sprite sprite_btn_play;
 
 	bool load_sprite_error{ false };
+
+	void draw_debug_rect(sf::RenderWindow *game_window, sf::Vector2f pos, sf::Vector2f size, sf::Color outline_color);
 };
 
 #endif // !MENU_SCREEN

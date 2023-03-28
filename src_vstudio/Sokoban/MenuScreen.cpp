@@ -85,6 +85,22 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 	// boutton play
 	if (sf::Mouse::isButtonPressed( sf::Mouse::Left ))
 	{
+
+
+		sf::FloatRect r_button( 
+			offset_x + 5 * TILE_LVL_W * Config::GLOBAL_SCALE,
+			offset_y + 6 * TILE_LVL_W * Config::GLOBAL_SCALE,
+			Config::GLOBAL_SCALE * TILE_LVL_W,
+			Config::GLOBAL_SCALE * TILE_LVL_W
+			);
+		
+		if (r_button.contains( mouse_position.x, mouse_position.y ))
+		{
+			std::cout << "click play" << std::endl;
+		}
+
+		/*
+
 		if (mouse_position.x > offset_x + 5 * TILE_LVL_W * Config::GLOBAL_SCALE && mouse_position.x < offset_x + 5 * TILE_LVL_W * Config::GLOBAL_SCALE + TILE_LVL_W)
 		{
 			if (mouse_position.y > offset_y + 6 * TILE_LVL_W * Config::GLOBAL_SCALE && mouse_position.y < offset_y + 6 * TILE_LVL_W * Config::GLOBAL_SCALE + TILE_LVL_W)
@@ -92,6 +108,7 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 				std::cout << "click play" << std::endl;
 			}
 		}
+		*/
 	}
 
 }
@@ -129,5 +146,25 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 	sprite_btn_play.setScale( Config::GLOBAL_SCALE, Config::GLOBAL_SCALE );
 	game_window->draw( sprite_btn_play );
 
+
+	draw_debug_rect(
+		game_window,
+		sf::Vector2f( offset_x + 5 * TILE_LVL_W * Config::GLOBAL_SCALE, offset_y + 6 * TILE_LVL_W * Config::GLOBAL_SCALE ),
+		sf::Vector2f(Config::GLOBAL_SCALE * TILE_LVL_W,	Config::GLOBAL_SCALE * TILE_LVL_W),
+		sf::Color::Red
+		);
+
+
+
 	game_window->display();
+}
+
+void MenuScreen::draw_debug_rect(sf::RenderWindow *game_window, sf::Vector2f pos, sf::Vector2f size, sf::Color outline_color )
+{
+	sf::RectangleShape r(size);
+	r.setPosition( pos );
+	r.setFillColor( sf::Color::Transparent );
+	r.setOutlineColor( outline_color );
+	r.setOutlineThickness( 2.f );
+	game_window->draw( r );
 }
