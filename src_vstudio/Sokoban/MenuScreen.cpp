@@ -12,16 +12,16 @@ void MenuScreen::init()
 	for (int rect = 0; rect < 50; rect++)
 	{
 		tab_sprite_lvl_sel[rect].setTexture( texture_tileset_menu );
-		tab_sprite_lvl_sel[rect].setTextureRect( sf::IntRect( x, y, TILE_LVL_W, TILE_LVL_W ) );
+		tab_sprite_lvl_sel[rect].setTextureRect( sf::IntRect( x, y, Config::TILE_MENU_W, Config::TILE_MENU_W ) );
 		
 		if (rect == 9 || rect == 19 || rect == 29 || rect == 39 || rect == 49)
 		{
 			x = 0;
-			y = y + TILE_LVL_W;
+			y = y + Config::TILE_MENU_W;
 		}
 		else
 		{
-			x = x + TILE_LVL_W;
+			x = x + Config::TILE_MENU_W;
 		}
 		
 	}
@@ -31,16 +31,16 @@ void MenuScreen::init()
 	for (int rect = 0; rect < 50; rect++)
 	{
 		tab_sprite_lvl_sel_over[rect].setTexture(texture_tileset_menu);
-		tab_sprite_lvl_sel_over[rect].setTextureRect(sf::IntRect(x, y + offset_tilset_over, TILE_LVL_W, TILE_LVL_W));
+		tab_sprite_lvl_sel_over[rect].setTextureRect(sf::IntRect(x, y + offset_tilset_over, Config::TILE_MENU_W, Config::TILE_MENU_W));
 
 		if (rect == 9 || rect == 19 || rect == 29 || rect == 39 || rect == 49)
 		{
 			x = 0;
-			y = y + TILE_LVL_W;
+			y = y + Config::TILE_MENU_W;
 		}
 		else
 		{
-			x = x + TILE_LVL_W;
+			x = x + Config::TILE_MENU_W;
 		}
 
 	}
@@ -83,34 +83,25 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 	mouse_case_over = mouse_num_line * 10 + mouse_num_col;
 
 	// boutton play
-	if (sf::Mouse::isButtonPressed( sf::Mouse::Left ))
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
+		sf::FloatRect r_button(
+			offset_x + 5 * Config::TILE_MENU_W * Config::GLOBAL_SCALE,
+			offset_y + 6 * Config::TILE_MENU_W * Config::GLOBAL_SCALE,
+			Config::GLOBAL_SCALE * Config::TILE_MENU_W,
+			Config::GLOBAL_SCALE * Config::TILE_MENU_W
+		);
 
-
-		sf::FloatRect r_button( 
-			offset_x + 5 * TILE_LVL_W * Config::GLOBAL_SCALE,
-			offset_y + 6 * TILE_LVL_W * Config::GLOBAL_SCALE,
-			Config::GLOBAL_SCALE * TILE_LVL_W,
-			Config::GLOBAL_SCALE * TILE_LVL_W
-			);
-		
-		if (r_button.contains( mouse_position.x, mouse_position.y ))
+		if (r_button.contains((float)mouse_position.x, (float)mouse_position.y) && !btn_play_pressed)
 		{
+			btn_play_pressed = true;
 			std::cout << "click play" << std::endl;
 		}
-
-		/*
-
-		if (mouse_position.x > offset_x + 5 * TILE_LVL_W * Config::GLOBAL_SCALE && mouse_position.x < offset_x + 5 * TILE_LVL_W * Config::GLOBAL_SCALE + TILE_LVL_W)
+		else
 		{
-			if (mouse_position.y > offset_y + 6 * TILE_LVL_W * Config::GLOBAL_SCALE && mouse_position.y < offset_y + 6 * TILE_LVL_W * Config::GLOBAL_SCALE + TILE_LVL_W)
-			{
-				std::cout << "click play" << std::endl;
-			}
+			btn_play_pressed = false;
 		}
-		*/
 	}
-
 }
 
 void MenuScreen::draw(sf::RenderWindow *game_window)
@@ -132,29 +123,27 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 		else
 			game_window->draw( tab_sprite_lvl_sel[spr] );
 
-		x += TILE_LVL_W * Config::GLOBAL_SCALE;
+		x += Config::TILE_MENU_W * Config::GLOBAL_SCALE;
 
 		if (spr == 9 || spr == 19 || spr == 29 || spr == 39 )
 		{
 			x = 0;
-			y += TILE_LVL_W * Config::GLOBAL_SCALE;
+			y += Config::TILE_MENU_W * Config::GLOBAL_SCALE;
 		}
 	}
 
 
-	sprite_btn_play.setPosition( offset_x + 5 * TILE_LVL_W * Config::GLOBAL_SCALE, offset_y + 6 * TILE_LVL_W * Config::GLOBAL_SCALE );
+	sprite_btn_play.setPosition( offset_x + 5 * Config::TILE_MENU_W * Config::GLOBAL_SCALE, offset_y + 6 * Config::TILE_MENU_W * Config::GLOBAL_SCALE );
 	sprite_btn_play.setScale( Config::GLOBAL_SCALE, Config::GLOBAL_SCALE );
 	game_window->draw( sprite_btn_play );
 
 
 	draw_debug_rect(
 		game_window,
-		sf::Vector2f( offset_x + 5 * TILE_LVL_W * Config::GLOBAL_SCALE, offset_y + 6 * TILE_LVL_W * Config::GLOBAL_SCALE ),
-		sf::Vector2f(Config::GLOBAL_SCALE * TILE_LVL_W,	Config::GLOBAL_SCALE * TILE_LVL_W),
+		sf::Vector2f( offset_x + 5 * Config::TILE_MENU_W * Config::GLOBAL_SCALE, offset_y + 6 * Config::TILE_MENU_W * Config::GLOBAL_SCALE ),
+		sf::Vector2f(Config::GLOBAL_SCALE * Config::TILE_MENU_W,	Config::GLOBAL_SCALE * Config::TILE_MENU_W),
 		sf::Color::Red
 		);
-
-
 
 	game_window->display();
 }

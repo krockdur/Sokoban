@@ -19,7 +19,7 @@
 
 class Game {
 public:
-	Game();
+	Game() = default;
 	void init();
 	void loop();
 

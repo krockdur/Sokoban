@@ -17,7 +17,10 @@ class Config
         static const int NB_TILE_X = 20;
         static const int NB_TILE_Y = 20;
 
-        static inline const float TILE_W = 32.0f;
+        //static inline const float TILE_W = 32.0f;
+        static const int TILE_W = 32;
+
+        static const int TILE_MENU_W = 32;
 
         static inline const float GLOBAL_SCALE = 2.f;
 

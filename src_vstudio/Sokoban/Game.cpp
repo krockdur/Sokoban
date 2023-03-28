@@ -1,8 +1,5 @@
 #include "Game.h"
 
-Game::Game() {
-
-}
 
 void Game::init() {
 
@@ -352,8 +349,8 @@ void Game::draw()
 	{
 		for (int x = 0; x < Config::NB_TILE_X; x++)
 		{
-			float coord_x = x * Config::TILE_W * 2;
-			float coord_y = y * Config::TILE_W * 2;
+			float coord_x = x * (float)Config::TILE_W * 2;
+			float coord_y = y * (float)Config::TILE_W * 2;
 
 			coord_x += offset_x;
 			coord_y += offset_y;

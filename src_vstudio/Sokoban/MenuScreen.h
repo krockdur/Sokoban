@@ -13,8 +13,9 @@ public:
 	void init();
 	void update(sf::RenderWindow* game_window);
 	void draw( sf::RenderWindow *game_window );
+
+	int get_lvl_launched();
 private:
-	const int TILE_LVL_W = 32;
 
 	float offset_x = 10.f;
 	float offset_y = 20.f;
@@ -28,6 +29,9 @@ private:
 	sf::Sprite tab_sprite_lvl_sel[50];
 	sf::Sprite tab_sprite_lvl_sel_over[50];
 	sf::Sprite sprite_btn_play;
+
+	bool btn_play_pressed = false;
+	int lvl_selected = 0;
 
 	bool load_sprite_error{ false };
 
