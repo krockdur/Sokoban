@@ -18,10 +18,13 @@
 #define TIME_BETWEEN_FRAME 60
 
 class Game {
+
 public:
 	Game() = default;
 	void init();
 	void load_lvl(int lvl);
+	void update( sf::Time elapsed_time );
+	void draw( sf::RenderWindow* game_window );
 
 private:
 
@@ -47,10 +50,9 @@ private:
 	bool have_to_move{ false };
 	bool load_sprite_error{ false };
 
-	sf::Clock Clock;
+	
 
-	void update( sf::Time elapsed_time );
-	void draw(sf::RenderWindow *game_window);
+
 	void transfert_object(Case start_case, Case next_case, char new_value_start_case, char new_value_next_case);
 	void load_textures();
 	void create_sprites();
