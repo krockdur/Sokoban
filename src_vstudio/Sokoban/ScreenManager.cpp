@@ -15,12 +15,27 @@ void ScreenManager::init()
 
 void ScreenManager::update( )
 {
-	menuScreen.update(&game_window);
+    if (lvl_selected == 0)
+    {
+	    menuScreen.update(&game_window);
+    }
+
+    if (menuScreen.let_s_play())
+    {
+        lvl_selected = menuScreen.get_lvl_selected();
+    }
 }
 
 void ScreenManager::draw()
 {
-	menuScreen.draw( &game_window );
+    if (lvl_selected == 0)
+    {
+	    menuScreen.draw( &game_window );
+    }
+    else
+    {
+
+    }
 }
 
 void ScreenManager::run()

@@ -27,7 +27,8 @@ private:
 
 
 public:
-	Map();
+	Map() = default;
+	Map(int lvl);
 	~Map();
 
 	Case get_case(int x, int y);

@@ -4,44 +4,22 @@
 void Game::init() {
 
 	player = Player("Krock");
-	map = Map();
+
+
+	load_textures();
+
+	create_sprites();
+}
+
+void Game::load_lvl(int lvl)
+{
+	map = Map(lvl);
 
 	pos_player_x = (float)map.get_case_player().get_x() * Config::TILE_W;
 	pos_player_y = (float)map.get_case_player().get_y() * Config::TILE_W;
 
 	case_player_destination = map.get_case_player();
-
-	load_textures();
-
-	create_sprites();
-
-	game_window.create(sf::VideoMode(1920, 1080), "Sokoban");
 }
-
-
-
-void Game::loop() {
-
-	while (game_window.isOpen())
-	{
-
-		sf::Time elapsed_time = Clock.getElapsedTime();
-
-		while (game_window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				game_window.close();
-
-				this->update( elapsed_time );
-
-		}
-
-		this->draw();
-
-	}
-
-}
-
 
 void Game::update( sf::Time elapsed_time )
 {
@@ -80,13 +58,6 @@ void Game::update( sf::Time elapsed_time )
 	{
 		player_direction = right;
 		last_player_direction = right;
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-	{
-		//this->run = false;
-		game_window.close();
-		player_direction = none;
 	}
 
 	Context context = map.get_case_context(map.get_case_player());
@@ -337,10 +308,10 @@ void Game::update( sf::Time elapsed_time )
 
 }
 
-void Game::draw()
+void Game::draw(sf::RenderWindow *game_window)
 {
 
-	game_window.clear();
+	game_window->clear();
 
 	float offset_x = 50.f;
 	float offset_y = 40.f;
@@ -360,7 +331,7 @@ void Game::draw()
 				sf::Sprite tmp_sprite_box(texture_box);
 				tmp_sprite_box.setPosition(coord_x, coord_y);
 				tmp_sprite_box.setScale( 2.0f, 2.0f );
-				game_window.draw(tmp_sprite_box);
+				game_window->draw(tmp_sprite_box);
 			}
 
 			if (map.get_case(x, y).get_value() == Config::c_empty_tile)
@@ -368,7 +339,7 @@ void Game::draw()
 				sf::Sprite tmp_sprite_bg(texture_background);
 				tmp_sprite_bg.setPosition(coord_x, coord_y);
 				tmp_sprite_bg.setScale( 2.0f, 2.0f );
-				game_window.draw(tmp_sprite_bg);
+				game_window->draw(tmp_sprite_bg);
 			}
 
 			if (map.get_case(x, y).get_value() == Config::c_objective_tile)
@@ -376,7 +347,7 @@ void Game::draw()
 				sf::Sprite tmp_sprite_obj(texture_obj);
 				tmp_sprite_obj.setPosition(coord_x, coord_y);
 				tmp_sprite_obj.setScale( 2.0f, 2.0f );
-				game_window.draw(tmp_sprite_obj);
+				game_window->draw(tmp_sprite_obj);
 			}
 			
 			if (map.get_case(x, y).get_value() == Config::c_player_tile)
@@ -401,7 +372,7 @@ void Game::draw()
 					tmp_sprite_player.setRotation( 270.0f );
 
 
-				game_window.draw(tmp_sprite_player);
+				game_window->draw(tmp_sprite_player);
 			}
 			
 			if (map.get_case(x, y).get_value() == Config::c_player_on_objective_tile)
@@ -423,7 +394,7 @@ void Game::draw()
 					tmp_sprite_player_on_obj.setRotation( 90.0f );
 				if (last_player_direction == down)
 					tmp_sprite_player_on_obj.setRotation( 270.0f );
-				game_window.draw(tmp_sprite_player_on_obj);
+				game_window->draw(tmp_sprite_player_on_obj);
 			}
 
 			if (map.get_case(x, y).get_value() == Config::c_wall_tile)
@@ -431,7 +402,7 @@ void Game::draw()
 				sf::Sprite tmp_sprite_wall(texture_wall);
 				tmp_sprite_wall.setPosition(coord_x, coord_y);
 				tmp_sprite_wall.setScale( 2.0f, 2.0f );
-				game_window.draw(tmp_sprite_wall);
+				game_window->draw(tmp_sprite_wall);
 			}
 
 			if (map.get_case(x, y).get_value() == Config::c_box_on_objective)
@@ -439,13 +410,13 @@ void Game::draw()
 				sf::Sprite tmp_sprite_box_on_obj(texture_box_on_obj);
 				tmp_sprite_box_on_obj.setPosition(coord_x, coord_y);
 				tmp_sprite_box_on_obj.setScale( 2.0f, 2.0f );
-				game_window.draw(tmp_sprite_box_on_obj);
+				game_window->draw(tmp_sprite_box_on_obj);
 			}
 
 		}
 	}
 	
-	game_window.display();
+	game_window->display();
 }
 
 

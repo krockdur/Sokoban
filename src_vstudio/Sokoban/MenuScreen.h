@@ -14,7 +14,9 @@ public:
 	void update(sf::RenderWindow* game_window);
 	void draw( sf::RenderWindow *game_window );
 
-	int get_lvl_launched();
+	int get_lvl_selected() { return lvl_selected; };
+	bool let_s_play() { return btn_play_pressed; };
+
 private:
 
 	float offset_x = 10.f;
@@ -32,6 +34,7 @@ private:
 
 	bool btn_play_pressed = false;
 	int lvl_selected = 0;
+
 
 	bool load_sprite_error{ false };
 

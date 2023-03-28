@@ -1,6 +1,4 @@
 ﻿  Game.cpp
-  MenuScreen.cpp
-  ScreenManager.cpp
-  Sokoban.cpp
+  Map.cpp
   Génération de code en cours...
   Sokoban.vcxproj -> D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\x64\Debug\Sokoban.exe

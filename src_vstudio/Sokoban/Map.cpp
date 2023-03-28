@@ -1,6 +1,6 @@
 #include "Map.h"
 
-Map::Map()
+Map::Map(int lvl)
 {
 	populate_map();
 

@@ -71,6 +71,18 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 					mouse_num_col = col;
 					mouse_num_line = line;
 					mouse_over_lvl_sel = true;
+
+					// calcul de la case sur laquelle se trouve la souris
+					mouse_case_over = mouse_num_line * 10 + mouse_num_col;
+
+					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+					{
+						// 
+						lvl_selected = mouse_case_over + 1;
+
+						
+					}
+
 					break;
 				}
 			}
@@ -78,9 +90,6 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 		}
 
 	}
-
-	// calcul de la case sur laquelle se trouve la souris
-	mouse_case_over = mouse_num_line * 10 + mouse_num_col;
 
 	// boutton play
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -94,13 +103,17 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 
 		if (r_button.contains((float)mouse_position.x, (float)mouse_position.y) && !btn_play_pressed)
 		{
-			btn_play_pressed = true;
-			std::cout << "click play" << std::endl;
+			if (lvl_selected != 0)
+			{
+				btn_play_pressed = true;
+				std::cout << "click play lvl " << lvl_selected << std::endl;
+			}
 		}
-		else
-		{
-			btn_play_pressed = false;
-		}
+	}
+
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		btn_play_pressed = false;
 	}
 }
 

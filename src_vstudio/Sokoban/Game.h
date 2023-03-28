@@ -21,7 +21,7 @@ class Game {
 public:
 	Game() = default;
 	void init();
-	void loop();
+	void load_lvl(int lvl);
 
 private:
 
@@ -32,7 +32,7 @@ private:
 	
 	sf::Texture texture_box, texture_background, texture_obj, texture_player, texture_wall, texture_player_on_obj, texture_box_on_obj;
 	sf::Sprite sprite_bg, sprite_box, sprite_obj, sprite_player, sprite_wall;
-	sf::RenderWindow game_window;
+	//sf::RenderWindow game_window;
 	sf::Event event;
 
 	enum Direction { up, down, left, right, none };
@@ -50,7 +50,7 @@ private:
 	sf::Clock Clock;
 
 	void update( sf::Time elapsed_time );
-	void draw();
+	void draw(sf::RenderWindow *game_window);
 	void transfert_object(Case start_case, Case next_case, char new_value_start_case, char new_value_next_case);
 	void load_textures();
 	void create_sprites();

@@ -13,6 +13,8 @@ private:
 
 	MenuScreen menuScreen;
 
+	int lvl_selected = 0;
+
 public:
 	ScreenManager();
 	void init();
