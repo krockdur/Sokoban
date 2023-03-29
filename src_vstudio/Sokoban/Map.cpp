@@ -1,4 +1,4 @@
-#include "Map.h"
+#include "Map.h" 
 
 Map::Map(int lvl)
 {
@@ -20,7 +20,7 @@ void Map::populate_map(int lvl)
 	//std::cout << "Current working directory: " << std::filesystem::current_path() << std::endl;
 
 	//std::ifstream sFile("D:\\A1_DEV\\Sokoban\\src\\Sokoban\\Debug\\lvl1.txt", std::ifstream::in);
-	std::ifstream sFile( "./lvls/lvl_.txt" + static_cast<std::string> lvl, std::ifstream::in);
+	std::ifstream sFile( "./lvls/lvl_" + std::to_string(lvl) + ".txt", std::ifstream::in);
 
 	if (sFile)
 	{

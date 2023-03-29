@@ -20,7 +20,7 @@
 class Map {
 private:
 	std::vector<Case> map;
-	void populate_map();
+	void populate_map(int lvl);
 
 	Case case_player;
 
