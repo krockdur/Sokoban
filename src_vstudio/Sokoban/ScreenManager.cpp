@@ -12,38 +12,46 @@ void ScreenManager::init()
 
 	menuScreen.init();
     game.init();
+
+    screen_state = menu;
 }
 
-bool game_launched = false;
 void ScreenManager::update( sf::Time elapsed_time )
 {
-    if (!game_launched)
+    switch (screen_state)
     {
-	    menuScreen.update(&game_window);
-    }
-
-    if (menuScreen.let_s_play() && !game_launched)
-    {
-        lvl_selected = menuScreen.get_lvl_selected();
-        game.load_lvl( lvl_selected );
-        game_launched = true;
-    }
-
-    if (game_launched)
-    {
-        game.update( elapsed_time ); 
+        case menu:
+            menuScreen.update(&game_window);
+            if (menuScreen.let_s_play())
+            {
+                game.load_lvl(menuScreen.get_lvl_selected());
+                screen_state = play;
+            }
+            break;
+        case play:
+            game.update(elapsed_time);
+            break;
+        case score:
+            break;
+        default:
+            break;
     }
 }
 
 void ScreenManager::draw()
 {
-    if (!game_launched)
+    switch (screen_state)
     {
-	    menuScreen.draw( &game_window );
-    }
-    else
-    {
-        game.draw( &game_window );
+        case menu:
+            menuScreen.draw(&game_window);
+            break;
+        case play:
+            game.draw(&game_window);
+            break;
+        case score:
+            break;
+        default:
+            break;
     }
 }
 

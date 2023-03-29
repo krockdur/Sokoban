@@ -19,6 +19,9 @@ private:
 
 	sf::Clock Clock;
 
+	enum ScreenState { menu, play, score };
+	ScreenState screen_state;
+
 public:
 	ScreenManager();
 	void init();
