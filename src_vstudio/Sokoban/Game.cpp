@@ -320,8 +320,8 @@ void Game::draw(sf::RenderWindow *game_window)
 	{
 		for (int x = 0; x < Config::NB_TILE_X; x++)
 		{
-			float coord_x = x * (float)Config::TILE_W * 2;
-			float coord_y = y * (float)Config::TILE_W * 2;
+			float coord_x = x * (float)Config::TILE_W * Config::GLOBAL_SCALE;
+			float coord_y = y * (float)Config::TILE_W * Config::GLOBAL_SCALE;
 
 			coord_x += offset_x;
 			coord_y += offset_y;
@@ -330,7 +330,7 @@ void Game::draw(sf::RenderWindow *game_window)
 			{
 				sf::Sprite tmp_sprite_box(texture_box);
 				tmp_sprite_box.setPosition(coord_x, coord_y);
-				tmp_sprite_box.setScale( 2.0f, 2.0f );
+				tmp_sprite_box.setScale( Config::GLOBAL_SCALE, Config::GLOBAL_SCALE );
 				game_window->draw(tmp_sprite_box);
 			}
 
@@ -338,7 +338,7 @@ void Game::draw(sf::RenderWindow *game_window)
 			{
 				sf::Sprite tmp_sprite_bg(texture_background);
 				tmp_sprite_bg.setPosition(coord_x, coord_y);
-				tmp_sprite_bg.setScale( 2.0f, 2.0f );
+				tmp_sprite_bg.setScale(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE);
 				game_window->draw(tmp_sprite_bg);
 			}
 
@@ -346,7 +346,7 @@ void Game::draw(sf::RenderWindow *game_window)
 			{
 				sf::Sprite tmp_sprite_obj(texture_obj);
 				tmp_sprite_obj.setPosition(coord_x, coord_y);
-				tmp_sprite_obj.setScale( 2.0f, 2.0f );
+				tmp_sprite_obj.setScale(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE);
 				game_window->draw(tmp_sprite_obj);
 			}
 			
@@ -354,11 +354,11 @@ void Game::draw(sf::RenderWindow *game_window)
 			{
 				sf::Sprite tmp_sprite_player(texture_player);
 				
-				tmp_sprite_player.setScale( 2.0f, 2.0f );
-				tmp_sprite_player.setOrigin( Config::TILE_W / 2, Config::TILE_W / 2 );
+				tmp_sprite_player.setScale(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE);
+				tmp_sprite_player.setOrigin( Config::TILE_W * Config::GLOBAL_SCALE / 2.f, Config::TILE_W * Config::GLOBAL_SCALE / 2.f);
 
-				float tmp_x = coord_x + Config::TILE_W;
-				float tmp_y = coord_y + Config::TILE_W;
+				float tmp_x = coord_x;// + Config::TILE_W * Config::GLOBAL_SCALE / 2.f;
+				float tmp_y = coord_y;// +Config::TILE_W * Config::GLOBAL_SCALE / 2.f;
 				tmp_sprite_player.setPosition(tmp_x, tmp_y );
 				
 
@@ -379,11 +379,11 @@ void Game::draw(sf::RenderWindow *game_window)
 			{
 				sf::Sprite tmp_sprite_player_on_obj(texture_player_on_obj);
 
-				tmp_sprite_player_on_obj.setScale( 2.0f, 2.0f );
-				tmp_sprite_player_on_obj.setOrigin( Config::TILE_W / 2, Config::TILE_W / 2 );
+				tmp_sprite_player_on_obj.setScale(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE);
+				tmp_sprite_player_on_obj.setOrigin(Config::TILE_W * Config::GLOBAL_SCALE / 2.f, Config::TILE_W * Config::GLOBAL_SCALE / 2.f);
 
-				float tmp_x = coord_x + Config::TILE_W;
-				float tmp_y = coord_y + Config::TILE_W;
+				float tmp_x = coord_x + Config::TILE_W * Config::GLOBAL_SCALE / 2.f;
+				float tmp_y = coord_y + Config::TILE_W * Config::GLOBAL_SCALE / 2.f;
 				tmp_sprite_player_on_obj.setPosition( tmp_x, tmp_y );
 
 				if (last_player_direction == right)
@@ -401,7 +401,7 @@ void Game::draw(sf::RenderWindow *game_window)
 			{
 				sf::Sprite tmp_sprite_wall(texture_wall);
 				tmp_sprite_wall.setPosition(coord_x, coord_y);
-				tmp_sprite_wall.setScale( 2.0f, 2.0f );
+				tmp_sprite_wall.setScale(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE);
 				game_window->draw(tmp_sprite_wall);
 			}
 
@@ -409,7 +409,7 @@ void Game::draw(sf::RenderWindow *game_window)
 			{
 				sf::Sprite tmp_sprite_box_on_obj(texture_box_on_obj);
 				tmp_sprite_box_on_obj.setPosition(coord_x, coord_y);
-				tmp_sprite_box_on_obj.setScale( 2.0f, 2.0f );
+				tmp_sprite_box_on_obj.setScale(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE);
 				game_window->draw(tmp_sprite_box_on_obj);
 			}
 

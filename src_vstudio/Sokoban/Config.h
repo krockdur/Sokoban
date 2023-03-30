@@ -22,10 +22,12 @@ class Config
 
         static const int TILE_MENU_W = 32;
 
-        static inline const float GLOBAL_SCALE = 2.f;
+        static const float GLOBAL_SCALE;
 
-        static const int WINDOW_WIDTH = 1024;
+        static const int WINDOW_WIDTH = 1280;
         static const int WINDOW_HEIGHT = 768;
 };
+
+
 
 #endif // CONFIG_H

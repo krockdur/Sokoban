@@ -4,6 +4,7 @@
 ScreenManager::ScreenManager()
 {
     init();
+    
 }
 
 void ScreenManager::init()
