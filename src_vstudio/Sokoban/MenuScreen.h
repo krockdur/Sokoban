@@ -26,11 +26,14 @@ private:
 	bool mouse_over_lvl_sel = false;
 
 	sf::Texture texture_tileset_menu;
-	sf::Texture texture_btn;
 
 	sf::Sprite tab_sprite_lvl_sel[50];
 	sf::Sprite tab_sprite_lvl_sel_over[50];
 	sf::Sprite sprite_btn_play;
+	sf::Sprite sprite_btn_score;
+	sf::Sprite sprite_title;
+
+
 
 	bool btn_play_pressed = false;
 	int lvl_selected = 0;

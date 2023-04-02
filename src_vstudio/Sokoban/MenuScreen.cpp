@@ -2,12 +2,12 @@
 
 void MenuScreen::init()
 {
-	if (!texture_tileset_menu.loadFromFile( "sprites/tileset_menu.png" ))
-		load_sprite_error = true;
-	if (!texture_btn.loadFromFile( "sprites/btn.png" ))
+	if (!texture_tileset_menu.loadFromFile( "sprites/tileset_menu_screen.png" ))
 		load_sprite_error = true;
 
 
+
+	// sprites lvl
 	int x = 0, y = 0;
 	for (int rect = 0; rect < 50; rect++)
 	{
@@ -26,6 +26,7 @@ void MenuScreen::init()
 		
 	}
 
+	// sprite lvl over
 	x = 0, y = 0;
 	int offset_tilset_over = 5 * 32;
 	for (int rect = 0; rect < 50; rect++)
@@ -45,7 +46,17 @@ void MenuScreen::init()
 
 	}
 
-	sprite_btn_play.setTexture( texture_btn );
+	// sprite title
+	sprite_title.setTexture( texture_tileset_menu );
+	sprite_title.setTextureRect( sf::IntRect( 0, 384, 384, 32) );
+
+	// sprite btn play
+	sprite_btn_play.setTexture( texture_tileset_menu );
+	sprite_btn_play.setTextureRect( sf::IntRect( 0, 352, 128, 32 ) );
+
+	// sprite btn score
+	sprite_btn_score.setTexture( texture_tileset_menu );
+	sprite_btn_score.setTextureRect( sf::IntRect( 0, 384, 160, 32 ) )
 
 
 }
@@ -123,6 +134,13 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 	
 	float x = 0.f, y = 0.f;
 
+	// Titre
+	sprite_title.setScale( Config::GLOBAL_SCALE, Config::GLOBAL_SCALE );
+	sprite_title.setPosition( 256.f, 18.f );
+
+
+	// grille des niveaux
+
 	for (int spr = 0; spr < 50; spr++)
 	{
 
@@ -145,18 +163,22 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 		}
 	}
 
-
+	// boutton play
 	sprite_btn_play.setPosition( offset_x + 5 * Config::TILE_MENU_W * Config::GLOBAL_SCALE, offset_y + 6 * Config::TILE_MENU_W * Config::GLOBAL_SCALE );
 	sprite_btn_play.setScale( Config::GLOBAL_SCALE, Config::GLOBAL_SCALE );
 	game_window->draw( sprite_btn_play );
 
+	// boutton score
 
+
+	/*
 	draw_debug_rect(
 		game_window,
 		sf::Vector2f( offset_x + 5 * Config::TILE_MENU_W * Config::GLOBAL_SCALE, offset_y + 6 * Config::TILE_MENU_W * Config::GLOBAL_SCALE ),
 		sf::Vector2f(Config::GLOBAL_SCALE * Config::TILE_MENU_W,	Config::GLOBAL_SCALE * Config::TILE_MENU_W),
 		sf::Color::Red
 		);
+	*/
 
 	game_window->display();
 }

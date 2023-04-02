@@ -22,7 +22,12 @@ class Config
 
         static const int TILE_MENU_W = 32;
 
+        // scales
         static const float GLOBAL_SCALE;
+        static const float MENU_TILE_SCALE;
+        static const float MENU_LVL_GRID_SCALE;
+        static const float MENU_BTN_PLAY_SCALE;
+        static const float MENU_BTN_SCORE_SCALE;
 
         static const int WINDOW_WIDTH = 1280;
         static const int WINDOW_HEIGHT = 768;

@@ -1,1 +1,8 @@
-﻿  Sokoban.vcxproj -> D:\A1_DEV\00_PERSO\Sokoban\src_vstudio\Sokoban\x64\Debug\Sokoban.exe
+﻿  Config.cpp
+  Game.cpp
+  Map.cpp
+  MenuScreen.cpp
+D:\dev\Sokoban\src_vstudio\Sokoban\MenuScreen.cpp(62,1): error C2143: erreur de syntaxe : absence de ';' avant '}'
+  ScreenManager.cpp
+  Sokoban.cpp
+  Génération de code en cours...

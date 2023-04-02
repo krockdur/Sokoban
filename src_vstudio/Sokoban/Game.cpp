@@ -354,14 +354,14 @@ void Game::draw(sf::RenderWindow *game_window)
 			{
 				sf::Sprite tmp_sprite_player(texture_player);
 				
+				tmp_sprite_player.setOrigin( Config::TILE_W / 2.f, Config::TILE_W / 2.f);
 				tmp_sprite_player.setScale(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE);
-				tmp_sprite_player.setOrigin( Config::TILE_W * Config::GLOBAL_SCALE / 2.f, Config::TILE_W * Config::GLOBAL_SCALE / 2.f);
 
-				float tmp_x = coord_x;// + Config::TILE_W * Config::GLOBAL_SCALE / 2.f;
-				float tmp_y = coord_y;// +Config::TILE_W * Config::GLOBAL_SCALE / 2.f;
+				float tmp_x = coord_x + (Config::TILE_W * Config::GLOBAL_SCALE / 2.f);
+				float tmp_y = coord_y + (Config::TILE_W * Config::GLOBAL_SCALE / 2.f);    
 				tmp_sprite_player.setPosition(tmp_x, tmp_y );
 				
-
+				
 				if (last_player_direction == right)
 					tmp_sprite_player.setRotation( 180.0f );
 				if (last_player_direction == left)
@@ -370,8 +370,7 @@ void Game::draw(sf::RenderWindow *game_window)
 					tmp_sprite_player.setRotation( 90.0f );
 				if (last_player_direction == down)
 					tmp_sprite_player.setRotation( 270.0f );
-
-
+				
 				game_window->draw(tmp_sprite_player);
 			}
 			
@@ -379,8 +378,8 @@ void Game::draw(sf::RenderWindow *game_window)
 			{
 				sf::Sprite tmp_sprite_player_on_obj(texture_player_on_obj);
 
+				tmp_sprite_player_on_obj.setOrigin(Config::TILE_W / 2.f, Config::TILE_W / 2.f);
 				tmp_sprite_player_on_obj.setScale(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE);
-				tmp_sprite_player_on_obj.setOrigin(Config::TILE_W * Config::GLOBAL_SCALE / 2.f, Config::TILE_W * Config::GLOBAL_SCALE / 2.f);
 
 				float tmp_x = coord_x + Config::TILE_W * Config::GLOBAL_SCALE / 2.f;
 				float tmp_y = coord_y + Config::TILE_W * Config::GLOBAL_SCALE / 2.f;
