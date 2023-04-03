@@ -48,7 +48,7 @@ void MenuScreen::init()
 
 	// sprite title
 	sprite_title.setTexture( texture_tileset_menu );
-	sprite_title.setTextureRect( sf::IntRect( 0, 384, 384, 32) );
+	sprite_title.setTextureRect( sf::IntRect( 0, 320, 384, 32) );
 
 	// sprite btn play
 	sprite_btn_play.setTexture( texture_tileset_menu );
@@ -73,11 +73,11 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 
 	for (int line = 0; line < 5; line++)
 	{
-		if (mouse_position.y > line * Config::TILE_W * Config::GLOBAL_SCALE && mouse_position.y < (line * Config::TILE_W * Config::GLOBAL_SCALE) + Config::TILE_W * Config::GLOBAL_SCALE)
+		if (mouse_position.y > line * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE && mouse_position.y < (line * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE) + Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE)
 		{
 			for (int col = 0; col < 10; col++)
 			{
-				if (mouse_position.x > col * Config::TILE_W * Config::GLOBAL_SCALE && mouse_position.x < (col * Config::TILE_W * Config::GLOBAL_SCALE) + Config::TILE_W * Config::GLOBAL_SCALE)
+				if (mouse_position.x > col * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE && mouse_position.x < (col * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE) + Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE)
 				{
 					mouse_num_col = col;
 					mouse_num_line = line;
@@ -137,6 +137,7 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 	// Titre
 	sprite_title.setScale( Config::GLOBAL_SCALE * Config::MENU_TITLE_SCALE, Config::GLOBAL_SCALE * Config::MENU_TITLE_SCALE);
 	sprite_title.setPosition( 256.f, 18.f );
+	game_window->draw(sprite_title);
 
 	// grille des niveaux
 
@@ -147,6 +148,8 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 		tab_sprite_lvl_sel[spr].setScale( Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE, Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE );
 		tab_sprite_lvl_sel_over[spr].setPosition(offset_x + x, offset_y + y);
 		tab_sprite_lvl_sel_over[spr].setScale(Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE, Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE);
+
+		//std::cout << "souris sur la case : " << mouse_case_over << std::endl;
 
 		if (spr == mouse_case_over && mouse_over_lvl_sel)
 			game_window->draw(tab_sprite_lvl_sel_over[spr]);
