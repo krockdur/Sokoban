@@ -24,7 +24,7 @@ class Config
 
         // scales
         static const float GLOBAL_SCALE;
-        static const float MENU_TILE_SCALE;
+        static const float MENU_TITLE_SCALE;
         static const float MENU_LVL_GRID_SCALE;
         static const float MENU_BTN_PLAY_SCALE;
         static const float MENU_BTN_SCORE_SCALE;

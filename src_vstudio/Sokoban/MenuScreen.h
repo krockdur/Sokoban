@@ -18,9 +18,9 @@ public:
 	bool let_s_play() { return btn_play_pressed; };
 
 private:
-
-	float offset_x = 10.f;
-	float offset_y = 20.f;
+	// Offset de positionnement de la grilles des lvl
+	float offset_x = 400.f;
+	float offset_y = 150.f;
 	
 	int mouse_case_over = 0;
 	bool mouse_over_lvl_sel = false;

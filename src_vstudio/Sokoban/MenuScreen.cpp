@@ -56,7 +56,7 @@ void MenuScreen::init()
 
 	// sprite btn score
 	sprite_btn_score.setTexture( texture_tileset_menu );
-	sprite_btn_score.setTextureRect( sf::IntRect( 0, 384, 160, 32 ) )
+	sprite_btn_score.setTextureRect(sf::IntRect(0, 384, 160, 32));
 
 
 }
@@ -135,9 +135,8 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 	float x = 0.f, y = 0.f;
 
 	// Titre
-	sprite_title.setScale( Config::GLOBAL_SCALE, Config::GLOBAL_SCALE );
+	sprite_title.setScale( Config::GLOBAL_SCALE * Config::MENU_TITLE_SCALE, Config::GLOBAL_SCALE * Config::MENU_TITLE_SCALE);
 	sprite_title.setPosition( 256.f, 18.f );
-
 
 	// grille des niveaux
 
@@ -145,27 +144,27 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 	{
 
 		tab_sprite_lvl_sel[spr].setPosition( offset_x + x, offset_y + y );
-		tab_sprite_lvl_sel[spr].setScale( Config::GLOBAL_SCALE, Config::GLOBAL_SCALE );
+		tab_sprite_lvl_sel[spr].setScale( Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE, Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE );
 		tab_sprite_lvl_sel_over[spr].setPosition(offset_x + x, offset_y + y);
-		tab_sprite_lvl_sel_over[spr].setScale(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE);
+		tab_sprite_lvl_sel_over[spr].setScale(Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE, Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE);
 
 		if (spr == mouse_case_over && mouse_over_lvl_sel)
 			game_window->draw(tab_sprite_lvl_sel_over[spr]);
 		else
 			game_window->draw( tab_sprite_lvl_sel[spr] );
 
-		x += Config::TILE_MENU_W * Config::GLOBAL_SCALE;
+		x += Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE;
 
 		if (spr == 9 || spr == 19 || spr == 29 || spr == 39 )
 		{
 			x = 0;
-			y += Config::TILE_MENU_W * Config::GLOBAL_SCALE;
+			y += Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE;
 		}
 	}
 
 	// boutton play
-	sprite_btn_play.setPosition( offset_x + 5 * Config::TILE_MENU_W * Config::GLOBAL_SCALE, offset_y + 6 * Config::TILE_MENU_W * Config::GLOBAL_SCALE );
-	sprite_btn_play.setScale( Config::GLOBAL_SCALE, Config::GLOBAL_SCALE );
+	sprite_btn_play.setPosition( 576.f, 653.f );
+	sprite_btn_play.setScale( Config::GLOBAL_SCALE * Config::MENU_BTN_PLAY_SCALE, Config::GLOBAL_SCALE * Config::MENU_BTN_PLAY_SCALE);
 	game_window->draw( sprite_btn_play );
 
 	// boutton score
