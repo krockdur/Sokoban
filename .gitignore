@@ -1,7 +1,4 @@
-src/.vscode/*
-./vscode/*
 *.o
 *.exe
-src/sokoban
-
-x64
+/src_vstudio/Sokoban/x64
+/src_vstudio/Sokoban/.vs
