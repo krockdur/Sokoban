@@ -4,3 +4,4 @@ src/.vscode/*
 *.exe
 src/sokoban
 
+x64
