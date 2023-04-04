@@ -19,8 +19,8 @@ public:
 
 private:
 	// Offset de positionnement de la grilles des lvl
-	float offset_x = 400.f;
-	float offset_y = 150.f;
+	float offset_grid_lvl_x = 400.f;
+	float offset_grid_lvl_y = 150.f;
 	
 	int mouse_case_over = 0;
 	bool mouse_over_lvl_sel = false;

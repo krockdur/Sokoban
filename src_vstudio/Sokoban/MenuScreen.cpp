@@ -73,11 +73,11 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 
 	for (int line = 0; line < 5; line++)
 	{
-		if (mouse_position.y > line * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE && mouse_position.y < (line * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE) + Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE)
+		if (mouse_position.y > offset_grid_lvl_y + line * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE && mouse_position.y < offset_grid_lvl_y + (line * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE) + Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE)
 		{
 			for (int col = 0; col < 10; col++)
 			{
-				if (mouse_position.x > col * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE && mouse_position.x < (col * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE) + Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE)
+				if (mouse_position.x > offset_grid_lvl_x + col * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE && mouse_position.x < offset_grid_lvl_x + (col * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE) + Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE)
 				{
 					mouse_num_col = col;
 					mouse_num_line = line;
@@ -90,8 +90,7 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 					{
 						// 
 						lvl_selected = mouse_case_over + 1;
-
-						
+						std::cout << "lvl_selected : " << lvl_selected << std::endl;
 					}
 
 					break;
@@ -105,14 +104,14 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 	// boutton play
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
-		sf::FloatRect r_button(
-			offset_x + 5 * Config::TILE_MENU_W * Config::GLOBAL_SCALE,
-			offset_y + 6 * Config::TILE_MENU_W * Config::GLOBAL_SCALE,
-			Config::GLOBAL_SCALE * Config::TILE_MENU_W,
-			Config::GLOBAL_SCALE * Config::TILE_MENU_W
+		sf::FloatRect r_play_button(
+			576.f,
+			653.f,
+			128.f * Config::GLOBAL_SCALE * Config::MENU_BTN_PLAY_SCALE,
+			32.f * Config::GLOBAL_SCALE * Config::MENU_BTN_PLAY_SCALE
 		);
 
-		if (r_button.contains((float)mouse_position.x, (float)mouse_position.y) && !btn_play_pressed)
+		if (r_play_button.contains((float)mouse_position.x, (float)mouse_position.y) && !btn_play_pressed)
 		{
 			if (lvl_selected != 0)
 			{
@@ -144,9 +143,9 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 	for (int spr = 0; spr < 50; spr++)
 	{
 
-		tab_sprite_lvl_sel[spr].setPosition( offset_x + x, offset_y + y );
+		tab_sprite_lvl_sel[spr].setPosition( offset_grid_lvl_x + x, offset_grid_lvl_y + y );
 		tab_sprite_lvl_sel[spr].setScale( Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE, Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE );
-		tab_sprite_lvl_sel_over[spr].setPosition(offset_x + x, offset_y + y);
+		tab_sprite_lvl_sel_over[spr].setPosition(offset_grid_lvl_x + x, offset_grid_lvl_y + y);
 		tab_sprite_lvl_sel_over[spr].setScale(Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE, Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE);
 
 		//std::cout << "souris sur la case : " << mouse_case_over << std::endl;
@@ -171,7 +170,9 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 	game_window->draw( sprite_btn_play );
 
 	// boutton score
-
+	sprite_btn_score.setPosition(558.f, 700.f);
+	sprite_btn_score.setScale(Config::GLOBAL_SCALE * Config::MENU_BTN_SCORE_SCALE, Config::GLOBAL_SCALE * Config::MENU_BTN_SCORE_SCALE);
+	game_window->draw(sprite_btn_score);
 
 	/*
 	draw_debug_rect(
