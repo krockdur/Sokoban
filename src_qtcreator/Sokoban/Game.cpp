@@ -379,37 +379,37 @@ void Game::draw(sf::RenderWindow *game_window)
 			{
 				sf::Sprite tmp_sprite_player_on_obj(texture_player_on_obj);
 
-				tmp_sprite_player_on_obj.setOrigin(Config::TILE_W / 2.f, Config::TILE_W / 2.f);
-				tmp_sprite_player_on_obj.setScale(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE);
+                tmp_sprite_player_on_obj.setOrigin(sf::Vector2f(Config::TILE_W / 2.f, Config::TILE_W / 2.f));
+                tmp_sprite_player_on_obj.setScale(sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
 
 				float tmp_x = coord_x + Config::TILE_W * Config::GLOBAL_SCALE / 2.f;
-				float tmp_y = coord_y + Config::TILE_W * Config::GLOBAL_SCALE / 2.f;
-				tmp_sprite_player_on_obj.setPosition( tmp_x, tmp_y );
+                float tmp_y = coord_y + Config::TILE_W * Config::GLOBAL_SCALE / 2.f;
+                tmp_sprite_player_on_obj.setPosition( sf::Vector2f(tmp_x, tmp_y) );
 
-				if (last_player_direction == right)
-					tmp_sprite_player_on_obj.setRotation( 180.0f );
-				if (last_player_direction == left)
-					tmp_sprite_player_on_obj.setRotation( 0.0f );
-				if (last_player_direction == up)
-					tmp_sprite_player_on_obj.setRotation( 90.0f );
-				if (last_player_direction == down)
-					tmp_sprite_player_on_obj.setRotation( 270.0f );
+                if (last_player_direction == right)
+                    tmp_sprite_player_on_obj.setRotation( sf::degrees(180.0f) );
+                if (last_player_direction == left)
+                    tmp_sprite_player_on_obj.setRotation( sf::degrees(0.0f) );
+                if (last_player_direction == up)
+                    tmp_sprite_player_on_obj.setRotation( sf::degrees(90.0f) );
+                if (last_player_direction == down)
+                    tmp_sprite_player_on_obj.setRotation( sf::degrees(270.0f) );
 				game_window->draw(tmp_sprite_player_on_obj);
 			}
 
 			if (map.get_case(x, y).get_value() == Config::c_wall_tile)
 			{
-				sf::Sprite tmp_sprite_wall(texture_wall);
-				tmp_sprite_wall.setPosition(coord_x, coord_y);
-				tmp_sprite_wall.setScale(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE);
+                sf::Sprite tmp_sprite_wall(texture_wall);
+                tmp_sprite_wall.setPosition(sf::Vector2f(coord_x, coord_y));
+                tmp_sprite_wall.setScale(sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
 				game_window->draw(tmp_sprite_wall);
 			}
 
 			if (map.get_case(x, y).get_value() == Config::c_box_on_objective)
 			{
-				sf::Sprite tmp_sprite_box_on_obj(texture_box_on_obj);
-				tmp_sprite_box_on_obj.setPosition(coord_x, coord_y);
-				tmp_sprite_box_on_obj.setScale(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE);
+                sf::Sprite tmp_sprite_box_on_obj(texture_box_on_obj);
+                tmp_sprite_box_on_obj.setPosition(sf::Vector2f(coord_x, coord_y));
+                tmp_sprite_box_on_obj.setScale(sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
 				game_window->draw(tmp_sprite_box_on_obj);
 			}
 

@@ -3,8 +3,8 @@ CONFIG += console c++17
 CONFIG -= app_bundle
 CONFIG -= qt
 
-INCLUDEPATH += "C:\libs\SFML\include"
-LIBS += "C:\libs\SFML\lib" -lsfml-graphics -lsfml-main -lsfml-main -lsfml-window -lsfml-system
+INCLUDEPATH += "C:/libs/SFML/include"
+LIBS += -L"C:/libs/SFML/lib" -lsfml-graphics -lsfml-main -lsfml-main -lsfml-window -lsfml-system
 
 SOURCES += \
         Config.cpp \
