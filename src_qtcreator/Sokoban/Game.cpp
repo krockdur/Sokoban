@@ -51,7 +51,7 @@ void Game::update( sf::Time elapsed_time )
     if (moved)
     {
         // Autoriser le déplacement avec le relachement de touche
-        if ((time_add_move.asMilliseconds() > 200) || (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D)))
+        if ((time_add_move.asMilliseconds() > 300) || (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D)))
         {
             moved = false;
             time_add_move = sf::Time::Zero;
