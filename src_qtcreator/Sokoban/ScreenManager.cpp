@@ -70,6 +70,7 @@ void ScreenManager::run()
 
             sf::Time elapsed_time = Clock.getElapsedTime();
             update( elapsed_time );
+            Clock.restart();
         }
 
         draw();

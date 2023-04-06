@@ -1,5 +1,23 @@
 #include "Game.h"
 
+/*
+Description du contexte
+---------------------------------------------------------------------------------
+|	  	|	  	|	  T2	|	  	|	  	|
+---------------------------------------------------------------------------------
+|	  	|	  	|	  T1	|	  	|	  	|
+---------------------------------------------------------------------------------
+|	L2	|	L1	|	PLAYER	|	R1	|	R2	|
+---------------------------------------------------------------------------------
+|	  	|	  	|	  B1	|	  	|	  	|
+---------------------------------------------------------------------------------
+|	  	|	  	|	  B2	|	  	|	  	|
+---------------------------------------------------------------------------------
+
+start_case	= B1 ou T1 ou L1 ou R1
+next_case	= B2 ou T2 ou L2 ou R2
+
+*/
 
 void Game::init() {
 
@@ -21,40 +39,46 @@ void Game::load_lvl(int lvl)
 	case_player_destination = map.get_case_player();
 }
 
+sf::Time time_add_move;
 void Game::update( sf::Time elapsed_time )
 {
 
-	Direction player_direction;
+    Direction player_direction;
 	player_direction = none;
 
+    time_add_move += elapsed_time;
 
+    if (moved)
+    {
+        // Autoriser le dÃ©placement avec le relachement de touche
+        if ((time_add_move.asMilliseconds() > 200) || (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D)))
+        {
+            moved = false;
+            time_add_move = sf::Time::Zero;
+            //player_direction = none;
+        }
 
-	// Autoriser le déplacement
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-		moved = false;
-		//player_direction = none;
-	}
+    }
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		player_direction = up;
 		last_player_direction = up;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		player_direction = left;
 		last_player_direction = left;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		player_direction = down;
 		last_player_direction = down;
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		player_direction = right;
 		last_player_direction = right;
@@ -420,24 +444,7 @@ void Game::draw(sf::RenderWindow *game_window)
 }
 
 
-/*
-Description du contexte
----------------------------------------------
-|	  	|	  	|	  T2	|	  	|	  	|
----------------------------------------------
-|	  	|	  	|	  T1	|	  	|	  	|
----------------------------------------------
-|	L2	|	L1	|	PLAYER	|	R1	|	R2	|
----------------------------------------------
-|	  	|	  	|	  B1	|	  	|	  	|
----------------------------------------------
-|	  	|	  	|	  B2	|	  	|	  	|
----------------------------------------------
 
-start_case	= B1 ou T1 ou L1 ou R1
-next_case	= B2 ou T2 ou L2 ou R2
-
-*/
 void Game::transfert_object(Case start_case, Case next_case, char new_value_start_case, char new_value_next_case)
 {
 	Case new_case_1 = Case(start_case.get_x(), start_case.get_y(), new_value_start_case);
@@ -446,7 +453,7 @@ void Game::transfert_object(Case start_case, Case next_case, char new_value_star
 	map.change_case_value(new_case_1);
 	map.change_case_value(new_case_2);
 
-	// Déplacement du player sur start_case
+	// Dï¿½placement du player sur start_case
 	//map.set_case_player(Case(start_case.get_x(), start_case.get_y(), Config::c_player_tile));
 	case_player_destination = Case( start_case.get_x(), start_case.get_y(), Config::c_player_tile );
 	moved = true;
