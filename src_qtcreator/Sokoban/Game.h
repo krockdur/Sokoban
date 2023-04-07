@@ -10,8 +10,6 @@
 #include <SFML/Graphics.hpp>
 
 
-
-
 #define WINDOWS 0
 #define LINUX 1
 

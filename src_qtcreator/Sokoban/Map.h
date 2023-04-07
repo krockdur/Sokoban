@@ -40,6 +40,8 @@ public:
 
 	void print_map();
 
+    std::vector<Case> get_map(){ return map; };
+
 
 };
 

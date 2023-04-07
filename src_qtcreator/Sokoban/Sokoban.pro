@@ -13,7 +13,8 @@ SOURCES += \
         MenuScreen.cpp \
         Player.cpp \
         ScreenManager.cpp \
-        Sokoban.cpp
+        Sokoban.cpp \
+        boardstate.cpp
 
 HEADERS += \
     Case.h \
@@ -23,6 +24,7 @@ HEADERS += \
     Map.h \
     MenuScreen.h \
     Player.h \
-    ScreenManager.h
+    ScreenManager.h \
+    boardstate.h
 
 
