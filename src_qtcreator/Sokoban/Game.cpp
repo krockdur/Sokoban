@@ -39,6 +39,8 @@ void Game::load_lvl(int lvl)
 	case_player_destination = map.get_case_player();
 }
 
+
+int tmp_i = 0;
 sf::Time time_add_move;
 void Game::update( sf::Time elapsed_time )
 {
@@ -54,8 +56,8 @@ void Game::update( sf::Time elapsed_time )
         if ((time_add_move.asMilliseconds() > 300) || (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !sf::Keyboard::isKeyPressed(sf::Keyboard::D)))
         {
             moved = false;
-            time_add_move = sf::Time::Zero;
-            //player_direction = none;
+            time_add_move = sf::milliseconds(0.f);
+            player_direction = none;
         }
 
     }
@@ -93,6 +95,8 @@ void Game::update( sf::Time elapsed_time )
 
             case left:
             {
+            tmp_i++;
+            std::cout << "top update player po s" << tmp_i << std::endl;
 
 				Case case_l1 = map.get_case(map.get_case_player().get_x() - 1, map.get_case_player().get_y());
 				Case case_l2 = map.get_case(map.get_case_player().get_x() - 2, map.get_case_player().get_y());
@@ -324,7 +328,7 @@ void Game::update( sf::Time elapsed_time )
 
 			default:
 				break;
-		}
+        }
 
 		map.set_case_player( case_player_destination );
 
