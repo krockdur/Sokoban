@@ -9,8 +9,21 @@ ScreenManager::ScreenManager()
 
 void ScreenManager::init()
 {
-    game_window.create( sf::VideoMode( sf::Vector2u(Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT) ), "Sokoban 1982" );
-    sf::VideoMode();
+    //game_window.create( sf::VideoMode( sf::Vector2u(Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT) ), "Sokoban 1982" );
+    //game_window.create( sf::VideoMode( sf::Vector2u(2560, 1440) ), "Sokoban 1982" , sf::Style::Fullscreen );
+
+
+    std::vector<sf::VideoMode> resolutions = sf::VideoMode::getFullscreenModes();
+
+    sf::VideoMode best_resolution = sf::VideoMode::getFullscreenModes()[0];
+
+    sf::VideoMode desktop_resolution = sf::VideoMode::getDesktopMode();
+
+    game_window.create( desktop_resolution  , "Sokoban 1982", sf::Style::None);
+    game_window.setPosition(sf::Vector2(0, 0));
+    sf::Vector2u w_size = game_window.getSize();
+
+
 	menuScreen.init();
     game.init();
 

@@ -6,6 +6,7 @@
 #include "Config.h"
 #include "Map.h"
 #include "Player.h"
+#include "boardstate.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -29,7 +30,7 @@ private:
 	Map map; 		// current map
 	Player player; 	// current player
 
-
+    BoardState board_state;
 	
 	sf::Texture texture_box, texture_background, texture_obj, texture_player, texture_wall, texture_player_on_obj, texture_box_on_obj;
 	sf::Sprite sprite_bg, sprite_box, sprite_obj, sprite_player, sprite_wall;

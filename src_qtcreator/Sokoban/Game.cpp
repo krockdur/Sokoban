@@ -31,7 +31,11 @@ void Game::init() {
 
 void Game::load_lvl(int lvl)
 {
-	map = Map(lvl);
+    // Load Map
+    map = Map(lvl);
+
+    // Clean board state
+    board_state.clean_states();
 
 	pos_player_x = (float)map.get_case_player().get_x() * Config::TILE_W;
 	pos_player_y = (float)map.get_case_player().get_y() * Config::TILE_W;
@@ -96,7 +100,6 @@ void Game::update( sf::Time elapsed_time )
             case left:
             {
             tmp_i++;
-            std::cout << "top update player po s" << tmp_i << std::endl;
 
 				Case case_l1 = map.get_case(map.get_case_player().get_x() - 1, map.get_case_player().get_y());
 				Case case_l2 = map.get_case(map.get_case_player().get_x() - 2, map.get_case_player().get_y());
@@ -330,6 +333,14 @@ void Game::update( sf::Time elapsed_time )
 				break;
         }
 
+        // Save board state if player move
+        if (moved)
+        {
+            board_state.save_state( map.get_map() );
+                std::cout << board_state.get_numbers_of_states() << std::endl;
+        }
+
+        // Maj Player position1
 		map.set_case_player( case_player_destination );
 
 	}
@@ -457,7 +468,7 @@ void Game::transfert_object(Case start_case, Case next_case, char new_value_star
 	map.change_case_value(new_case_1);
 	map.change_case_value(new_case_2);
 
-	// D�placement du player sur start_case
+    // Deplacement du player sur start_case
 	//map.set_case_player(Case(start_case.get_x(), start_case.get_y(), Config::c_player_tile));
 	case_player_destination = Case( start_case.get_x(), start_case.get_y(), Config::c_player_tile );
 	moved = true;
