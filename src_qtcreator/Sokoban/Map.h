@@ -35,13 +35,13 @@ public:
 	void change_case_value(Case new_case);
 	Context get_case_context(Case c);
 
-	Case get_case_player(){ return case_player; };
+    Case get_case_player();
 	void set_case_player( Case cp );
 
 	void print_map();
 
     std::vector<Case> get_map(){ return map; };
-
+    void set_map(std::vector<Case> t_map);
 
 };
 

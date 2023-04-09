@@ -15,13 +15,14 @@ void ScreenManager::init()
 
     std::vector<sf::VideoMode> resolutions = sf::VideoMode::getFullscreenModes();
 
-    sf::VideoMode best_resolution = sf::VideoMode::getFullscreenModes()[0];
+    //sf::VideoMode best_resolution = sf::VideoMode::getFullscreenModes()[0];
 
     sf::VideoMode desktop_resolution = sf::VideoMode::getDesktopMode();
 
-    game_window.create( desktop_resolution  , "Sokoban 1982", sf::Style::None);
+    //game_window.create( desktop_resolution  , "Sokoban 1982", sf::Style::None);
+    game_window.create( desktop_resolution  , "Sokoban 1982");
     game_window.setPosition(sf::Vector2(0, 0));
-    sf::Vector2u w_size = game_window.getSize();
+    //sf::Vector2u w_size = game_window.getSize();
 
 
 	menuScreen.init();

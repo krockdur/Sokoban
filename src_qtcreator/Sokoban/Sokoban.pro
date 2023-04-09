@@ -21,7 +21,8 @@ SOURCES += \
         Player.cpp \
         ScreenManager.cpp \
         Sokoban.cpp \
-        boardstate.cpp
+        boardstate.cpp \
+        score.cpp
 
 HEADERS += \
     Case.h \
@@ -32,6 +33,7 @@ HEADERS += \
     MenuScreen.h \
     Player.h \
     ScreenManager.h \
-    boardstate.h
+    boardstate.h \
+    score.h
 
 

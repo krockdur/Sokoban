@@ -59,7 +59,8 @@ SOURCES       = ../Sokoban/Config.cpp \
 		../Sokoban/Player.cpp \
 		../Sokoban/ScreenManager.cpp \
 		../Sokoban/Sokoban.cpp \
-		../Sokoban/boardstate.cpp 
+		../Sokoban/boardstate.cpp \
+		../Sokoban/score.cpp 
 OBJECTS       = Config.o \
 		Game.o \
 		Map.o \
@@ -67,7 +68,8 @@ OBJECTS       = Config.o \
 		Player.o \
 		ScreenManager.o \
 		Sokoban.o \
-		boardstate.o
+		boardstate.o \
+		score.o
 DIST          = ../../../../Qt/6.5.0/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/6.5.0/gcc_64/mkspecs/common/unix.conf \
 		../../../../Qt/6.5.0/gcc_64/mkspecs/common/linux.conf \
@@ -215,14 +217,16 @@ DIST          = ../../../../Qt/6.5.0/gcc_64/mkspecs/features/spec_pre.prf \
 		MenuScreen.h \
 		Player.h \
 		ScreenManager.h \
-		boardstate.h ../Sokoban/Config.cpp \
+		boardstate.h \
+		score.h ../Sokoban/Config.cpp \
 		../Sokoban/Game.cpp \
 		../Sokoban/Map.cpp \
 		../Sokoban/MenuScreen.cpp \
 		../Sokoban/Player.cpp \
 		../Sokoban/ScreenManager.cpp \
 		../Sokoban/Sokoban.cpp \
-		../Sokoban/boardstate.cpp
+		../Sokoban/boardstate.cpp \
+		../Sokoban/score.cpp
 QMAKE_TARGET  = Sokoban
 DESTDIR       = 
 TARGET        = Sokoban
@@ -610,6 +614,9 @@ Sokoban.o: ../Sokoban/Sokoban.cpp ../Sokoban/ScreenManager.h \
 boardstate.o: ../Sokoban/boardstate.cpp ../Sokoban/boardstate.h \
 		../Sokoban/Case.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o boardstate.o ../Sokoban/boardstate.cpp
+
+score.o: ../Sokoban/score.cpp ../Sokoban/score.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o score.o ../Sokoban/score.cpp
 
 ####### Install
 

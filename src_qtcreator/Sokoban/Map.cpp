@@ -74,8 +74,13 @@ void Map::print_map()
 		{
 			std::cout << this->get_case( x, y ).get_value() << "  |  ";
 		}
-		std::cout << std::endl;
-	}
+        std::cout << std::endl;
+    }
+}
+
+void Map::set_map(std::vector<Case> t_map)
+{
+    map = t_map;
 }
 
 void Map::set_case_player( Case cp )
@@ -159,7 +164,21 @@ Context Map::get_case_context( Case c )
 	char b1 = get_case( case_b1_x, case_b1_y ).get_value();
 	char b2 = get_case( case_b2_x, case_b2_y ).get_value();
 
-	return Context( l1, l2, r1, r2, t1, t2, b1, b2 );
+    return Context( l1, l2, r1, r2, t1, t2, b1, b2 );
+}
+
+Case Map::get_case_player()
+{
+    Case c_to_ret;
+    for (Case c : map)
+    {
+        if (c.get_value() == Config::c_player_tile || c.get_value() == Config::c_player_on_objective_tile)
+        {
+            c_to_ret = c;
+            break;
+        }
+    }
+    return c_to_ret;
 }
 
 

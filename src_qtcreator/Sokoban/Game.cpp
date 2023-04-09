@@ -37,6 +37,9 @@ void Game::load_lvl(int lvl)
     // Clean board state
     board_state.clean_states();
 
+    // Save init state
+    board_state.save_state( map.get_map() );
+
 	pos_player_x = (float)map.get_case_player().get_x() * Config::TILE_W;
 	pos_player_y = (float)map.get_case_player().get_y() * Config::TILE_W;
 
@@ -44,6 +47,7 @@ void Game::load_lvl(int lvl)
 }
 
 
+bool fm_btn_backpace = false;
 int tmp_i = 0;
 sf::Time time_add_move;
 void Game::update( sf::Time elapsed_time )
@@ -53,6 +57,8 @@ void Game::update( sf::Time elapsed_time )
 	player_direction = none;
 
 
+    //element_removed = true;
+    //deleted_index = i;
     if (moved)
     {
         time_add_move += elapsed_time;
@@ -65,6 +71,19 @@ void Game::update( sf::Time elapsed_time )
         }
 
     }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Backspace) && !fm_btn_backpace&& board_state.get_numbers_of_states() > 1)
+    {
+        fm_btn_backpace = true;
+        map.set_map(board_state.get_back());
+
+        int tpx = map.get_case_player().get_x();
+        int tpy = map.get_case_player().get_y();
+        case_player_destination.set_values( tpx, tpy, Config::c_player_tile);
+
+    }
+
+    if ( !sf::Keyboard::isKeyPressed(sf::Keyboard::Backspace)) { fm_btn_backpace = false; }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
@@ -85,7 +104,7 @@ void Game::update( sf::Time elapsed_time )
 	}
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
+    {
 		player_direction = right;
 		last_player_direction = right;
 	}
@@ -333,19 +352,19 @@ void Game::update( sf::Time elapsed_time )
 				break;
         }
 
+        // Maj Player position
+        map.set_case_player( case_player_destination );
+
         // Save board state if player move
         if (moved)
         {
             board_state.save_state( map.get_map() );
-                std::cout << board_state.get_numbers_of_states() << std::endl;
+            std::cout << board_state.get_numbers_of_states() << std::endl;
+            std::cout << "Player X : " << map.get_case_player().get_x() << "      Player Y : " << map.get_case_player().get_y() << std::endl;
+
         }
 
-        // Maj Player position1
-		map.set_case_player( case_player_destination );
-
 	}
-
-
 }
 
 void Game::draw(sf::RenderWindow *game_window)
