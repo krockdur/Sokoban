@@ -83,6 +83,18 @@ void Map::set_map(std::vector<Case> t_map)
     map = t_map;
 }
 
+bool Map::check_if_win()
+{
+    bool win = true;
+    for (Case c : map)
+    {
+        if (c.get_value() == Config::c_objective_tile)
+            win = false;
+    }
+
+    return win;
+}
+
 void Map::set_case_player( Case cp )
 {
 	for (Case& c : map)

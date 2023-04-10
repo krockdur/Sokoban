@@ -52,15 +52,15 @@ void MenuScreen::init()
 
 	// sprite title
     sprite_title.setTexture( texture_tileset_menu );
-    sprite_title.setTextureRect( sf::IntRect( sf::Vector2i(0, 320), sf::Vector2i(384, 32)) );
+    sprite_title.setTextureRect( sf::IntRect( sf::Vector2i(0, 320), sf::Vector2i(Config::TEXTURE_MENU_TITLE_W, Config::TEXTURE_MENU_TITLE_H)) );
 
 	// sprite btn play
     sprite_btn_play.setTexture( texture_tileset_menu );
-    sprite_btn_play.setTextureRect( sf::IntRect( sf::Vector2i(0, 352), sf::Vector2i(128, 32) ) );
+    sprite_btn_play.setTextureRect( sf::IntRect( sf::Vector2i(0, 352), sf::Vector2i(Config::TEXTURE_MENU_BTN_PLAY_W, Config::TEXTURE_MENU_BTN_PLAY_H) ) );
 
 	// sprite btn score
     sprite_btn_score.setTexture( texture_tileset_menu );
-    sprite_btn_score.setTextureRect(sf::IntRect(sf::Vector2i(0, 384), sf::Vector2i(160, 32)));
+    sprite_btn_score.setTextureRect(sf::IntRect(sf::Vector2i(0, 384), sf::Vector2i(Config::TEXTURE_MENU_BTN_SCORE_W, Config::TEXTURE_MENU_BTN_SCORE_H)));
 
 
 }
@@ -77,11 +77,11 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 
 	for (int line = 0; line < 5; line++)
 	{
-		if (mouse_position.y > offset_grid_lvl_y + line * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE && mouse_position.y < offset_grid_lvl_y + (line * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE) + Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE)
+        if (mouse_position.y > offset_grid_lvl_y + line * Config::TILE_MENU_W * Config::GLOBAL_SCALE && mouse_position.y < offset_grid_lvl_y + (line * Config::TILE_MENU_W * Config::GLOBAL_SCALE) + Config::TILE_MENU_W * Config::GLOBAL_SCALE)
 		{
 			for (int col = 0; col < 10; col++)
 			{
-				if (mouse_position.x > offset_grid_lvl_x + col * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE && mouse_position.x < offset_grid_lvl_x + (col * Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE) + Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE)
+                if (mouse_position.x > offset_grid_lvl_x + col * Config::TILE_MENU_W * Config::GLOBAL_SCALE && mouse_position.x < offset_grid_lvl_x + (col * Config::TILE_MENU_W * Config::GLOBAL_SCALE) + Config::TILE_MENU_W * Config::GLOBAL_SCALE)
 				{
 					mouse_num_col = col;
 					mouse_num_line = line;
@@ -109,8 +109,8 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
         sf::FloatRect r_play_button(
-            sf::Vector2f(576.f,	653.f),
-            sf::Vector2f(128.f * Config::GLOBAL_SCALE * Config::MENU_BTN_PLAY_SCALE, 32.f * Config::GLOBAL_SCALE * Config::MENU_BTN_PLAY_SCALE)
+            sf::Vector2f(sf::Vector2f((((Config::WINDOW_WIDTH / 2) * Config::SCREEN_RATIO)) - (Config::TEXTURE_MENU_BTN_PLAY_W * Config::GLOBAL_SCALE /2), 653.f) ),
+            sf::Vector2f(128.f * Config::GLOBAL_SCALE, 32.f * Config::GLOBAL_SCALE)
 		);
 
         if (r_play_button.contains(sf::Vector2f((float)mouse_position.x, (float)mouse_position.y)) && !btn_play_pressed)
@@ -135,20 +135,23 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 	
 	float x = 0.f, y = 0.f;
 
-	// Titre
-    sprite_title.setScale( sf::Vector2f(Config::GLOBAL_SCALE * Config::MENU_TITLE_SCALE, Config::GLOBAL_SCALE * Config::MENU_TITLE_SCALE));
-    sprite_title.setPosition( sf::Vector2f(256.f, 18.f) );
-	game_window->draw(sprite_title);
+    // Titre
+    sprite_title.setScale( sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
+    sprite_title.setPosition( sf::Vector2f((((Config::WINDOW_WIDTH / 2) * Config::SCREEN_RATIO)) - (Config::TEXTURE_MENU_TITLE_W * Config::GLOBAL_SCALE /2), 18.f) );
+    game_window->draw(sprite_title);
+
 
 	// grille des niveaux
+
+    offset_grid_lvl_x = (((Config::WINDOW_WIDTH / 2) * Config::SCREEN_RATIO)) - (Config::TILE_MENU_W * 10 * Config::GLOBAL_SCALE /2);
 
 	for (int spr = 0; spr < 50; spr++)
 	{
 
         tab_sprite_lvl_sel[spr].setPosition( sf::Vector2f(offset_grid_lvl_x + x, offset_grid_lvl_y + y) );
-        tab_sprite_lvl_sel[spr].setScale( sf::Vector2f(Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE, Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE ));
+        tab_sprite_lvl_sel[spr].setScale( sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
         tab_sprite_lvl_sel_over[spr].setPosition(sf::Vector2f(offset_grid_lvl_x + x, offset_grid_lvl_y + y));
-        tab_sprite_lvl_sel_over[spr].setScale(sf::Vector2f(Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE, Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE));
+        tab_sprite_lvl_sel_over[spr].setScale(sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
 
 		//std::cout << "souris sur la case : " << mouse_case_over << std::endl;
 
@@ -157,23 +160,23 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 		else
 			game_window->draw( tab_sprite_lvl_sel[spr] );
 
-		x += Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE;
+        x += Config::TILE_MENU_W * Config::GLOBAL_SCALE;
 
 		if (spr == 9 || spr == 19 || spr == 29 || spr == 39 )
 		{
 			x = 0;
-			y += Config::TILE_MENU_W * Config::GLOBAL_SCALE * Config::MENU_LVL_GRID_SCALE;
+            y += Config::TILE_MENU_W * Config::GLOBAL_SCALE;
 		}
 	}
 
     // boutton play
-    sprite_btn_play.setPosition( sf::Vector2f(576.f, 653.f) );
-    sprite_btn_play.setScale( sf::Vector2f(Config::GLOBAL_SCALE * Config::MENU_BTN_PLAY_SCALE, Config::GLOBAL_SCALE * Config::MENU_BTN_PLAY_SCALE));
+    sprite_btn_play.setPosition( sf::Vector2f((((Config::WINDOW_WIDTH / 2) * Config::SCREEN_RATIO)) - (Config::TEXTURE_MENU_BTN_PLAY_W * Config::GLOBAL_SCALE /2), 653.f) );
+    sprite_btn_play.setScale( sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE ));
 	game_window->draw( sprite_btn_play );
 
     // boutton score
-    sprite_btn_score.setPosition(sf::Vector2f(558.f, 700.f));
-    sprite_btn_score.setScale(sf::Vector2f(Config::GLOBAL_SCALE * Config::MENU_BTN_SCORE_SCALE, Config::GLOBAL_SCALE * Config::MENU_BTN_SCORE_SCALE));
+    sprite_btn_score.setPosition(sf::Vector2f((((Config::WINDOW_WIDTH / 2) * Config::SCREEN_RATIO)) - (Config::TEXTURE_MENU_BTN_SCORE_W * Config::GLOBAL_SCALE /2), 750.f));
+    sprite_btn_score.setScale(sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
 	game_window->draw(sprite_btn_score);
 
 	/*

@@ -7,6 +7,7 @@
 #include "Map.h"
 #include "Player.h"
 #include "boardstate.h"
+#include "score.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -24,16 +25,20 @@ public:
 	void load_lvl(int lvl);
 	void update( sf::Time elapsed_time );
 	void draw( sf::RenderWindow* game_window );
-
+    bool check_if_win();
 private:
+
+    int level;      // current lvl
 
 	Map map; 		// current map
 	Player player; 	// current player
-
     BoardState board_state;
+    Score score;
 	
 	sf::Texture texture_box, texture_background, texture_obj, texture_player, texture_wall, texture_player_on_obj, texture_box_on_obj;
 	sf::Sprite sprite_bg, sprite_box, sprite_obj, sprite_player, sprite_wall;
+    sf::Font main_font;
+    sf::Text score_text;
 	//sf::RenderWindow game_window;
 	sf::Event event;
 

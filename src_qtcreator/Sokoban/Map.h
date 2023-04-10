@@ -43,6 +43,8 @@ public:
     std::vector<Case> get_map(){ return map; };
     void set_map(std::vector<Case> t_map);
 
+    bool check_if_win();
+
 };
 
 #endif /* MAP_H_ */

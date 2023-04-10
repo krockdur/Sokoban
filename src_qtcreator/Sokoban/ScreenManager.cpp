@@ -20,9 +20,14 @@ void ScreenManager::init()
     sf::VideoMode desktop_resolution = sf::VideoMode::getDesktopMode();
 
     //game_window.create( desktop_resolution  , "Sokoban 1982", sf::Style::None);
-    game_window.create( desktop_resolution  , "Sokoban 1982");
+    game_window.create( desktop_resolution , "Sokoban 1982", sf::Style::None);
     game_window.setPosition(sf::Vector2(0, 0));
-    //sf::Vector2u w_size = game_window.getSize();
+    game_window.setFramerateLimit(60);
+    sf::Vector2u w_size = game_window.getSize();
+
+
+    Config::SCREEN_RATIO = w_size.x / Config::WINDOW_WIDTH;
+    Config::GLOBAL_SCALE = Config::SCREEN_RATIO;
 
 
 	menuScreen.init();
@@ -33,6 +38,15 @@ void ScreenManager::init()
 
 void ScreenManager::update( sf::Time elapsed_time )
 {
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+    {
+        game.load_lvl(menuScreen.get_lvl_selected());
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::M))
+    {
+        screen_state = menu;
+    }
+
     switch (screen_state)
     {
         case menu:
@@ -45,12 +59,15 @@ void ScreenManager::update( sf::Time elapsed_time )
             break;
         case play:
             game.update(elapsed_time);
+            if (game.check_if_win())
+                screen_state = menu;
             break;
         case score:
             break;
         default:
             break;
     }
+
 }
 
 void ScreenManager::draw()

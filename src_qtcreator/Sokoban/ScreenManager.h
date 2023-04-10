@@ -6,7 +6,7 @@
 #include "Config.h"
 #include "MenuScreen.h"
 #include "Game.h"
-#include "Config.h"
+
 class ScreenManager
 {
 private:

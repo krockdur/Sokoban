@@ -21,16 +21,20 @@ class Config
         static const int TILE_W = 32;
 
         static const int TILE_MENU_W = 32;
+        static const int TEXTURE_MENU_TITLE_W = 384;
+        static const int TEXTURE_MENU_TITLE_H = 32;
+        static const int TEXTURE_MENU_BTN_PLAY_W = 128;
+        static const int TEXTURE_MENU_BTN_PLAY_H = 32;
+        static const int TEXTURE_MENU_BTN_SCORE_W = 160;
+        static const int TEXTURE_MENU_BTN_SCORE_H = 32;
 
         // scales
-        static const float GLOBAL_SCALE;
-        static const float MENU_TITLE_SCALE;
-        static const float MENU_LVL_GRID_SCALE;
-        static const float MENU_BTN_PLAY_SCALE;
-        static const float MENU_BTN_SCORE_SCALE;
+        static float GLOBAL_SCALE;
 
         static const int WINDOW_WIDTH = 1280;
         static const int WINDOW_HEIGHT = 768;
+
+        static float SCREEN_RATIO;
 
         static const int PLAYER_TIME_BETWEEN_TWO_MOVE = 75;
 };

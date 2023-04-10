@@ -10,7 +10,7 @@ linux-g++ | linux-g++-64 | linux-g++-32 {
 
 win32{
     INCLUDEPATH += "C:/libs/SFML/include"
-    LIBS += -L"C/home/krock/libs/SFML/lib/" -lsfml-graphics -lsfml-main -lsfml-window -lsfml-system
+    LIBS += -L"C:/libs/SFML/lib" -lsfml-graphics -lsfml-main -lsfml-window -lsfml-system
 }
 
 SOURCES += \

@@ -31,8 +31,13 @@ void Game::init() {
 
 void Game::load_lvl(int lvl)
 {
+    level = lvl;
+
     // Load Map
     map = Map(lvl);
+
+    //
+    score = Score(lvl);
 
     // Clean board state
     board_state.clean_states();
@@ -80,6 +85,7 @@ void Game::update( sf::Time elapsed_time )
         int tpx = map.get_case_player().get_x();
         int tpy = map.get_case_player().get_y();
         case_player_destination.set_values( tpx, tpy, Config::c_player_tile);
+        score.add_one_move();
 
     }
 
@@ -128,6 +134,7 @@ void Game::update( sf::Time elapsed_time )
 
 					case Config::c_empty_tile:
 						case_player_destination.set_values( case_l1.get_x(), case_l1.get_y() , Config::c_player_tile );
+                        score.add_one_move();
 						have_to_move = true;
 						moved = true;
 						break;
@@ -149,6 +156,7 @@ void Game::update( sf::Time elapsed_time )
 
 					case Config::c_objective_tile:
 						case_player_destination.set_values( case_l1.get_x(), case_l1.get_y(), Config::c_player_tile );
+                        score.add_one_move();
 						have_to_move = true;
 						moved = true;
 						break;
@@ -183,6 +191,7 @@ void Game::update( sf::Time elapsed_time )
 
 					case Config::c_empty_tile:
 						case_player_destination.set_values( case_r1.get_x(), case_r1.get_y(), Config::c_player_tile );
+                        score.add_one_move();
 						have_to_move = true;
 						moved = true;
 						break;
@@ -207,6 +216,7 @@ void Game::update( sf::Time elapsed_time )
 
 					case Config::c_objective_tile:
 						case_player_destination.set_values( case_r1.get_x(), case_r1.get_y(), Config::c_player_tile );
+                        score.add_one_move();
 						have_to_move = true;
 						moved = true;
 						break;
@@ -241,6 +251,7 @@ void Game::update( sf::Time elapsed_time )
 
 					case Config::c_empty_tile:
 						case_player_destination.set_values( case_t1.get_x(), case_t1.get_y(), Config::c_player_tile );
+                        score.add_one_move();
 						have_to_move = true;
 						moved = true;
 						break;
@@ -266,6 +277,7 @@ void Game::update( sf::Time elapsed_time )
 					case Config::c_objective_tile:
 						// Player on objective case
 						case_player_destination.set_values( case_t1.get_x(), case_t1.get_y(), Config::c_player_tile );
+                        score.add_one_move();
 						have_to_move = true;
 						moved = true;
 						break;
@@ -301,6 +313,7 @@ void Game::update( sf::Time elapsed_time )
 
 					case Config::c_empty_tile:
 						case_player_destination.set_values( case_b1.get_x(), case_b1.get_y(), Config::c_player_tile );
+                        score.add_one_move();
 						have_to_move = true;
 						moved = true;
 						break;
@@ -325,6 +338,7 @@ void Game::update( sf::Time elapsed_time )
 
 					case Config::c_objective_tile:
 						case_player_destination.set_values( case_b1.get_x(), case_b1.get_y(), Config::c_player_tile );
+                        score.add_one_move();
 						have_to_move = true;
 						moved = true;
 						break;
@@ -472,9 +486,23 @@ void Game::draw(sf::RenderWindow *game_window)
 			}
 
 		}
-	}
-	
-	game_window->display();
+    }
+
+    // UI
+    score_text.setString(std::to_string(score.get_score()));
+    score_text.setFillColor(sf::Color::Red);
+    score_text.setCharacterSize(30);
+    score_text.setScale(sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
+    score_text.setPosition(sf::Vector2f(100, 100));
+
+    game_window->draw(score_text);
+
+    game_window->display();
+}
+
+bool Game::check_if_win()
+{
+    return map.check_if_win();
 }
 
 
@@ -490,6 +518,7 @@ void Game::transfert_object(Case start_case, Case next_case, char new_value_star
     // Deplacement du player sur start_case
 	//map.set_case_player(Case(start_case.get_x(), start_case.get_y(), Config::c_player_tile));
 	case_player_destination = Case( start_case.get_x(), start_case.get_y(), Config::c_player_tile );
+    score.add_one_move();
 	moved = true;
 }
 
@@ -510,6 +539,9 @@ void Game::load_textures()
 		load_sprite_error = true;
 	if (!texture_wall.loadFromFile( "sprites/sprite_wall.png" ))
 		load_sprite_error = true;
+
+    if (!main_font.loadFromFile("fonts/ARCADECLASSIC.TTF" ))
+        load_sprite_error = true;
 }
 
 void Game::create_sprites()
@@ -519,6 +551,8 @@ void Game::create_sprites()
 	sprite_obj.setTexture( texture_obj );
 	sprite_player.setTexture( texture_player );
 	sprite_wall.setTexture( texture_wall );
+
+    score_text.setFont(main_font);
 }
 
 void Game::debug(Context c)
