@@ -137,7 +137,12 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 
     // Titre
     sprite_title.setScale( sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
-    sprite_title.setPosition( sf::Vector2f((((Config::WINDOW_WIDTH / 2) * Config::SCREEN_RATIO)) - (Config::TEXTURE_MENU_TITLE_W * Config::GLOBAL_SCALE /2), 18.f) );
+    sprite_title.setPosition(
+        sf::Vector2f(
+            (Config::CURRENT_WINDOW_WIDTH / 2) - Config::TEXTURE_MENU_TITLE_W / 2,
+            12
+            )
+        );
     game_window->draw(sprite_title);
 
 

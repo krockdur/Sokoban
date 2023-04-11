@@ -23,10 +23,13 @@ void ScreenManager::init()
     game_window.create( desktop_resolution , "Sokoban 1982", sf::Style::None);
     game_window.setPosition(sf::Vector2(0, 0));
     game_window.setFramerateLimit(60);
-    sf::Vector2u w_size = game_window.getSize();
 
+    sf::Vector2u current_screen_size = game_window.getSize();
 
-    Config::SCREEN_RATIO = w_size.x / Config::WINDOW_WIDTH;
+    Config::CURRENT_WINDOW_HEIGHT = current_screen_size.y;
+    Config::CURRENT_WINDOW_WIDTH = current_screen_size.x;
+
+    Config::SCREEN_RATIO = current_screen_size.x / Config::WINDOW_WIDTH;
     Config::GLOBAL_SCALE = Config::SCREEN_RATIO;
 
 

@@ -34,6 +34,9 @@ class Config
         static const int WINDOW_WIDTH = 1280;
         static const int WINDOW_HEIGHT = 768;
 
+        static int CURRENT_WINDOW_WIDTH;
+        static int CURRENT_WINDOW_HEIGHT;
+
         static float SCREEN_RATIO;
 
         static const int PLAYER_TIME_BETWEEN_TWO_MOVE = 75;
