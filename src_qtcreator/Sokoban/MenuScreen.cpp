@@ -145,6 +145,8 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 
         if (r_play_button.contains(sf::Vector2f((float)mouse_position.x, (float)mouse_position.y)) && !btn_play_pressed)
 		{
+            mouse_over_lvl_sel = true;
+
 			if (lvl_selected != 0)
 			{
 				btn_play_pressed = true;
