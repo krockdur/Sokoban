@@ -74,7 +74,7 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 	int mouse_num_col = 0;
 
 	mouse_over_lvl_sel = false;
-
+/*
 	for (int line = 0; line < 5; line++)
 	{
         if (mouse_position.y > offset_grid_lvl_y + line * Config::TILE_MENU_W * Config::GLOBAL_SCALE && mouse_position.y < offset_grid_lvl_y + (line * Config::TILE_MENU_W * Config::GLOBAL_SCALE) + Config::TILE_MENU_W * Config::GLOBAL_SCALE)
@@ -104,8 +104,38 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 		}
 
 	}
+*/
+    // Choices lvl button
 
-	// boutton play
+    int i = 0, j = 0;
+    for (int btn = 0; btn <= 49; btn++)
+    {
+        float tmp_x_btn = 0, tmp_y_btn = 0;
+
+        tmp_x_btn = i * Config::TILE_MENU_W * Config::GLOBAL_SCALE + i * Config::SPACE_BETWEEN_TILE_MENU;
+        tmp_y_btn = j * Config::TILE_MENU_W * Config::GLOBAL_SCALE + j * Config::SPACE_BETWEEN_TILE_MENU;
+
+        sf::FloatRect tmp_r_lvl_button(
+            sf::Vector2f(offset_grid_lvl_x + tmp_x_btn, offset_grid_lvl_y + tmp_y_btn),
+            sf::Vector2f(Config::TILE_MENU_W * Config::GLOBAL_SCALE, Config::TILE_MENU_W * Config::GLOBAL_SCALE)
+            );
+
+        i = i + 1;
+        if (i == 10)
+        {
+            i = 0;
+            j = j + 1;
+        }
+
+        if (tmp_r_lvl_button.contains(sf::Vector2f((float)mouse_position.x, (float)mouse_position.y)))
+        {
+            mouse_case_over = btn;
+            lvl_selected = btn + 1;
+        }
+    }
+
+
+    // play button
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
         sf::FloatRect r_play_button(
@@ -133,13 +163,13 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 {
 	game_window->clear();
 	
-	float x = 0.f, y = 0.f;
+
 
     // Titre
     sprite_title.setScale( sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
     sprite_title.setPosition(
         sf::Vector2f(
-            (Config::CURRENT_WINDOW_WIDTH / 2) - Config::TEXTURE_MENU_TITLE_W / 2,
+            (Config::CURRENT_WINDOW_WIDTH / 2) - Config::TEXTURE_MENU_TITLE_W * Config::GLOBAL_SCALE / 2,
             12
             )
         );
@@ -148,30 +178,37 @@ void MenuScreen::draw(sf::RenderWindow *game_window)
 
 	// grille des niveaux
 
-    offset_grid_lvl_x = (((Config::WINDOW_WIDTH / 2) * Config::SCREEN_RATIO)) - (Config::TILE_MENU_W * 10 * Config::GLOBAL_SCALE /2);
-
-	for (int spr = 0; spr < 50; spr++)
+    offset_grid_lvl_x = (Config::CURRENT_WINDOW_WIDTH / 2) - (Config::TILE_MENU_W * 10 + Config::SPACE_BETWEEN_TILE_MENU * 9) * Config::GLOBAL_SCALE / 2;
+    float x = 0.f, y = 0.f;
+    int i = 0, j = 0;
+    for (int spr = 0; spr <= 49; spr++)
 	{
+        x = i * Config::TILE_MENU_W * Config::GLOBAL_SCALE + i * Config::SPACE_BETWEEN_TILE_MENU;
+        y = j * Config::TILE_MENU_W * Config::GLOBAL_SCALE + j * Config::SPACE_BETWEEN_TILE_MENU;
+
 
         tab_sprite_lvl_sel[spr].setPosition( sf::Vector2f(offset_grid_lvl_x + x, offset_grid_lvl_y + y) );
+
         tab_sprite_lvl_sel[spr].setScale( sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
+
         tab_sprite_lvl_sel_over[spr].setPosition(sf::Vector2f(offset_grid_lvl_x + x, offset_grid_lvl_y + y));
+
         tab_sprite_lvl_sel_over[spr].setScale(sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
 
-		//std::cout << "souris sur la case : " << mouse_case_over << std::endl;
+        if (spr == mouse_case_over && mouse_over_lvl_sel)
+            game_window->draw(tab_sprite_lvl_sel_over[spr]);
+        else
+            game_window->draw( tab_sprite_lvl_sel[spr] );
 
-		if (spr == mouse_case_over && mouse_over_lvl_sel)
-			game_window->draw(tab_sprite_lvl_sel_over[spr]);
-		else
-			game_window->draw( tab_sprite_lvl_sel[spr] );
 
-        x += Config::TILE_MENU_W * Config::GLOBAL_SCALE;
+        i = i + 1;
+        if (i == 10)
+        {
+            i = 0;
+            j = j + 1;
+        }
 
-		if (spr == 9 || spr == 19 || spr == 29 || spr == 39 )
-		{
-			x = 0;
-            y += Config::TILE_MENU_W * Config::GLOBAL_SCALE;
-		}
+
 	}
 
     // boutton play

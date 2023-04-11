@@ -21,6 +21,7 @@ class Config
         static const int TILE_W = 32;
 
         static const int TILE_MENU_W = 32;
+        static const int SPACE_BETWEEN_TILE_MENU = 5;
         static const int TEXTURE_MENU_TITLE_W = 384;
         static const int TEXTURE_MENU_TITLE_H = 32;
         static const int TEXTURE_MENU_BTN_PLAY_W = 128;
