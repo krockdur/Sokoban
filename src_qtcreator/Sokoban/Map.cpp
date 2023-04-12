@@ -27,11 +27,16 @@ void Map::populate_map(int lvl)
 
 		std::string ligne;
 
+        int max_car_in_x = 0;
+        int max_car_in_y = 0;
 		int y = 0;
 		while (getline( sFile, ligne ))
 		{
 
 			size_t nb_car = ligne.length();
+
+            if (max_car_in_x < nb_car)
+                max_car_in_x = nb_car;
 
 			for (int x = 0; x < nb_car; x++)
 			{
@@ -42,8 +47,13 @@ void Map::populate_map(int lvl)
 					case_player = c;
 			}
 
+
+
 			y++;
 		}
+        max_car_in_y = y;
+        Config::NB_TILE_X = max_car_in_x;
+        Config::NB_TILE_Y = max_car_in_y;
 	}
 	else
 	{

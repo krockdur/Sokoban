@@ -22,7 +22,8 @@ SOURCES += \
         ScreenManager.cpp \
         Sokoban.cpp \
         boardstate.cpp \
-        score.cpp
+        score.cpp \
+        sfmlbutton.cpp
 
 HEADERS += \
     Case.h \
@@ -34,6 +35,7 @@ HEADERS += \
     Player.h \
     ScreenManager.h \
     boardstate.h \
-    score.h
+    score.h \
+    sfmlbutton.h
 
 

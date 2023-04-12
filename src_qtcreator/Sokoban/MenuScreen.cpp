@@ -70,41 +70,8 @@ void MenuScreen::update(sf::RenderWindow* game_window)
 
 	sf::Vector2i mouse_position = sf::Mouse::getPosition(*game_window);
 
-	int mouse_num_line = 0;			// sur quelle case de la grille se trouve la souris
-	int mouse_num_col = 0;
-
 	mouse_over_lvl_sel = false;
-/*
-	for (int line = 0; line < 5; line++)
-	{
-        if (mouse_position.y > offset_grid_lvl_y + line * Config::TILE_MENU_W * Config::GLOBAL_SCALE && mouse_position.y < offset_grid_lvl_y + (line * Config::TILE_MENU_W * Config::GLOBAL_SCALE) + Config::TILE_MENU_W * Config::GLOBAL_SCALE)
-		{
-			for (int col = 0; col < 10; col++)
-			{
-                if (mouse_position.x > offset_grid_lvl_x + col * Config::TILE_MENU_W * Config::GLOBAL_SCALE && mouse_position.x < offset_grid_lvl_x + (col * Config::TILE_MENU_W * Config::GLOBAL_SCALE) + Config::TILE_MENU_W * Config::GLOBAL_SCALE)
-				{
-					mouse_num_col = col;
-					mouse_num_line = line;
-					mouse_over_lvl_sel = true;
 
-					// calcul de la case sur laquelle se trouve la souris
-					mouse_case_over = mouse_num_line * 10 + mouse_num_col;
-
-					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-					{
-						// 
-						lvl_selected = mouse_case_over + 1;
-						std::cout << "lvl_selected : " << lvl_selected << std::endl;
-					}
-
-					break;
-				}
-			}
-			
-		}
-
-	}
-*/
     // Choices lvl button
 
     int i = 0, j = 0;
@@ -130,7 +97,12 @@ void MenuScreen::update(sf::RenderWindow* game_window)
         if (tmp_r_lvl_button.contains(sf::Vector2f((float)mouse_position.x, (float)mouse_position.y)))
         {
             mouse_case_over = btn;
-            lvl_selected = btn + 1;
+            mouse_over_lvl_sel = true;
+
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            {
+                lvl_selected = btn + 1;
+            }
         }
     }
 

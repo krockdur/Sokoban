@@ -8,6 +8,7 @@
 #include "Player.h"
 #include "boardstate.h"
 #include "score.h"
+#include "sfmlbutton.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -34,12 +35,16 @@ private:
 	Player player; 	// current player
     BoardState board_state;
     Score score;
-	
+
+    SfmlButton btn_test;
+    void clicktest(){std::cout << "coucou" << std::endl;};
+
+
 	sf::Texture texture_box, texture_background, texture_obj, texture_player, texture_wall, texture_player_on_obj, texture_box_on_obj;
 	sf::Sprite sprite_bg, sprite_box, sprite_obj, sprite_player, sprite_wall;
     sf::Font main_font;
-    sf::Text score_text;
-	//sf::RenderWindow game_window;
+    sf::Text score_text, exit_text;
+
 	sf::Event event;
 
 	enum Direction { up, down, left, right, none };

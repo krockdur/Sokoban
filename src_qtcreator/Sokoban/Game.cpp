@@ -19,10 +19,16 @@ next_case	= B2 ou T2 ou L2 ou R2
 
 */
 
+
+
 void Game::init() {
 
-	player = Player("Krock");
+    void (Game::*ptr_clicktest)() = &Game::clicktest;
 
+    btn_test = SfmlButton( "toto", sf::Vector2f(200,50), sf::Vector2f(500,300), Game::clicktest);
+
+
+	player = Player("Krock");
 
 	load_textures();
 
@@ -386,8 +392,9 @@ void Game::draw(sf::RenderWindow *game_window)
 
 	game_window->clear();
 
-	float offset_x = 50.f;
-	float offset_y = 40.f;
+    // Compute offset to center lvl on screen
+    float offset_x = (Config::CURRENT_WINDOW_WIDTH/2) - (Config::NB_TILE_X * Config::GLOBAL_SCALE * Config::TILE_W / 2);
+    float offset_y =  (Config::CURRENT_WINDOW_HEIGHT/2) - (Config::NB_TILE_Y * Config::GLOBAL_SCALE * Config::TILE_W / 2);
 
 	for (int y = 0; y < Config::NB_TILE_Y; y++)
 	{
@@ -489,13 +496,36 @@ void Game::draw(sf::RenderWindow *game_window)
     }
 
     // UI
-    score_text.setString(std::to_string(score.get_score()));
+    // Score
+    score_text.setString("Score \r\n" + std::to_string(score.get_score()));
     score_text.setFillColor(sf::Color::Red);
     score_text.setCharacterSize(30);
     score_text.setScale(sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
     score_text.setPosition(sf::Vector2f(100, 100));
-
     game_window->draw(score_text);
+
+    // Btn Exit
+    sf::RectangleShape rect_shape_btn_exit(sf::Vector2f(128, 32));
+    rect_shape_btn_exit.setOrigin(sf::Vector2f(128/2, 32/2));
+    rect_shape_btn_exit.setScale(sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
+    rect_shape_btn_exit.setOutlineColor(sf::Color::Red);
+    rect_shape_btn_exit.setOutlineThickness(3.f);
+    rect_shape_btn_exit.setFillColor(sf::Color::Transparent);
+    rect_shape_btn_exit.setPosition( sf::Vector2f((Config::CURRENT_WINDOW_WIDTH/2) - 150.f , Config::CURRENT_WINDOW_HEIGHT - 100));
+
+    exit_text.setString("Quitter");
+    exit_text.setOrigin(sf::Vector2f(57, 20));
+    exit_text.setFillColor(sf::Color::Red);
+    exit_text.setCharacterSize(30);
+    exit_text.setScale(sf::Vector2f(Config::GLOBAL_SCALE, Config::GLOBAL_SCALE));
+    exit_text.setPosition(sf::Vector2f((Config::CURRENT_WINDOW_WIDTH/2) - 150.f , Config::CURRENT_WINDOW_HEIGHT - 100));
+    game_window->draw(exit_text);
+
+    game_window->draw(rect_shape_btn_exit);
+
+    // Btn Undo
+
+    btn_test.draw(game_window);
 
     game_window->display();
 }
@@ -553,6 +583,7 @@ void Game::create_sprites()
 	sprite_wall.setTexture( texture_wall );
 
     score_text.setFont(main_font);
+    exit_text.setFont(main_font);
 }
 
 void Game::debug(Context c)
