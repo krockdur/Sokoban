@@ -36,7 +36,7 @@ private:
     BoardState board_state;
     Score score;
 
-    SfmlButton btn_test;
+    SfmlButton btn_test{"toto", sf::Vector2f(200.f, 50.f), sf::Vector2f(500.f ,300.f )};
     void clicktest(){std::cout << "coucou" << std::endl;};
 
 

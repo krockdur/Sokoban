@@ -21,11 +21,8 @@ next_case	= B2 ou T2 ou L2 ou R2
 
 
 
-void Game::init() {
-
-    void (Game::*ptr_clicktest)() = &Game::clicktest;
-
-    btn_test = SfmlButton( "toto", sf::Vector2f(200,50), sf::Vector2f(500,300), Game::clicktest);
+void Game::init()
+{
 
 
 	player = Player("Krock");

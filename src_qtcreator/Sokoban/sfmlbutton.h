@@ -6,6 +6,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "Game.h"
+
 class SfmlButton
 {
 private:
@@ -46,12 +48,11 @@ private:
 
 
 public:
-    SfmlButton() = default;
+    //SfmlButton() = default;
     SfmlButton(
         std::string text,
         sf::Vector2f size,
-        sf::Vector2f center_position,
-        void (&mafunc)()
+        sf::Vector2f center_position
         );
 
     void update();

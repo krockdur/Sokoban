@@ -3,7 +3,7 @@
 
 // Button type 1
 // Back and white simple button
-SfmlButton::SfmlButton( std::string text, sf::Vector2f size, sf::Vector2f center_position, void (&mafunc)())
+SfmlButton::SfmlButton( std::string text, sf::Vector2f size, sf::Vector2f center_position)
 {
     _button_type = 1;
 
