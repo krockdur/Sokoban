@@ -27,17 +27,19 @@ public:
 	void update( sf::Time elapsed_time );
 	void draw( sf::RenderWindow* game_window );
     bool check_if_win();
+    bool get_is_alive(){ return is_alive; };
 private:
 
     int level;      // current lvl
+
+    bool is_alive = true; // ScreenManager check this. If false, this screen is closed.
 
 	Map map; 		// current map
 	Player player; 	// current player
     BoardState board_state;
     Score score;
 
-    SfmlButton btn_test{ "toto", sf::Vector2f(200.f, 50.f), sf::Vector2f(500.f ,300.f ) };
-
+    SfmlButton btn_close_map{ "Quitter", sf::Vector2f(200.f, 50.f), sf::Vector2f(500.f ,300.f ) };
 
 	sf::Texture texture_box, texture_background, texture_obj, texture_player, texture_wall, texture_player_on_obj, texture_box_on_obj;
 	sf::Sprite sprite_bg, sprite_box, sprite_obj, sprite_player, sprite_wall;

@@ -381,11 +381,11 @@ void Game::update( sf::Time elapsed_time )
 
         }
 
-        //
-        btn_test.update();
-        if (btn_test.get_clicked())
+        // Button close map
+        btn_close_map.update();
+        if (btn_close_map.get_clicked())
         {
-            std::cout << "test click" << std::endl;
+            this->is_alive = false;
         }
 
 	}
@@ -529,7 +529,7 @@ void Game::draw(sf::RenderWindow *game_window)
 
     // Btn Undo
 
-    btn_test.draw(game_window);
+    btn_close_map.draw(game_window);
 
     game_window->display();
 }

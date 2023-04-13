@@ -64,6 +64,8 @@ void ScreenManager::update( sf::Time elapsed_time )
             game.update(elapsed_time);
             if (game.check_if_win())
                 screen_state = menu;
+            if (!game.get_is_alive())
+                screen_state = menu;
             break;
         case score:
             break;
