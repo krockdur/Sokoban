@@ -20,7 +20,7 @@ void ScreenManager::init()
     sf::VideoMode desktop_resolution = sf::VideoMode::getDesktopMode();
 
     //game_window.create( desktop_resolution  , "Sokoban 1982", sf::Style::None);
-    game_window.create( desktop_resolution , "Sokoban 1982", sf::Style::None);
+    game_window.create( desktop_resolution , "Sokoban 1982");
     game_window.setPosition(sf::Vector2(0, 0));
     game_window.setFramerateLimit(60);
 

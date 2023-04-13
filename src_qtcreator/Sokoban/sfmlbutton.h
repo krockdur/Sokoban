@@ -6,7 +6,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#include "Game.h"
 
 class SfmlButton
 {
@@ -43,12 +42,18 @@ private:
     std::string _text_value_over;
 
     //-----------------------------------
+    // RECT DEFINITION
+    sf::FloatRect _rect_btn;
+
+
+    //-----------------------------------
     // LIFE DEFINITION
     void build();
+    bool is_clicked;
 
 
 public:
-    //SfmlButton() = default;
+    SfmlButton() = default;
     SfmlButton(
         std::string text,
         sf::Vector2f size,
@@ -57,6 +62,7 @@ public:
 
     void update();
     void draw(sf::RenderWindow* game_window);
+    bool get_clicked(){ return this->is_clicked; };
 };
 
 #endif // SFMLBUTTON_H

@@ -381,6 +381,13 @@ void Game::update( sf::Time elapsed_time )
 
         }
 
+        //
+        btn_test.update();
+        if (btn_test.get_clicked())
+        {
+            std::cout << "test click" << std::endl;
+        }
+
 	}
 }
 

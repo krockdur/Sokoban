@@ -24,12 +24,21 @@ void SfmlButton::build()
         this->_rect_shape_btn.setOrigin( sf::Vector2f( this->_rect_shape_btn_size.x / 2, this->_rect_shape_btn_size.y / 2 ) );
         this->_rect_shape_btn.setPosition(this->_btn_position);
 
+
+        this->_rect_btn = sf::FloatRect(this->_btn_position, this->_rect_shape_btn_size);
     }
 }
 
 void SfmlButton::update()
 {
-
+    if( this->_rect_btn.contains( sf::Vector2f((float)sf::Mouse::getPosition().x, (float)sf::Mouse::getPosition().y)))
+    {
+        this->is_clicked = true;
+    }
+    else
+    {
+        this->is_clicked = false;
+    }
 }
 
 void SfmlButton::draw(sf::RenderWindow* game_window)

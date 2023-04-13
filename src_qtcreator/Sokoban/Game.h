@@ -36,8 +36,7 @@ private:
     BoardState board_state;
     Score score;
 
-    SfmlButton btn_test{"toto", sf::Vector2f(200.f, 50.f), sf::Vector2f(500.f ,300.f )};
-    void clicktest(){std::cout << "coucou" << std::endl;};
+    SfmlButton btn_test{ "toto", sf::Vector2f(200.f, 50.f), sf::Vector2f(500.f ,300.f ) };
 
 
 	sf::Texture texture_box, texture_background, texture_obj, texture_player, texture_wall, texture_player_on_obj, texture_box_on_obj;
