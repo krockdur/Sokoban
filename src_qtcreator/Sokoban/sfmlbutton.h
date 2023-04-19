@@ -31,6 +31,7 @@ private:
 
     //-----------------------------------
     // TEXT DEFINITION
+    sf::Text _sf_text_btn;
     std::string _text_btn;
     sf::Vector2f _text_position;
     int _text_size;
@@ -57,7 +58,7 @@ public:
     SfmlButton(
         std::string text,
         sf::Vector2f size,
-        sf::Vector2f center_position
+        sf::Vector2f top_left_position
         );
 
     void update();

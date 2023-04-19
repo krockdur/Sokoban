@@ -34,6 +34,8 @@ void Game::init()
 
 void Game::load_lvl(int lvl)
 {
+    is_alive = true;
+
     level = lvl;
 
     // Load Map
