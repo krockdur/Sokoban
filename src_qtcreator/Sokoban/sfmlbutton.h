@@ -37,6 +37,7 @@ private:
     int _text_size;
     sf::Color _text_color;
     std::string _text_value;
+    sf::Font* _text_font;
 
     // TEXT DEFINITION
     sf::Color _text_color_over;
@@ -57,6 +58,8 @@ public:
     SfmlButton() = default;
     SfmlButton(
         std::string text,
+        sf::Font* font,
+        int text_size,
         sf::Vector2f size,
         sf::Vector2f top_left_position
         );

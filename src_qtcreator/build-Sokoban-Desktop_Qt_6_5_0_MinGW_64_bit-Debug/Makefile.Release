@@ -575,15 +575,7 @@ release/sfmlbutton.o: ../Sokoban/sfmlbutton.cpp ../Sokoban/sfmlbutton.h \
 		C:/libs/SFML/include/SFML/Window/Mouse.hpp \
 		C:/libs/SFML/include/SFML/Window/Sensor.hpp \
 		C:/libs/SFML/include/SFML/Window/Touch.hpp \
-		C:/libs/SFML/include/SFML/Window/VideoMode.hpp \
-		../Sokoban/Game.h \
-		../Sokoban/Config.h \
-		../Sokoban/Map.h \
-		../Sokoban/Case.h \
-		../Sokoban/Player.h \
-		../Sokoban/Context.h \
-		../Sokoban/boardstate.h \
-		../Sokoban/score.h
+		C:/libs/SFML/include/SFML/Window/VideoMode.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\sfmlbutton.o ..\Sokoban\sfmlbutton.cpp
 
 ####### Install
