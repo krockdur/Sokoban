@@ -1,0 +1,22 @@
+ScreenManager.init()
+
+	Création fenêtre SFML
+	
+	menuScreen.init()
+		Chargement des sprites du menu
+
+	game.init()
+		Chargement des sprites du jeu
+
+ScreenManager.run()
+	
+	Lecture des event
+
+	update()
+
+	draw()
+		si screen_state == menu
+			menuScreen.draw()
+
+		si screen_state == play
+			game.draw()
