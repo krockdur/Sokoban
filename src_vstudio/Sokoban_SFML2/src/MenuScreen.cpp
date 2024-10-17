@@ -112,7 +112,7 @@ void MenuScreen::update( sf::RenderWindow* game_window )
     if (sf::Mouse::isButtonPressed( sf::Mouse::Left ))
     {
         sf::FloatRect r_play_button(
-            sf::Vector2f( sf::Vector2f( (((Config::WINDOW_WIDTH / 2) * Config::SCREEN_RATIO)) - (Config::TEXTURE_MENU_BTN_PLAY_W * Config::GLOBAL_SCALE / 2), 653.f ) ),
+            sf::Vector2f( sf::Vector2f( (((Config::CURRENT_WINDOW_WIDTH / 2) * Config::SCREEN_RATIO)) - (Config::TEXTURE_MENU_BTN_PLAY_W * Config::GLOBAL_SCALE / 2), 653.f ) ),
             sf::Vector2f( 128.f * Config::GLOBAL_SCALE, 32.f * Config::GLOBAL_SCALE )
         );
 
@@ -187,12 +187,12 @@ void MenuScreen::draw( sf::RenderWindow* game_window )
     }
 
     // boutton play
-    sprite_btn_play.setPosition( sf::Vector2f( (((Config::WINDOW_WIDTH / 2) * Config::SCREEN_RATIO)) - (Config::TEXTURE_MENU_BTN_PLAY_W * Config::GLOBAL_SCALE / 2), 653.f ) );
+    sprite_btn_play.setPosition( sf::Vector2f( (((Config::CURRENT_WINDOW_WIDTH / 2) * Config::SCREEN_RATIO)) - (Config::TEXTURE_MENU_BTN_PLAY_W * Config::GLOBAL_SCALE / 2), 653.f ) );
     sprite_btn_play.setScale( sf::Vector2f( Config::GLOBAL_SCALE, Config::GLOBAL_SCALE ) );
     game_window->draw( sprite_btn_play );
 
     // boutton score
-    sprite_btn_score.setPosition( sf::Vector2f( (((Config::WINDOW_WIDTH / 2) * Config::SCREEN_RATIO)) - (Config::TEXTURE_MENU_BTN_SCORE_W * Config::GLOBAL_SCALE / 2), 750.f ) );
+    sprite_btn_score.setPosition( sf::Vector2f( (((Config::CURRENT_WINDOW_WIDTH / 2) * Config::SCREEN_RATIO)) - (Config::TEXTURE_MENU_BTN_SCORE_W * Config::GLOBAL_SCALE / 2), 750.f ) );
     sprite_btn_score.setScale( sf::Vector2f( Config::GLOBAL_SCALE, Config::GLOBAL_SCALE ) );
     game_window->draw( sprite_btn_score );
 

@@ -31,7 +31,8 @@ void ScreenManager::init()
     Config::CURRENT_WINDOW_HEIGHT = current_screen_size.y;
     Config::CURRENT_WINDOW_WIDTH = current_screen_size.x;
 
-    Config::SCREEN_RATIO = current_screen_size.x / Config::WINDOW_WIDTH;
+    //Config::SCREEN_RATIO = current_screen_size.x / Config::WINDOW_WIDTH;
+    Config::SCREEN_RATIO = current_screen_size.x / current_screen_size.y;
     Config::GLOBAL_SCALE = Config::SCREEN_RATIO;
 
 
