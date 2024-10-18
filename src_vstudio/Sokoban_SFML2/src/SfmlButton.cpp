@@ -11,6 +11,8 @@ SfmlButton::SfmlButton( std::string text, sf::Vector2f size, sf::Vector2f center
     this->_rect_shape_btn_size = size;
     this->_btn_position = center_position;
 
+    
+
     this->build();
 }
 
@@ -31,7 +33,9 @@ void SfmlButton::build()
 
 void SfmlButton::update()
 {
-    if (this->_rect_btn.contains( sf::Vector2f( (float)sf::Mouse::getPosition().x, (float)sf::Mouse::getPosition().y ) ))
+    //std::cout << (float)sf::Mouse::getPosition().x << "     " << (float)sf::Mouse::getPosition().y << std::endl;
+
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && this->_rect_btn.contains( sf::Vector2f( (float)sf::Mouse::getPosition().x, (float)sf::Mouse::getPosition().y ) ))
     {
         this->is_clicked = true;
     }
