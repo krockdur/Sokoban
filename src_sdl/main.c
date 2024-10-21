@@ -3,11 +3,13 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#include "snake.h"
 #include "map.h"
 
 // gcc main.c -o prog -I C:\\libs\\SDL\\SDL2-2.26.3\\include -L C:\\libs\\SDL\\SDL2-2.26.3\\lib\\x64 -lSDL2main -lSDL2
 
-void update();
+void init_game();
+void update_game();
 void draw();
 void clean_screen();
 void render_screen();
@@ -41,6 +43,8 @@ int main(int argc, char* argv[])
         return EXIT_FAILURE;
     }
 
+    init_game();
+
     SDL_Event p_event;
     bool is_open = true;
     unsigned int actual_time = 0;
@@ -68,7 +72,7 @@ int main(int argc, char* argv[])
 
             old_time = actual_time;
             
-            update();        
+            update_game();        
             clean_screen();
             draw();
             render_screen();
@@ -84,11 +88,14 @@ int main(int argc, char* argv[])
     return EXIT_SUCCESS;
 }
 
-
-
-void update()
+void init_game()
 {
-    //SDL_Delay(2);
+    init_snake();
+}
+
+void update_game()
+{
+    
 }
 
 
