@@ -5,6 +5,8 @@
 
 #include "map.h"
 
+// gcc main.c -o prog -I C:\\libs\\SDL\\SDL2-2.26.3\\include -L C:\\libs\\SDL\\SDL2-2.26.3\\lib\\x64 -lSDL2main -lSDL2
+
 void update();
 void draw();
 void clean_screen();
