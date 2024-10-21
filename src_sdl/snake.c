@@ -1,12 +1,15 @@
 #include "snake.h"
 
-int tab_snake[150][2];
+int tab_snake[SNAKE_LENGTH][2] = { 0 };
+
 
 void init_snake()
 {
-    for (int i = 0; i < 150; i++)
-    {
-        tab_snake[i][0] = 0;
-        tab_snake[i][1] = 0;
-    }
+    set_snake_head_position(15, 20);
+}
+
+void set_snake_head_position( int x, int y )
+{
+    tab_snake[0][0] = x;
+    tab_snake[0][1] = y;
 }
