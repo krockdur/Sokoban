@@ -8,7 +8,7 @@
 #define TILE_WIDTH 10
 #define FPS 15
 #define TILE_TYPE_WALL 1
-qd 
+ 
 
 // The world limits
 extern const int NB_CASE_X;
