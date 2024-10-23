@@ -17,6 +17,8 @@ void render_screen();
 SDL_Window* p_window = NULL;
 SDL_Renderer * p_renderer = NULL;
 
+    int snake_direction = LEFT;
+
 int main(int argc, char* argv[])
 {
 
@@ -60,6 +62,23 @@ int main(int argc, char* argv[])
             case SDL_QUIT:
                 is_open = false;
                 break;
+            case SDL_KEYDOWN:
+                switch( p_event.key.keysym.sym )
+                {
+                    case SDLK_q:
+                        snake_direction = LEFT;
+                        break;
+                    case SDLK_d:
+                        snake_direction = RIGHT;
+                        break;
+                    case SDLK_z:
+                        snake_direction = UP;
+                        break;
+                    case SDLK_s:
+                        snake_direction = DOWN;
+                        break;
+                }
+                break;
             }
         }
         
@@ -99,6 +118,9 @@ void update_game()
     // clean snake from map
     clean_snake_from_map();
 
+    // move snake
+    move_snake(snake_direction);
+
     // include snake in map
     for (int i = 0; i < snake_length; i++)
     {
@@ -107,48 +129,9 @@ void update_game()
 
 }
 
-
-SDL_Point point_A = { 0, 0 };
-SDL_Point point_B = { 300, 300 };
-SDL_Rect rect_test = { 150, 150, 30, 20 };
-SDL_Point point_test = { 100, 25 };
 void draw()
 {
-    for (int y = 0; y < NB_CASE_Y; y++)
-    {
-        for (int x = 0; x < NB_CASE_X; x++)
-        {
-            // wall
-            if (tab_map[y][x] == 1)
-            {
-                SDL_Rect tmp_wall_rect = { x * TILE_WIDTH, y * TILE_WIDTH, TILE_WIDTH, TILE_WIDTH };
-                SDL_SetRenderDrawColor( p_renderer, color_wall.r, color_wall.g, color_wall.b, color_wall.a );
-                SDL_RenderFillRect( p_renderer, &tmp_wall_rect );
-            }
-            // world
-            if (tab_map[y][x] == 0)
-            {
-                SDL_Rect tmp_world_rect = { x * TILE_WIDTH, y * TILE_WIDTH, TILE_WIDTH, TILE_WIDTH };
-                SDL_SetRenderDrawColor( p_renderer, color_world.r, color_world.g, color_world.b, color_world.a );
-                SDL_RenderFillRect( p_renderer, &tmp_world_rect );
-            }
-            // apple
-            if (tab_map[y][x] == 2)
-            {
-                SDL_Rect tmp_apple_rect = { x * TILE_WIDTH, y * TILE_WIDTH, TILE_WIDTH, TILE_WIDTH };
-                SDL_SetRenderDrawColor( p_renderer, color_apple.r, color_apple.g, color_apple.b, color_apple.a );
-                SDL_RenderFillRect( p_renderer, &tmp_apple_rect );
-            }
-            // snake
-            if (tab_map[y][x] == 3)
-            {
-                SDL_Rect tmp_snake_rect = { x * TILE_WIDTH, y * TILE_WIDTH, TILE_WIDTH, TILE_WIDTH };
-                SDL_SetRenderDrawColor( p_renderer, color_snake.r, color_snake.g, color_snake.b, color_snake.a );
-                SDL_RenderFillRect( p_renderer, &tmp_snake_rect );
-            }
-        }
-    }
-
+    draw_map( p_renderer );
 }
 
 void clean_screen()

@@ -30,17 +30,21 @@ void move_snake(int dir)
     {
     case LEFT:
         tab_new_snake[0][0] = tab_snake[0][0] - 1;
+        tab_new_snake[0][1] = tab_snake[0][1];
         break;
 
     case RIGHT:
         tab_new_snake[0][0] = tab_snake[0][0] + 1;
+        tab_new_snake[0][1] = tab_snake[0][1];
         break;
 
     case DOWN:
+        tab_new_snake[0][0] = tab_snake[0][0];
         tab_new_snake[0][1] = tab_snake[0][1] + 1;
         break;
 
     case UP:
+        tab_new_snake[0][0] = tab_snake[0][0];
         tab_new_snake[0][1] = tab_snake[0][1] - 1;
         break;
 
