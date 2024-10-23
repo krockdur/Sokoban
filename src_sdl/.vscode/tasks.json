@@ -29,9 +29,13 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                "*.c",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-lSDL2main",
+                "-lSDL2",
+                "-IC:\\libs\\SDL\\SDL2-2.26.3\\include",
+                "-LC:\\libs\\SDL\\SDL2-2.26.3\\lib\\x64"
             ],
             "options": {
                 "cwd": "${fileDirname}"

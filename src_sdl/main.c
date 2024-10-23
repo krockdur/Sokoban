@@ -96,6 +96,15 @@ void init_game()
 void update_game()
 {
     
+    // clean snake from map
+    clean_snake_from_map();
+
+    // include snake in map
+    for (int i = 0; i < snake_length; i++)
+    {
+        tab_map[tab_snake[i][1]][tab_snake[i][0]] = 3;
+    }
+
 }
 
 
