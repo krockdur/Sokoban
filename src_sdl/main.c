@@ -77,6 +77,9 @@ int main(int argc, char* argv[])
                     case SDLK_s:
                         snake_direction = DOWN;
                         break;
+                    case SDLK_SPACE:
+                        snake_direction = 10;
+                        break;
                 }
                 break;
             }
