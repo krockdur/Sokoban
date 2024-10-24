@@ -9,6 +9,7 @@ add_executable(Snake main.c
 
 
     map.h
+    map.c
     snake.h
     snake.c)
 

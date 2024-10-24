@@ -1,11 +1,19 @@
 #include "snake.h"
+#include "map.h"
 
 int tab_snake[MAX_SNAKE_LENGTH][2] = { 0 };
-int snake_length = 4;
+int snake_length = 6;
 
 void init_snake()
 {
-    set_snake_head_position(15, 20);
+    int head_start_x = 15;
+    int head_start_y = 20;
+    set_snake_head_position(head_start_x, head_start_y);
+    for (int i = 1; i < snake_length; i++)
+    {
+        tab_snake[i][0] = head_start_x + i;
+        tab_snake[i][1] = head_start_y;
+    }
 }
 
 void set_snake_head_position( int x, int y )
@@ -23,17 +31,21 @@ void move_snake(int dir)
     {
     case LEFT:
         tab_new_snake[0][0] = tab_snake[0][0] - 1;
+        tab_new_snake[0][1] = tab_snake[0][1];
         break;
 
     case RIGHT:
         tab_new_snake[0][0] = tab_snake[0][0] + 1;
+        tab_new_snake[0][1] = tab_snake[0][1];
         break;
 
     case DOWN:
+        tab_new_snake[0][0] = tab_snake[0][0];
         tab_new_snake[0][1] = tab_snake[0][1] + 1;
         break;
 
     case UP:
+        tab_new_snake[0][0] = tab_snake[0][0];
         tab_new_snake[0][1] = tab_snake[0][1] - 1;
         break;
 
