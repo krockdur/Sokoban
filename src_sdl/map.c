@@ -76,9 +76,17 @@ void clean_snake_from_map()
     }
 }
 
+void include_snake_in_map()
+{
+    for (int i = 0; i < snake_length; i++)
+    {
+        tab_map[tab_snake[i][1]][tab_snake[i][0]] = 3;
+    }
+}
+
 void draw_map(SDL_Renderer *p_renderer)
 {
-        for (int y = 0; y < NB_CASE_Y; y++)
+    for (int y = 0; y < NB_CASE_Y; y++)
     {
         for (int x = 0; x < NB_CASE_X; x++)
         {

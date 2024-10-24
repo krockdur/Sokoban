@@ -86,15 +86,13 @@ int main(int argc, char* argv[])
         delta_time = actual_time - old_time;
 
         if (delta_time > 1000 / FPS)
-        {
-            printf(" FPS : %d f/s \r\n", 1000 / delta_time); 
-
-            old_time = actual_time;
-            
+        {            
             update_game();        
             clean_screen();
             draw();
             render_screen();
+
+            old_time = actual_time;
         }
 
     }
@@ -112,21 +110,27 @@ void init_game()
     init_snake();
 }
 
+// time variables to ajust snake speed
+unsigned int actual_update_time = 0;
+unsigned int old_update_time = 0;
+unsigned int delta_update_time = 0;
 void update_game()
 {
-    
+    actual_update_time = SDL_GetTicks64();
+    delta_update_time = actual_update_time - old_update_time;
+
     // clean snake from map
     clean_snake_from_map();
 
     // move snake
-    move_snake(snake_direction);
-
-    // include snake in map
-    for (int i = 0; i < snake_length; i++)
+    if (delta_update_time > TIME_BETWEEN_SNAKE_MOVE)
     {
-        tab_map[tab_snake[i][1]][tab_snake[i][0]] = 3;
+        move_snake(snake_direction);
+        old_update_time = actual_update_time;
     }
 
+    // include snake in map
+    include_snake_in_map();
 }
 
 void draw()
